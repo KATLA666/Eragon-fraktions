@@ -1,0 +1,21 @@
+modLoader="javafml"
+loaderVersion="[28,)"
+
+[[mods]]
+modId="minecraft_eragon__personallib"
+version="1.0.0"
+displayName="Minecraft Eragon 2 Personallib"
+credits="Created using mod maker MCreator - https://mcreator.net/about"
+displayURL="https://mcreator.net"
+authors="Nutzer, MCreator"
+
+[[dependencies.minecraft_eragon__personallib]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.14.4]"
+    ordering="NONE"
+    side="BOTH"
+
+
+
+

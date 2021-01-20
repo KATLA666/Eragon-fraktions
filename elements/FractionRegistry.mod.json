@@ -1,0 +1,78 @@
+{
+  "_fv": 13,
+  "_type": "gui",
+  "definition": {
+    "type": 0,
+    "width": 215,
+    "height": 166,
+    "inventoryOffsetX": 0,
+    "inventoryOffsetY": 0,
+    "renderBgLayer": true,
+    "doesPauseGame": false,
+    "components": [
+      {
+        "type": "label",
+        "data": {
+          "text": "Wähle Deine Fraction!",
+          "color": {
+            "value": -6750208,
+            "falpha": 0.0
+          },
+          "name": "Wähle Deine Fraction!",
+          "x": 162,
+          "y": 44
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": " Varden ",
+          "onClick": {
+            "name": "ButtonFraktionVarden"
+          },
+          "width": 55,
+          "height": 20,
+          "name": " Varden ",
+          "x": 118,
+          "y": 71
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "Imperium",
+          "width": 65,
+          "height": 20,
+          "name": "Imperium",
+          "x": 244,
+          "y": 71
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "  Elfen  ",
+          "onClick": {
+            "name": "ButtonFraktionElfen"
+          },
+          "width": 50,
+          "height": 20,
+          "name": "  Elfen  ",
+          "x": 118,
+          "y": 141
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "Zwerge",
+          "width": 55,
+          "height": 20,
+          "name": "Zwerge",
+          "x": 244,
+          "y": 141
+        }
+      }
+    ]
+  }
+}
