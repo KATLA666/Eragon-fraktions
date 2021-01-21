@@ -96,39 +96,6 @@
       "registry_name": "reset"
     },
     {
-      "name": "FraktionVarden",
-      "type": "procedure",
-      "sortid": 5,
-      "compiles": true,
-      "locked_code": false,
-      "ids": {},
-      "registry_name": "fraktion_varden",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ]
-      }
-    },
-    {
       "name": "ListpCommandExecuted",
       "type": "procedure",
       "sortid": 6,
@@ -155,23 +122,6 @@
       "registry_name": "listp"
     },
     {
-      "name": "FraktionElfen",
-      "type": "procedure",
-      "sortid": 7,
-      "compiles": true,
-      "locked_code": false,
-      "ids": {},
-      "registry_name": "fraktion_elfen",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
-        ]
-      }
-    },
-    {
       "name": "ButtonFraktionElfen",
       "type": "procedure",
       "sortid": 8,
@@ -187,13 +137,44 @@
           }
         ]
       }
+    },
+    {
+      "name": "SpecialAbility",
+      "type": "procedure",
+      "sortid": 9,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "special_ability",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "itemstack",
+            "type": "itemstack"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SpecialabilityKey",
+      "type": "keybind",
+      "sortid": 10,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "specialability_key"
     }
   ],
   "variable_elements": [],
   "sound_elements": [],
   "language_map": {
     "en_us": {
-      "key.mcreator.registry_fraction": "Registry Fation"
+      "key.mcreator.registry_fraction": "Registry Fation",
+      "key.mcreator.specialability_key": "Specialability Key"
     }
   },
   "workspaceSettings": {
