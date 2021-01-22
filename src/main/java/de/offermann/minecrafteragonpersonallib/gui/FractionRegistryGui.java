@@ -33,8 +33,11 @@ import java.util.function.Supplier;
 import java.util.Map;
 import java.util.HashMap;
 
+import de.offermann.minecrafteragonpersonallib.procedures.GUIImperiumProcedure;
 import de.offermann.minecrafteragonpersonallib.procedures.ButtonFraktionVardenProcedure;
+import de.offermann.minecrafteragonpersonallib.procedures.ButtonFraktionSurdaProcedure;
 import de.offermann.minecrafteragonpersonallib.procedures.ButtonFraktionElfenProcedure;
+import de.offermann.minecrafteragonpersonallib.procedures.ButtonFraktionDwarfProcedure;
 import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibModElements;
 import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibMod;
 
@@ -163,17 +166,21 @@ public class FractionRegistryGui extends MinecraftEragonPersonallibModElements.M
 				MinecraftEragonPersonallibMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(0, x, y, z));
 				handleButtonAction(entity, 0, x, y, z);
 			}));
-			this.addButton(new Button(this.guiLeft + 138, this.guiTop + 34, 65, 20, "Imperium", e -> {
+			this.addButton(new Button(this.guiLeft + 12, this.guiTop + 104, 50, 20, "Eleven", e -> {
 				MinecraftEragonPersonallibMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(1, x, y, z));
 				handleButtonAction(entity, 1, x, y, z);
 			}));
-			this.addButton(new Button(this.guiLeft + 12, this.guiTop + 104, 50, 20, "  Elfen  ", e -> {
+			this.addButton(new Button(this.guiLeft + 138, this.guiTop + 104, 55, 20, "Dwarfs", e -> {
 				MinecraftEragonPersonallibMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(2, x, y, z));
 				handleButtonAction(entity, 2, x, y, z);
 			}));
-			this.addButton(new Button(this.guiLeft + 138, this.guiTop + 104, 55, 20, "Zwerge", e -> {
+			this.addButton(new Button(this.guiLeft + 171, this.guiTop + 142, 40, 20, ">>>", e -> {
 				MinecraftEragonPersonallibMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(3, x, y, z));
 				handleButtonAction(entity, 3, x, y, z);
+			}));
+			this.addButton(new Button(this.guiLeft + 139, this.guiTop + 34, 50, 20, "Surda", e -> {
+				MinecraftEragonPersonallibMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(4, x, y, z));
+				handleButtonAction(entity, 4, x, y, z);
 			}));
 		}
 	}
@@ -271,11 +278,36 @@ public class FractionRegistryGui extends MinecraftEragonPersonallibModElements.M
 				ButtonFraktionVardenProcedure.executeProcedure($_dependencies);
 			}
 		}
-		if (buttonID == 2) {
+		if (buttonID == 1) {
 			{
 				Map<String, Object> $_dependencies = new HashMap<>();
 				$_dependencies.put("entity", entity);
 				ButtonFraktionElfenProcedure.executeProcedure($_dependencies);
+			}
+		}
+		if (buttonID == 2) {
+			{
+				Map<String, Object> $_dependencies = new HashMap<>();
+				$_dependencies.put("entity", entity);
+				ButtonFraktionDwarfProcedure.executeProcedure($_dependencies);
+			}
+		}
+		if (buttonID == 3) {
+			{
+				Map<String, Object> $_dependencies = new HashMap<>();
+				$_dependencies.put("entity", entity);
+				$_dependencies.put("x", x);
+				$_dependencies.put("y", y);
+				$_dependencies.put("z", z);
+				$_dependencies.put("world", world);
+				GUIImperiumProcedure.executeProcedure($_dependencies);
+			}
+		}
+		if (buttonID == 4) {
+			{
+				Map<String, Object> $_dependencies = new HashMap<>();
+				$_dependencies.put("entity", entity);
+				ButtonFraktionSurdaProcedure.executeProcedure($_dependencies);
 			}
 		}
 	}

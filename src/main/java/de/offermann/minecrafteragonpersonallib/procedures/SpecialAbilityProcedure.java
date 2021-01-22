@@ -1,12 +1,12 @@
 package de.offermann.minecrafteragonpersonallib.procedures;
 
+import net.minecraft.world.World;
+import net.minecraft.world.IWorld;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.item.Items;
-import net.minecraft.item.ItemStack;
+import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.Entity;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.enchantment.EnchantmentHelper;
 
 import java.util.Map;
 
@@ -24,27 +24,60 @@ public class SpecialAbilityProcedure extends MinecraftEragonPersonallibModElemen
 				System.err.println("Failed to load dependency entity for procedure SpecialAbility!");
 			return;
 		}
-		if (dependencies.get("itemstack") == null) {
-			if (!dependencies.containsKey("itemstack"))
-				System.err.println("Failed to load dependency itemstack for procedure SpecialAbility!");
+		if (dependencies.get("world") == null) {
+			if (!dependencies.containsKey("world"))
+				System.err.println("Failed to load dependency world for procedure SpecialAbility!");
 			return;
 		}
 		Entity entity = (Entity) dependencies.get("entity");
-		ItemStack itemstack = (ItemStack) dependencies.get("itemstack");
+		IWorld world = (IWorld) dependencies.get("world");
 		if (((entity.getPersistentData().getDouble("varden")) == 1)) {
 			if (entity instanceof PlayerEntity && !entity.world.isRemote) {
 				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7cin working"), (false));
 			}
 		} else if (((entity.getPersistentData().getDouble("elfen")) == 1)) {
-			if (((EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, new ItemStack(Items.BOW, (int) (1)))) == 0)) {
-				((itemstack)).addEnchantment(Enchantments.INFINITY, (int) 1);
+			if (((entity.getPersistentData().getDouble("clockreadystrong")) == 1)) {
+				if (world instanceof World && !world.getWorld().isRemote && entity instanceof LivingEntity) {
+					ArrowEntity entityToSpawn = new ArrowEntity(world.getWorld(), (LivingEntity) entity);
+					entityToSpawn.shoot(entity.getLookVec().x, entity.getLookVec().y, entity.getLookVec().z, (float) 5, 0);
+					entityToSpawn.setDamage((float) 10);
+					entityToSpawn.setKnockbackStrength((int) 1);
+					world.addEntity(entityToSpawn);
+				}
+				entity.getPersistentData().putDouble("clock", 0);
+				entity.getPersistentData().putDouble("clockreadystrong", 0);
+			} else {
+				if (entity instanceof PlayerEntity && !entity.world.isRemote) {
+					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
+							(((("\u00A7cDie Abklingzeit betr\u00E4gt noch: ") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
+									+ (" \u00A7cTicks!"))),
+							(true));
+				}
 			}
 		}
 		if (((entity.getPersistentData().getDouble("zwergen")) == 1)) {
 			if (entity instanceof PlayerEntity && !entity.world.isRemote) {
 				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7cin working"), (false));
 			}
-		} else if (((entity.getPersistentData().getDouble("imperium")) == 1)) {
+		} else if (((entity.getPersistentData().getDouble("surda")) == 1)) {
+			if (entity instanceof PlayerEntity && !entity.world.isRemote) {
+				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7cin working"), (false));
+			}
+		}
+		if (((entity.getPersistentData().getDouble("empire_soldier")) == 1)) {
+			if (entity instanceof PlayerEntity && !entity.world.isRemote) {
+				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7cin working"), (false));
+			}
+		} else if (((entity.getPersistentData().getDouble("shade")) == 1)) {
+			if (entity instanceof PlayerEntity && !entity.world.isRemote) {
+				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7cin working"), (false));
+			}
+		}
+		if (((entity.getPersistentData().getDouble("ra'zac")) == 1)) {
+			if (entity instanceof PlayerEntity && !entity.world.isRemote) {
+				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7cin working"), (false));
+			}
+		} else if (((entity.getPersistentData().getDouble("urgal")) == 1)) {
 			if (entity instanceof PlayerEntity && !entity.world.isRemote) {
 				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7cin working"), (false));
 			}

@@ -1,0 +1,98 @@
+{
+  "_fv": 13,
+  "_type": "gui",
+  "definition": {
+    "type": 0,
+    "width": 215,
+    "height": 166,
+    "inventoryOffsetX": 0,
+    "inventoryOffsetY": 0,
+    "renderBgLayer": true,
+    "doesPauseGame": false,
+    "components": [
+      {
+        "type": "button",
+        "data": {
+          "text": "Empire Soldier",
+          "onClick": {
+            "name": "ButtonfraktionEmpireSoldier"
+          },
+          "width": 105,
+          "height": 20,
+          "name": "Empire Soldier",
+          "x": 111,
+          "y": 64
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Empire Minions",
+          "color": {
+            "value": -10092544,
+            "falpha": 0.0
+          },
+          "name": "Empire Minions",
+          "x": 180,
+          "y": 46
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "Shade",
+          "onClick": {
+            "name": "ButtonFraktionShade"
+          },
+          "width": 50,
+          "height": 20,
+          "name": "Shade",
+          "x": 244,
+          "y": 64
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "Urgal",
+          "onClick": {
+            "name": "ButtonFraktionUrgal"
+          },
+          "width": 50,
+          "height": 20,
+          "name": "Urgal",
+          "x": 243,
+          "y": 134
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "<<<",
+          "onClick": {
+            "name": "GUIResistance"
+          },
+          "width": 40,
+          "height": 20,
+          "name": "<<<",
+          "x": 111,
+          "y": 179
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "Ra’zac",
+          "onClick": {
+            "name": "ButtonFraktionrazac"
+          },
+          "width": 55,
+          "height": 20,
+          "name": "Ra’zac",
+          "x": 112,
+          "y": 134
+        }
+      }
+    ]
+  }
+}

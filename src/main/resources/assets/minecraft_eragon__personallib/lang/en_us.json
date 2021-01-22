@@ -1,4 +1,9 @@
 {
+  "item.minecraft.splash_potion.effect.elfisch_strengh": "Splash Elvish strength",
+  "item.minecraft.potion.effect.elfisch_strengh": "Elvish strength",
+  "effect.elfisch_strengh": "Elvish strength",
   "key.mcreator.registry_fraction": "Registry Fation",
-  "key.mcreator.specialability_key": "Specialability Key"
+  "item.minecraft.tipped_arrow.effect.elfisch_strengh": "Arrow of Elvish strength",
+  "key.mcreator.specialability_key": "Specialability Key",
+  "item.minecraft.lingering_potion.effect.elfisch_strengh": "Lingering Elvish strength"
 }

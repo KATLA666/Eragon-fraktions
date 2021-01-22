@@ -40,24 +40,13 @@
       {
         "type": "button",
         "data": {
-          "text": "Imperium",
-          "width": 65,
-          "height": 20,
-          "name": "Imperium",
-          "x": 244,
-          "y": 71
-        }
-      },
-      {
-        "type": "button",
-        "data": {
-          "text": "  Elfen  ",
+          "text": "Eleven",
           "onClick": {
             "name": "ButtonFraktionElfen"
           },
           "width": 50,
           "height": 20,
-          "name": "  Elfen  ",
+          "name": "Eleven",
           "x": 118,
           "y": 141
         }
@@ -65,12 +54,43 @@
       {
         "type": "button",
         "data": {
-          "text": "Zwerge",
+          "text": "Dwarfs",
+          "onClick": {
+            "name": "ButtonFraktionDwarf"
+          },
           "width": 55,
           "height": 20,
-          "name": "Zwerge",
+          "name": "Dwarfs",
           "x": 244,
           "y": 141
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": ">>>",
+          "onClick": {
+            "name": "GUIImperium"
+          },
+          "width": 40,
+          "height": 20,
+          "name": ">>>",
+          "x": 277,
+          "y": 179
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "Surda",
+          "onClick": {
+            "name": "ButtonFraktionSurda"
+          },
+          "width": 50,
+          "height": 20,
+          "name": "Surda",
+          "x": 245,
+          "y": 71
         }
       }
     ]

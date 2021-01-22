@@ -1,0 +1,22 @@
+{
+  "_fv": 13,
+  "_type": "potion",
+  "definition": {
+    "name": "Elvish strength",
+    "effectName": "Elvish strength",
+    "icon": "elfen_strength_icon128_pxl.png",
+    "color": {
+      "value": -6750208,
+      "falpha": 0.0
+    },
+    "isInstant": true,
+    "isBad": false,
+    "isBenefitical": false,
+    "registerPotionType": false,
+    "renderStatusInInventory": true,
+    "renderStatusInHUD": true,
+    "onActiveTick": {
+      "name": "ElfischStrenghPotionStartedapplied"
+    }
+  }
+}

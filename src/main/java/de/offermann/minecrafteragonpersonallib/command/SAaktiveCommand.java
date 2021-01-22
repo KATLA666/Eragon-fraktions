@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Arrays;
 
-import de.offermann.minecrafteragonpersonallib.procedures.ListpCommandExecutedProcedure;
+import de.offermann.minecrafteragonpersonallib.procedures.SAaktiveCommandExecutedProcedure;
 import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibModElements;
 
 import com.mojang.brigadier.context.CommandContext;
@@ -21,9 +21,9 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.arguments.StringArgumentType;
 
 @MinecraftEragonPersonallibModElements.ModElement.Tag
-public class ListpCommand extends MinecraftEragonPersonallibModElements.ModElement {
-	public ListpCommand(MinecraftEragonPersonallibModElements instance) {
-		super(instance, 6);
+public class SAaktiveCommand extends MinecraftEragonPersonallibModElements.ModElement {
+	public SAaktiveCommand(MinecraftEragonPersonallibModElements instance) {
+		super(instance, 25);
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class ListpCommand extends MinecraftEragonPersonallibModElements.ModEleme
 	}
 
 	private LiteralArgumentBuilder<CommandSource> customCommand() {
-		return LiteralArgumentBuilder.<CommandSource>literal("listp").requires(s -> s.hasPermissionLevel(2))
+		return LiteralArgumentBuilder.<CommandSource>literal("saaktive").requires(s -> s.hasPermissionLevel(4))
 				.then(Commands.argument("arguments", StringArgumentType.greedyString()).executes(this::execute)).executes(this::execute);
 	}
 
@@ -54,7 +54,7 @@ public class ListpCommand extends MinecraftEragonPersonallibModElements.ModEleme
 		{
 			Map<String, Object> $_dependencies = new HashMap<>();
 			$_dependencies.put("entity", entity);
-			ListpCommandExecutedProcedure.executeProcedure($_dependencies);
+			SAaktiveCommandExecutedProcedure.executeProcedure($_dependencies);
 		}
 		return 0;
 	}
