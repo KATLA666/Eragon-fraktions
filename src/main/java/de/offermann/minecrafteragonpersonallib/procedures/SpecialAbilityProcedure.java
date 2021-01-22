@@ -78,8 +78,8 @@ public class SpecialAbilityProcedure extends MinecraftEragonPersonallibModElemen
 				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7cin working"), (false));
 			}
 		} else if (((entity.getPersistentData().getDouble("urgal")) == 1)) {
-			entity.setMotion(Math.sin(Math.toRadians(((entity.rotationYaw) + 90))), Math.sin(Math.toRadians((0 - (entity.rotationPitch)))),
-					Math.sin(Math.toRadians((entity.rotationYaw))));
+			entity.setMotion(Math.sin(Math.toRadians(((entity.rotationYaw) + 180))), Math.sin(Math.toRadians((0 - (entity.rotationPitch)))),
+					Math.cos(Math.toRadians((entity.rotationYaw))));
 		}
 	}
 }
