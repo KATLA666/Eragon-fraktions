@@ -440,6 +440,18 @@
       "locked_code": false,
       "ids": {},
       "registry_name": "s_aaktive"
+    },
+    {
+      "name": "UrgalDash",
+      "type": "procedure",
+      "sortid": 26,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "urgal_dash",
+      "metadata": {
+        "dependencies": []
+      }
     }
   ],
   "variable_elements": [],

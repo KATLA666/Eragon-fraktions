@@ -13,26 +13,13 @@ import java.util.HashMap;
 import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibModElements;
 
 @MinecraftEragonPersonallibModElements.ModElement.Tag
-public class ClockProcedure extends MinecraftEragonPersonallibModElements.ModElement {
-	public ClockProcedure(MinecraftEragonPersonallibModElements instance) {
-		super(instance, 20);
+public class UrgalDashProcedure extends MinecraftEragonPersonallibModElements.ModElement {
+	public UrgalDashProcedure(MinecraftEragonPersonallibModElements instance) {
+		super(instance, 26);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {
-		if (dependencies.get("entity") == null) {
-			if (!dependencies.containsKey("entity"))
-				System.err.println("Failed to load dependency entity for procedure Clock!");
-			return;
-		}
-		Entity entity = (Entity) dependencies.get("entity");
-		entity.getPersistentData().putDouble("clock", ((entity.getPersistentData().getDouble("clock")) + 1));
-		if (((entity.getPersistentData().getDouble("clock")) >= 200)) {
-			entity.getPersistentData().putDouble("clockready", 1);
-		} else if (((entity.getPersistentData().getDouble("clock")) >= 6000)) {
-			entity.getPersistentData().putDouble("clockreadystrong", 1);
-			entity.getPersistentData().putDouble("clock", 0);
-		}
 	}
 
 	@SubscribeEvent
