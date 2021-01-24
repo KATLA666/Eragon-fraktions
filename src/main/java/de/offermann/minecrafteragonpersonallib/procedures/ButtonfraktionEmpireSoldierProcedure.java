@@ -25,11 +25,11 @@ public class ButtonfraktionEmpireSoldierProcedure extends MinecraftEragonPersona
 			entity.getPersistentData().putDouble("empire_soldier", 1);
 			entity.getPersistentData().putDouble("clicked", 1);
 			if (entity instanceof PlayerEntity && !entity.world.isRemote) {
-				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7aYou have joined the Empire Soldier faction"), (false));
+				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\uFFFDaYou have joined the Empire Soldier faction"), (false));
 			}
 		} else {
 			if (entity instanceof PlayerEntity && !entity.world.isRemote) {
-				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7cYou are already in a faction"), (false));
+				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\uFFFDcYou are already in a faction"), (false));
 			}
 		}
 	}

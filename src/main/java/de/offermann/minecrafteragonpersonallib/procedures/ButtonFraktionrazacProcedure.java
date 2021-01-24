@@ -25,11 +25,11 @@ public class ButtonFraktionrazacProcedure extends MinecraftEragonPersonallibModE
 			entity.getPersistentData().putDouble("ra'zac", 1);
 			entity.getPersistentData().putDouble("clicked", 1);
 			if (entity instanceof PlayerEntity && !entity.world.isRemote) {
-				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7aYou have joined the Ra'zac faction"), (false));
+				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\uFFFDaYou have joined the Ra'zac faction"), (false));
 			}
 		} else {
 			if (entity instanceof PlayerEntity && !entity.world.isRemote) {
-				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7cYou are already in a faction"), (false));
+				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\uFFFDcYou are already in a faction"), (false));
 			}
 		}
 	}

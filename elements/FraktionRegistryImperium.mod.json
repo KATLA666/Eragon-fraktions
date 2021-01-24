@@ -82,13 +82,13 @@
       {
         "type": "button",
         "data": {
-          "text": "Ra’zac",
+          "text": "Raï¿½zac",
           "onClick": {
             "name": "ButtonFraktionrazac"
           },
           "width": 55,
           "height": 20,
-          "name": "Ra’zac",
+          "name": "Raï¿½zac",
           "x": 112,
           "y": 134
         }
