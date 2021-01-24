@@ -33,7 +33,7 @@ public class SpecialAbilityProcedure extends MinecraftEragonPersonallibModElemen
 		IWorld world = (IWorld) dependencies.get("world");
 		if (((entity.getPersistentData().getDouble("varden")) == 1)) {
 			if (entity instanceof PlayerEntity && !entity.world.isRemote) {
-				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7cin working"), (false));
+				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\uFFFDcin working"), (false));
 			}
 		} else if (((entity.getPersistentData().getDouble("elfen")) == 1)) {
 			if (((entity.getPersistentData().getDouble("clockreadystrong")) == 1)) {
@@ -49,37 +49,34 @@ public class SpecialAbilityProcedure extends MinecraftEragonPersonallibModElemen
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote) {
 					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
-							(((("\u00A7cDie Abklingzeit betr\u00E4gt noch: ") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
-									+ (" \u00A7cTicks!"))),
+							(((("\uFFFDcDie Abklingzeit betr\uFFFDgt noch: ") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
+									+ (" \uFFFDcTicks!"))),
 							(true));
 				}
 			}
-		}
-		if (((entity.getPersistentData().getDouble("zwergen")) == 1)) {
+		} else if (((entity.getPersistentData().getDouble("zwergen")) == 1)) {
 			if (entity instanceof PlayerEntity && !entity.world.isRemote) {
-				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7cin working"), (false));
+				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\uFFFDcin working"), (false));
 			}
 		} else if (((entity.getPersistentData().getDouble("surda")) == 1)) {
 			if (entity instanceof PlayerEntity && !entity.world.isRemote) {
-				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7cin working"), (false));
+				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\uFFFDcin working"), (false));
 			}
-		}
-		if (((entity.getPersistentData().getDouble("empire_soldier")) == 1)) {
+		} else if (((entity.getPersistentData().getDouble("empire_soldier")) == 1)) {
 			if (entity instanceof PlayerEntity && !entity.world.isRemote) {
-				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7cin working"), (false));
+				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\uFFFDcin working"), (false));
 			}
 		} else if (((entity.getPersistentData().getDouble("shade")) == 1)) {
 			if (entity instanceof PlayerEntity && !entity.world.isRemote) {
-				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7cin working"), (false));
+				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\uFFFDcin working"), (false));
 			}
-		}
-		if (((entity.getPersistentData().getDouble("ra'zac")) == 1)) {
+		} else if (((entity.getPersistentData().getDouble("ra'zac")) == 1)) {
 			if (entity instanceof PlayerEntity && !entity.world.isRemote) {
-				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7cin working"), (false));
+				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\uFFFDcin working"), (false));
 			}
 		} else if (((entity.getPersistentData().getDouble("urgal")) == 1)) {
-			entity.setMotion(Math.sin(Math.toRadians(((entity.rotationYaw) + 180))), Math.sin(Math.toRadians((0 - (entity.rotationPitch)))),
-					Math.cos(Math.toRadians((entity.rotationYaw))));
+			entity.setMotion((Math.sin(Math.toRadians(((entity.rotationYaw) + 180))) * 3), Math.sin(Math.toRadians((0 - (entity.rotationPitch)))),
+					(Math.cos(Math.toRadians((entity.rotationYaw))) * 3));
 		}
 	}
 }

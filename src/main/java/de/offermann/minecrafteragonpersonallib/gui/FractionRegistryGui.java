@@ -140,7 +140,7 @@ public class FractionRegistryGui extends MinecraftEragonPersonallibModElements.M
 
 		@Override
 		protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-			this.font.drawString("W\u00E4hle Deine Fraction!", 56, 7, -6750208);
+			this.font.drawString("W\uFFFDhle Deine Fraction!", 56, 7, -6750208);
 		}
 
 		@Override
