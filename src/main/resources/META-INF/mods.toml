@@ -5,9 +5,9 @@ loaderVersion="[28,)"
 modId="minecraft_eragon__personallib"
 version="1.0.0"
 displayName="Minecraft Eragon 2 Personallib"
-credits="Created using mod maker MCreator - https://mcreator.net/about"
+credits="Created using mod maker MCreator - https://mcreator.net/about and Eclipse  https://www.eclipse.org/ "
 displayURL="https://mcreator.net"
-authors="Nutzer, MCreator"
+authors="Moritz Offermann"
 
 [[dependencies.minecraft_eragon__personallib]]
     modId="minecraft"

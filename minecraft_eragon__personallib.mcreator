@@ -481,8 +481,7 @@
     "modid": "minecraft_eragon__personallib",
     "modName": "Minecraft Eragon 2 Personallib",
     "version": "1.0.0",
-    "author": "Nutzer, MCreator",
-    "websiteURL": "https://mcreator.net",
+    "author": "Moritz Offermann",
     "disableForgeVersionCheck": true,
     "serverSideOnly": false,
     "requiredMods": [],
@@ -490,7 +489,7 @@
     "dependants": [],
     "mcreatorDependencies": [],
     "currentGenerator": "forge-1.14.4",
-    "credits": "Created using mod maker MCreator - https://mcreator.net/about",
+    "credits": "Created using mod maker MCreator - https://mcreator.net/about and Eclipse  https://www.eclipse.org/ ",
     "modElementsPackage": "de.offermann.minecrafteragonpersonallib",
     "lockBaseModFiles": false
   },
