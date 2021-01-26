@@ -90,17 +90,9 @@ public class SpecialAbilityProcedure extends MinecraftEragonPersonallibModElemen
 				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00EF\u00BF\u00BDcin working"), (false));
 			}
 		} else if (((entity.getPersistentData().getDouble("urgal")) == 1)) {
-			if (((entity.getPersistentData().getDouble("clockready")) == 1)) {
-				entity.setMotion((Math.sin(Math.toRadians(((entity.rotationYaw) + 180))) * 3), Math.sin(Math.toRadians((0 - (entity.rotationPitch)))),
-						(Math.cos(Math.toRadians((entity.rotationYaw))) * 3));
-				entity.getPersistentData().putDouble("clock", 0);
-				entity.getPersistentData().putDouble("clockready", 0);
-			} else {
-				if (entity instanceof PlayerEntity && !entity.world.isRemote) {
-					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent((((("\u00A7cDie Abklingzeit betr\u00EF\u00BF\u00BDgt noch: ")
-							+ "" + ((3000 - (entity.getPersistentData().getDouble("clock")))))) + "" + ("\u00A7cTicks!"))), (true));
-				}
-			}
+			entity.setMotion((Math.sin(Math.toRadians(((entity.rotationYaw) + 180))) * 3), Math.sin(Math.toRadians((0 - (entity.rotationPitch)))),
+					(Math.cos(Math.toRadians((entity.rotationYaw))) * 3));
+			entity.getPersistentData().putDouble("ansturm", 1);
 		}
 	}
 }

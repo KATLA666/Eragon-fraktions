@@ -450,7 +450,16 @@
       "ids": {},
       "registry_name": "urgal_dash",
       "metadata": {
-        "dependencies": []
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
       }
     },
     {
@@ -461,6 +470,15 @@
       "locked_code": false,
       "ids": {},
       "registry_name": "dwarfs_throwable_axe"
+    },
+    {
+      "name": "Speer",
+      "type": "gun",
+      "sortid": 28,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "speer"
     }
   ],
   "variable_elements": [],
@@ -470,6 +488,7 @@
       "item.minecraft.splash_potion.effect.elfisch_strengh": "Splash Elvish strength",
       "item.minecraft.potion.effect.elfisch_strengh": "Elvish strength",
       "item.minecraft_eragon__personallib.dwarfs_throwable_axe": "Dwarfs Throwable Axe",
+      "item.minecraft_eragon__personallib.speer": "Speer",
       "effect.elfisch_strengh": "Elvish strength",
       "key.mcreator.registry_fraction": "Registry Fation",
       "item.minecraft.tipped_arrow.effect.elfisch_strengh": "Arrow of Elvish strength",
