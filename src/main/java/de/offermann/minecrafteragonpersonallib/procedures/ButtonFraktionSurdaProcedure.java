@@ -25,11 +25,11 @@ public class ButtonFraktionSurdaProcedure extends MinecraftEragonPersonallibModE
 			entity.getPersistentData().putDouble("surda", 1);
 			entity.getPersistentData().putDouble("clicked", 1);
 			if (entity instanceof PlayerEntity && !entity.world.isRemote) {
-				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\uFFFDaYou have joined the Surda faction"), (false));
+				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00EF\u00BF\u00BDaYou have joined the Surda faction"), (false));
 			}
 		} else {
 			if (entity instanceof PlayerEntity && !entity.world.isRemote) {
-				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\uFFFDcYou are already in a faction"), (false));
+				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00EF\u00BF\u00BDcYou are already in a faction"), (false));
 			}
 		}
 	}

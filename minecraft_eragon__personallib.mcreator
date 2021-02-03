@@ -315,7 +315,12 @@
       "ids": {},
       "registry_name": "fraktion_dwarf",
       "metadata": {
-        "dependencies": []
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
       }
     },
     {
@@ -327,7 +332,12 @@
       "ids": {},
       "registry_name": "fraktion_surda",
       "metadata": {
-        "dependencies": []
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
       }
     },
     {
