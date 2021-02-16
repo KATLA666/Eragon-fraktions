@@ -21,7 +21,6 @@ import net.minecraft.network.IPacket;
 import net.minecraft.item.UseAction;
 import net.minecraft.item.ShootableItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Item;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -39,6 +38,7 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 
 import java.util.Random;
 
+import de.offermann.minecrafteragonpersonallib.itemgroup.EragonItemGroup;
 import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibModElements;
 
 import com.mojang.blaze3d.platform.GlStateManager;
@@ -68,7 +68,7 @@ public class DwarfsThrowableAxeItem extends MinecraftEragonPersonallibModElement
 	}
 	public static class ItemRanged extends Item {
 		public ItemRanged() {
-			super(new Item.Properties().group(ItemGroup.COMBAT).maxDamage(1));
+			super(new Item.Properties().group(EragonItemGroup.tab).maxDamage(1));
 			setRegistryName("dwarfs_throwable_axe");
 		}
 
@@ -181,7 +181,7 @@ public class DwarfsThrowableAxeItem extends MinecraftEragonPersonallibModElement
 			World world = this.world;
 			Entity entity = this.getShooter();
 			if (this.inGround) {
-				
+				this.remove();
 			}
 		}
 	}

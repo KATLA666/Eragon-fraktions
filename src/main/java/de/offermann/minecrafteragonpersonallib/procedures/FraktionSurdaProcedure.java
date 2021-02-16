@@ -37,7 +37,10 @@ public class FraktionSurdaProcedure extends MinecraftEragonPersonallibModElement
 					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.RESISTANCE, (int) 20, (int) 0, (false), (false)));
 				if ((entity.getRidingEntity()) instanceof LivingEntity)
 					((LivingEntity) (entity.getRidingEntity()))
-							.addPotionEffect(new EffectInstance(Effects.SPEED, (int) 20, (int) 2, (false), (false)));
+							.addPotionEffect(new EffectInstance(Effects.SPEED, (int) 20, (int) 1, (false), (false)));
+				if ((entity.getRidingEntity()) instanceof LivingEntity)
+					((LivingEntity) (entity.getRidingEntity()))
+							.addPotionEffect(new EffectInstance(Effects.RESISTANCE, (int) 20, (int) 0, (false), (false)));
 			}
 		}
 	}

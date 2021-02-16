@@ -303,7 +303,12 @@
       "ids": {},
       "registry_name": "fraktion_varden",
       "metadata": {
-        "dependencies": []
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
       }
     },
     {
@@ -328,7 +333,7 @@
       "type": "procedure",
       "sortid": 19,
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "ids": {},
       "registry_name": "fraktion_surda",
       "metadata": {
@@ -489,6 +494,46 @@
       "locked_code": false,
       "ids": {},
       "registry_name": "speer"
+    },
+    {
+      "name": "ErgaonLogo",
+      "type": "item",
+      "sortid": 29,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "ergaon_logo"
+    },
+    {
+      "name": "Eragon",
+      "type": "tab",
+      "sortid": 29,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "eragon"
+    },
+    {
+      "name": "RageDisplayOverlayIngame",
+      "type": "procedure",
+      "sortid": 30,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "rage_display_overlay_ingame",
+      "metadata": {
+        "return_type": "LOGIC",
+        "dependencies": []
+      }
+    },
+    {
+      "name": "Rage",
+      "type": "overlay",
+      "sortid": 30,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "rage"
     }
   ],
   "variable_elements": [],
@@ -501,6 +546,8 @@
       "item.minecraft_eragon__personallib.speer": "Speer",
       "effect.elfisch_strengh": "Elvish strength",
       "key.mcreator.registry_fraction": "Registry Fation",
+      "itemGroup.taberagon": "Eragon",
+      "item.minecraft_eragon__personallib.ergaon_logo": "Ergaon Logo",
       "item.minecraft.tipped_arrow.effect.elfisch_strengh": "Arrow of Elvish strength",
       "key.mcreator.specialability_key": "Specialability Key",
       "item.minecraft.lingering_potion.effect.elfisch_strengh": "Lingering Elvish strength"

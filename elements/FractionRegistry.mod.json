@@ -13,12 +13,12 @@
       {
         "type": "label",
         "data": {
-          "text": "Wï¿½hle Deine Fraction!",
+          "text": "Wähle Deine Fraction!",
           "color": {
             "value": -6750208,
             "falpha": 0.0
           },
-          "name": "Wï¿½hle Deine Fraction!",
+          "name": "Wähle Deine Fraction!",
           "x": 162,
           "y": 44
         }

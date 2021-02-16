@@ -3,6 +3,8 @@ package de.offermann.minecrafteragonpersonallib.procedures;
 import net.minecraft.world.World;
 import net.minecraft.world.IWorld;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.potion.Effects;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.LivingEntity;
@@ -35,8 +37,22 @@ public class SpecialAbilityProcedure extends MinecraftEragonPersonallibModElemen
 		Entity entity = (Entity) dependencies.get("entity");
 		IWorld world = (IWorld) dependencies.get("world");
 		if (((entity.getPersistentData().getDouble("varden")) == 1)) {
-			if (entity instanceof PlayerEntity && !entity.world.isRemote) {
-				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00EF\u00BF\u00BDcin working"), (false));
+			if (((entity.getPersistentData().getDouble("clockreadystrong")) == 1)) {
+				if (entity instanceof LivingEntity)
+					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.ABSORPTION, (int) 600, (int) 1, (false), (false)));
+				if (entity instanceof LivingEntity)
+					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.STRENGTH, (int) 300, (int) 0, (false), (false)));
+				if (entity instanceof LivingEntity)
+					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.SPEED, (int) 300, (int) 0, (false), (false)));
+				entity.getPersistentData().putDouble("clock", 0);
+				entity.getPersistentData().putDouble("clockreadystrong", 0);
+			} else {
+				if (entity instanceof PlayerEntity && !entity.world.isRemote) {
+					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
+							(((("\u00A7cDie Abklinkzeit betr\u00E4gt noch ") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
+									+ ("\u00A7Ticks!"))),
+							(true));
+				}
 			}
 		} else if (((entity.getPersistentData().getDouble("elfen")) == 1)) {
 			if (((entity.getPersistentData().getDouble("clockreadystrong")) == 1)) {
@@ -83,11 +99,10 @@ public class SpecialAbilityProcedure extends MinecraftEragonPersonallibModElemen
 				entity.getPersistentData().putDouble("clockreadystrong", 0);
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote) {
-					((PlayerEntity) entity)
-							.sendStatusMessage(
-									new StringTextComponent((((("\u00EF\u00BF\u00BDcDie Abklingzeit betr\u00EF\u00BF\u00BDgt noch: ") + ""
-											+ ((6000 - (entity.getPersistentData().getDouble("clock")))))) + "" + (" \u00EF\u00BF\u00BDcTicks!"))),
-									(true));
+					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
+							(((("\u00A7cDie Abklinkzeit betr\u00E4gt noch ") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
+									+ ("\u00A7cTicks!"))),
+							(true));
 				}
 			}
 		} else if (((entity.getPersistentData().getDouble("empire_soldier")) == 1)) {
@@ -110,8 +125,10 @@ public class SpecialAbilityProcedure extends MinecraftEragonPersonallibModElemen
 				entity.getPersistentData().putDouble("clockready", 0);
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote) {
-					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent((((("\u00A7cDie Abklingzeit betr\u00EF\u00BF\u00BDgt noch: ")
-							+ "" + ((3000 - (entity.getPersistentData().getDouble("clock")))))) + "" + ("\u00A7cTicks!"))), (true));
+					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
+							(((("\u00A7cDie Abklinkzeit betr\u00E4gt noch ") + "" + ((3000 - (entity.getPersistentData().getDouble("clock")))))) + ""
+									+ ("\u00A7cTicks!"))),
+							(true));
 				}
 			}
 		}

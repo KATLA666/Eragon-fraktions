@@ -1,0 +1,12 @@
+{
+  "_fv": 13,
+  "_type": "overlay",
+  "definition": {
+    "priority": "NORMAL",
+    "components": [],
+    "baseTexture": "babierage.png",
+    "displayCondition": {
+      "name": "RageDisplayOverlayIngame"
+    }
+  }
+}

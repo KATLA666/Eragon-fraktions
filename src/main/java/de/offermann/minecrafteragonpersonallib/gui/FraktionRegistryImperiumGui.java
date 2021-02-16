@@ -178,7 +178,7 @@ public class FraktionRegistryImperiumGui extends MinecraftEragonPersonallibModEl
 				MinecraftEragonPersonallibMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(3, x, y, z));
 				handleButtonAction(entity, 3, x, y, z);
 			}));
-			this.addButton(new Button(this.guiLeft + 6, this.guiTop + 97, 55, 20, "Ra�zac", e -> {
+			this.addButton(new Button(this.guiLeft + 6, this.guiTop + 97, 55, 20, "Ra'zac", e -> {
 				MinecraftEragonPersonallibMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(4, x, y, z));
 				handleButtonAction(entity, 4, x, y, z);
 			}));

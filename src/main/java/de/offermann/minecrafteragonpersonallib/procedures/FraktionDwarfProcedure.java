@@ -7,6 +7,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraft.world.World;
 import net.minecraft.potion.Effects;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.item.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.Entity;
 
@@ -32,6 +35,32 @@ public class FraktionDwarfProcedure extends MinecraftEragonPersonallibModElement
 		if (((entity.getPersistentData().getDouble("zwergen")) == 1)) {
 			if (entity instanceof LivingEntity)
 				((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.HASTE, (int) 20, (int) 0, (false), (false)));
+			if (((((entity instanceof PlayerEntity) ? ((PlayerEntity) entity).inventory.getStackInSlot((int) 0) : ItemStack.EMPTY)
+					.getItem() == new ItemStack(Items.DIAMOND, (int) (1)).getItem())
+					|| ((((entity instanceof PlayerEntity) ? ((PlayerEntity) entity).inventory.getStackInSlot((int) 1) : ItemStack.EMPTY)
+							.getItem() == new ItemStack(Items.DIAMOND, (int) (1)).getItem())
+							|| ((((entity instanceof PlayerEntity) ? ((PlayerEntity) entity).inventory.getStackInSlot((int) 2) : ItemStack.EMPTY)
+									.getItem() == new ItemStack(Items.DIAMOND, (int) (1)).getItem())
+									|| ((((entity instanceof PlayerEntity)
+											? ((PlayerEntity) entity).inventory.getStackInSlot((int) 3)
+											: ItemStack.EMPTY).getItem() == new ItemStack(Items.DIAMOND, (int) (1)).getItem())
+											|| ((((entity instanceof PlayerEntity)
+													? ((PlayerEntity) entity).inventory.getStackInSlot((int) 4)
+													: ItemStack.EMPTY).getItem() == new ItemStack(Items.DIAMOND, (int) (1)).getItem())
+													|| ((((entity instanceof PlayerEntity)
+															? ((PlayerEntity) entity).inventory.getStackInSlot((int) 5)
+															: ItemStack.EMPTY).getItem() == new ItemStack(Items.DIAMOND, (int) (1)).getItem())
+															|| ((((entity instanceof PlayerEntity)
+																	? ((PlayerEntity) entity).inventory.getStackInSlot((int) 6)
+																	: ItemStack.EMPTY).getItem() == new ItemStack(Items.DIAMOND, (int) (1)).getItem())
+																	|| ((((entity instanceof PlayerEntity)
+																			? ((PlayerEntity) entity).inventory.getStackInSlot((int) 7)
+																			: ItemStack.EMPTY)
+																					.getItem() == new ItemStack(Items.DIAMOND, (int) (1)).getItem())
+																			|| (true)))))))))) {
+				if (entity instanceof LivingEntity)
+					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.RESISTANCE, (int) 20, (int) 0, (false), (false)));
+			}
 		}
 	}
 

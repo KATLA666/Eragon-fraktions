@@ -8,7 +8,7 @@
     "name": "Dwarfs Throwable Axe",
     "specialInfo": [],
     "creativeTab": {
-      "value": "COMBAT"
+      "value": "CUSTOM:Eragon"
     },
     "stackSize": 1,
     "ammoItem": {
