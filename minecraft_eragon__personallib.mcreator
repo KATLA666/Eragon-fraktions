@@ -523,7 +523,12 @@
       "registry_name": "rage_display_overlay_ingame",
       "metadata": {
         "return_type": "LOGIC",
-        "dependencies": []
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
       }
     },
     {
@@ -534,6 +539,15 @@
       "locked_code": false,
       "ids": {},
       "registry_name": "rage"
+    },
+    {
+      "name": "LastManStanding",
+      "type": "potion",
+      "sortid": 32,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "last_man_standing"
     }
   ],
   "variable_elements": [],
@@ -541,16 +555,21 @@
   "language_map": {
     "en_us": {
       "item.minecraft.splash_potion.effect.elfisch_strengh": "Splash Elvish strength",
-      "item.minecraft.potion.effect.elfisch_strengh": "Elvish strength",
       "item.minecraft_eragon__personallib.dwarfs_throwable_axe": "Dwarfs Throwable Axe",
-      "item.minecraft_eragon__personallib.speer": "Speer",
+      "item.minecraft.potion.effect.elfisch_strengh": "Elvish strength",
+      "effect.last_man_standing": "Last Man Standing",
+      "item.minecraft.tipped_arrow.effect.last_man_standing": "Arrow of Last Man Standing",
       "effect.elfisch_strengh": "Elvish strength",
-      "key.mcreator.registry_fraction": "Registry Fation",
       "itemGroup.taberagon": "Eragon",
-      "item.minecraft_eragon__personallib.ergaon_logo": "Ergaon Logo",
       "item.minecraft.tipped_arrow.effect.elfisch_strengh": "Arrow of Elvish strength",
-      "key.mcreator.specialability_key": "Specialability Key",
-      "item.minecraft.lingering_potion.effect.elfisch_strengh": "Lingering Elvish strength"
+      "item.minecraft.lingering_potion.effect.elfisch_strengh": "Lingering Elvish strength",
+      "item.minecraft.splash_potion.effect.last_man_standing": "Splash Last Man Standing",
+      "item.minecraft_eragon__personallib.speer": "Speer",
+      "key.mcreator.registry_fraction": "Registry Fation",
+      "item.minecraft_eragon__personallib.ergaon_logo": "Ergaon Logo",
+      "item.minecraft.potion.effect.last_man_standing": "Last Man Standing",
+      "item.minecraft.lingering_potion.effect.last_man_standing": "Lingering Last Man Standing",
+      "key.mcreator.specialability_key": "Specialability Key"
     }
   },
   "workspaceSettings": {

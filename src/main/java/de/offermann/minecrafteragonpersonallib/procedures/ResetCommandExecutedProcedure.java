@@ -33,8 +33,9 @@ public class ResetCommandExecutedProcedure extends MinecraftEragonPersonallibMod
 		entity.getPersistentData().putDouble("clock", 0);
 		entity.getPersistentData().putDouble("clockready", 0);
 		entity.getPersistentData().putDouble("clockreadystrong", 0);
+		entity.getPersistentData().putBoolean("rage", (false));
 		if (entity instanceof PlayerEntity && !entity.world.isRemote) {
-			((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\uFFFDcreseted!"), (false));
+			((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7creseted!"), (false));
 		}
 	}
 }

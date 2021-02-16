@@ -32,7 +32,7 @@ public class RageOverlay extends MinecraftEragonPersonallibModElements.ModElemen
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	@SubscribeEvent(priority = EventPriority.NORMAL)
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void eventHandler(RenderGameOverlayEvent event) {
 		if (!event.isCancelable() && event.getType() == RenderGameOverlayEvent.ElementType.HELMET) {
 			int posX = (event.getWindow().getScaledWidth()) / 2;
@@ -42,7 +42,7 @@ public class RageOverlay extends MinecraftEragonPersonallibModElements.ModElemen
 			double x = entity.posX;
 			double y = entity.posY;
 			double z = entity.posZ;
-			if (RageDisplayOverlayIngameProcedure.executeProcedure(ImmutableMap.of())) {
+			if (RageDisplayOverlayIngameProcedure.executeProcedure(ImmutableMap.of("entity", entity))) {
 				GlStateManager.disableDepthTest();
 				GlStateManager.depthMask(false);
 				GlStateManager.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA,

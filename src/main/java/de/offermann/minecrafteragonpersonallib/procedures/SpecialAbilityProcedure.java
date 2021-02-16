@@ -13,6 +13,7 @@ import net.minecraft.entity.Entity;
 import java.util.Random;
 import java.util.Map;
 
+import de.offermann.minecrafteragonpersonallib.potion.LastManStandingPotion;
 import de.offermann.minecrafteragonpersonallib.item.SpeerItem;
 import de.offermann.minecrafteragonpersonallib.item.DwarfsThrowableAxeItem;
 import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibModElements;
@@ -44,6 +45,8 @@ public class SpecialAbilityProcedure extends MinecraftEragonPersonallibModElemen
 					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.STRENGTH, (int) 300, (int) 0, (false), (false)));
 				if (entity instanceof LivingEntity)
 					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.SPEED, (int) 300, (int) 0, (false), (false)));
+				if (entity instanceof LivingEntity)
+					((LivingEntity) entity).addPotionEffect(new EffectInstance(LastManStandingPotion.potion, (int) 300, (int) 0, (false), (false)));
 				entity.getPersistentData().putDouble("clock", 0);
 				entity.getPersistentData().putDouble("clockreadystrong", 0);
 			} else {
