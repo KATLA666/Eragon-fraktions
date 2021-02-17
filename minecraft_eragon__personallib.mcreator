@@ -596,6 +596,7 @@
     "version": "1.0.0",
     "author": "Moritz Offermann",
     "websiteURL": "https://mcreator.net",
+    "license": "Not specified",
     "disableForgeVersionCheck": true,
     "serverSideOnly": false,
     "requiredMods": [],
