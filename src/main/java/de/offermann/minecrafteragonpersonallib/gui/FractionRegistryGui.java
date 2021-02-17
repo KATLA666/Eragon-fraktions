@@ -15,6 +15,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.api.distmarker.Dist;
 
 import net.minecraft.world.World;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.ResourceLocation;
@@ -41,6 +42,8 @@ import de.offermann.minecrafteragonpersonallib.procedures.ButtonFraktionDwarfPro
 import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibModElements;
 import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibMod;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
+
 @MinecraftEragonPersonallibModElements.ModElement.Tag
 public class FractionRegistryGui extends MinecraftEragonPersonallibModElements.ModElement {
 	public static HashMap guistate = new HashMap();
@@ -52,17 +55,17 @@ public class FractionRegistryGui extends MinecraftEragonPersonallibModElements.M
 		elements.addNetworkMessage(GUISlotChangedMessage.class, GUISlotChangedMessage::buffer, GUISlotChangedMessage::new,
 				GUISlotChangedMessage::handler);
 		containerType = new ContainerType<>(new GuiContainerModFactory());
-		FMLJavaModLoadingContext.get().getModEventBus().register(this);
+		FMLJavaModLoadingContext.get().getModEventBus().register(new ContainerRegisterHandler());
 	}
-
+	private static class ContainerRegisterHandler {
+		@SubscribeEvent
+		public void registerContainer(RegistryEvent.Register<ContainerType<?>> event) {
+			event.getRegistry().register(containerType.setRegistryName("fraction_registry"));
+		}
+	}
 	@OnlyIn(Dist.CLIENT)
 	public void initElements() {
 		DeferredWorkQueue.runLater(() -> ScreenManager.registerFactory(containerType, GuiWindow::new));
-	}
-
-	@SubscribeEvent
-	public void registerContainer(RegistryEvent.Register<ContainerType<?>> event) {
-		event.getRegistry().register(containerType.setRegistryName("fraction_registry"));
 	}
 	public static class GuiContainerModFactory implements IContainerFactory {
 		public GuiContainerMod create(int id, PlayerInventory inv, PacketBuffer extraData) {
@@ -118,29 +121,19 @@ public class FractionRegistryGui extends MinecraftEragonPersonallibModElements.M
 		}
 		private static final ResourceLocation texture = new ResourceLocation("minecraft_eragon__personallib:textures/fraction_registry.png");
 		@Override
-		public void render(int mouseX, int mouseY, float partialTicks) {
-			this.renderBackground();
-			super.render(mouseX, mouseY, partialTicks);
-			this.renderHoveredToolTip(mouseX, mouseY);
+		public void render(MatrixStack ms, int mouseX, int mouseY, float partialTicks) {
+			this.renderBackground(ms);
+			super.render(ms, mouseX, mouseY, partialTicks);
+			this.renderHoveredTooltip(ms, mouseX, mouseY);
 		}
 
 		@Override
-		protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
+		protected void drawGuiContainerBackgroundLayer(MatrixStack ms, float par1, int par2, int par3) {
 			GL11.glColor4f(1, 1, 1, 1);
 			Minecraft.getInstance().getTextureManager().bindTexture(texture);
 			int k = (this.width - this.xSize) / 2;
 			int l = (this.height - this.ySize) / 2;
-			this.blit(k, l, 0, 0, this.xSize, this.ySize, this.xSize, this.ySize);
-		}
-
-		@Override
-		public void tick() {
-			super.tick();
-		}
-
-		@Override
-		protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-			this.font.drawString("W\u00E4hle Deine Fraction!", 56, 7, -6750208);
+			this.blit(ms, k, l, 0, 0, this.xSize, this.ySize, this.xSize, this.ySize);
 		}
 
 		@Override
@@ -153,8 +146,18 @@ public class FractionRegistryGui extends MinecraftEragonPersonallibModElements.M
 		}
 
 		@Override
-		public void removed() {
-			super.removed();
+		public void tick() {
+			super.tick();
+		}
+
+		@Override
+		protected void drawGuiContainerForegroundLayer(MatrixStack ms, int mouseX, int mouseY) {
+			this.font.drawString(ms, "W\u00E4hle Deine Fraction!", 56, 7, -6750208);
+		}
+
+		@Override
+		public void onClose() {
+			super.onClose();
 			Minecraft.getInstance().keyboardListener.enableRepeatEvents(false);
 		}
 
@@ -162,23 +165,23 @@ public class FractionRegistryGui extends MinecraftEragonPersonallibModElements.M
 		public void init(Minecraft minecraft, int width, int height) {
 			super.init(minecraft, width, height);
 			minecraft.keyboardListener.enableRepeatEvents(true);
-			this.addButton(new Button(this.guiLeft + 12, this.guiTop + 34, 55, 20, " Varden ", e -> {
+			this.addButton(new Button(this.guiLeft + 12, this.guiTop + 34, 55, 20, new StringTextComponent(" Varden "), e -> {
 				MinecraftEragonPersonallibMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(0, x, y, z));
 				handleButtonAction(entity, 0, x, y, z);
 			}));
-			this.addButton(new Button(this.guiLeft + 12, this.guiTop + 104, 50, 20, "Eleven", e -> {
+			this.addButton(new Button(this.guiLeft + 12, this.guiTop + 104, 50, 20, new StringTextComponent("Eleven"), e -> {
 				MinecraftEragonPersonallibMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(1, x, y, z));
 				handleButtonAction(entity, 1, x, y, z);
 			}));
-			this.addButton(new Button(this.guiLeft + 138, this.guiTop + 104, 55, 20, "Dwarfs", e -> {
+			this.addButton(new Button(this.guiLeft + 138, this.guiTop + 104, 55, 20, new StringTextComponent("Dwarfs"), e -> {
 				MinecraftEragonPersonallibMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(2, x, y, z));
 				handleButtonAction(entity, 2, x, y, z);
 			}));
-			this.addButton(new Button(this.guiLeft + 171, this.guiTop + 142, 40, 20, ">>>", e -> {
+			this.addButton(new Button(this.guiLeft + 171, this.guiTop + 142, 40, 20, new StringTextComponent(">>>"), e -> {
 				MinecraftEragonPersonallibMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(3, x, y, z));
 				handleButtonAction(entity, 3, x, y, z);
 			}));
-			this.addButton(new Button(this.guiLeft + 139, this.guiTop + 34, 50, 20, "Surda", e -> {
+			this.addButton(new Button(this.guiLeft + 139, this.guiTop + 34, 50, 20, new StringTextComponent("Surda"), e -> {
 				MinecraftEragonPersonallibMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(4, x, y, z));
 				handleButtonAction(entity, 4, x, y, z);
 			}));

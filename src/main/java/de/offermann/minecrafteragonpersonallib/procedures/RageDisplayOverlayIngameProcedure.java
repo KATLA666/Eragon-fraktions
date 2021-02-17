@@ -9,6 +9,7 @@ import java.util.Collection;
 
 import de.offermann.minecrafteragonpersonallib.potion.LastManStandingPotion;
 import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibModElements;
+import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibMod;
 
 @MinecraftEragonPersonallibModElements.ModElement.Tag
 public class RageDisplayOverlayIngameProcedure extends MinecraftEragonPersonallibModElements.ModElement {
@@ -19,7 +20,7 @@ public class RageDisplayOverlayIngameProcedure extends MinecraftEragonPersonalli
 	public static boolean executeProcedure(Map<String, Object> dependencies) {
 		if (dependencies.get("entity") == null) {
 			if (!dependencies.containsKey("entity"))
-				System.err.println("Failed to load dependency entity for procedure RageDisplayOverlayIngame!");
+				MinecraftEragonPersonallibMod.LOGGER.warn("Failed to load dependency entity for procedure RageDisplayOverlayIngame!");
 			return false;
 		}
 		Entity entity = (Entity) dependencies.get("entity");

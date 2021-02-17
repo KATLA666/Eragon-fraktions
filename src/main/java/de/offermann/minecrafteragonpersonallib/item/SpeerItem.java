@@ -11,6 +11,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.api.distmarker.Dist;
 
 import net.minecraft.world.World;
+import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.ResourceLocation;
@@ -30,18 +31,21 @@ import net.minecraft.entity.IRendersAsItem;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.Entity;
-import net.minecraft.client.renderer.model.ModelBox;
-import net.minecraft.client.renderer.entity.model.RendererModel;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 
 import java.util.Random;
 
 import de.offermann.minecrafteragonpersonallib.itemgroup.EragonItemGroup;
 import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibModElements;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.mojang.blaze3d.matrix.MatrixStack;
 
 @MinecraftEragonPersonallibModElements.ModElement.Tag
 public class SpeerItem extends MinecraftEragonPersonallibModElements.ModElement {
@@ -64,7 +68,7 @@ public class SpeerItem extends MinecraftEragonPersonallibModElements.ModElement 
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void init(FMLCommonSetupEvent event) {
-		RenderingRegistry.registerEntityRenderingHandler(ArrowCustomEntity.class, renderManager -> new CustomRender(renderManager));
+		RenderingRegistry.registerEntityRenderingHandler(arrow, renderManager -> new CustomRender(renderManager));
 	}
 	public static class ItemRanged extends Item {
 		public ItemRanged() {
@@ -73,14 +77,14 @@ public class SpeerItem extends MinecraftEragonPersonallibModElements.ModElement 
 		}
 
 		@Override
-		public UseAction getUseAction(ItemStack itemstack) {
-			return UseAction.SPEAR;
-		}
-
-		@Override
 		public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity entity, Hand hand) {
 			entity.setActiveHand(hand);
 			return new ActionResult(ActionResultType.SUCCESS, entity.getHeldItem(hand));
+		}
+
+		@Override
+		public UseAction getUseAction(ItemStack itemstack) {
+			return UseAction.SPEAR;
 		}
 
 		@Override
@@ -92,9 +96,9 @@ public class SpeerItem extends MinecraftEragonPersonallibModElements.ModElement 
 		public void onPlayerStoppedUsing(ItemStack itemstack, World world, LivingEntity entityLiving, int timeLeft) {
 			if (!world.isRemote && entityLiving instanceof ServerPlayerEntity) {
 				ServerPlayerEntity entity = (ServerPlayerEntity) entityLiving;
-				double x = entity.posX;
-				double y = entity.posY;
-				double z = entity.posZ;
+				double x = entity.getPosX();
+				double y = entity.getPosY();
+				double z = entity.getPosZ();
 				if (true) {
 					ItemStack stack = ShootableItem.getHeldAmmo(entity, e -> e.getItem() == new ItemStack(SpeerItem.block, (int) (1)).getItem());
 					if (stack == ItemStack.EMPTY) {
@@ -174,11 +178,11 @@ public class SpeerItem extends MinecraftEragonPersonallibModElements.ModElement 
 		@Override
 		public void tick() {
 			super.tick();
-			double x = this.posX;
-			double y = this.posY;
-			double z = this.posZ;
+			double x = this.getPosX();
+			double y = this.getPosY();
+			double z = this.getPosZ();
 			World world = this.world;
-			Entity entity = this.getShooter();
+			Entity entity = this.func_234616_v_();
 			if (this.inGround) {
 				
 			}
@@ -192,153 +196,187 @@ public class SpeerItem extends MinecraftEragonPersonallibModElements.ModElement 
 		}
 
 		@Override
-		public void doRender(ArrowCustomEntity bullet, double d, double d1, double d2, float f, float f1) {
-			this.bindEntityTexture(bullet);
-			GlStateManager.pushMatrix();
-			GlStateManager.translatef((float) d, (float) d1, (float) d2);
-			GlStateManager.rotatef(f, 0, 1, 0);
-			GlStateManager.rotatef(90f - bullet.prevRotationPitch - (bullet.rotationPitch - bullet.prevRotationPitch) * f1, 1, 0, 0);
+		public void render(ArrowCustomEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn,
+				int packedLightIn) {
+			IVertexBuilder vb = bufferIn.getBuffer(RenderType.getEntityCutout(this.getEntityTexture(entityIn)));
+			matrixStackIn.push();
+			matrixStackIn.rotate(Vector3f.YP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.prevRotationYaw, entityIn.rotationYaw) - 90));
+			matrixStackIn.rotate(Vector3f.ZP.rotationDegrees(90 + MathHelper.lerp(partialTicks, entityIn.prevRotationPitch, entityIn.rotationPitch)));
 			EntityModel model = new ModelSpeer();
-			model.render(bullet, 0, 0, 0, 0, 0, 0.0625f);
-			GlStateManager.popMatrix();
+			model.render(matrixStackIn, vb, packedLightIn, OverlayTexture.NO_OVERLAY, 1, 1, 1, 0.0625f);
+			matrixStackIn.pop();
+			super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 		}
 
 		@Override
-		protected ResourceLocation getEntityTexture(ArrowCustomEntity entity) {
+		public ResourceLocation getEntityTexture(ArrowCustomEntity entity) {
 			return texture;
 		}
 	}
 
 	// Made with Blockbench 3.7.5
-	// Exported for Minecraft version 1.14
+	// Exported for Minecraft version 1.15
 	// Paste this class into your mod and generate all required imports
-	public static class ModelSpeer extends EntityModel {
-		private final RendererModel Stiel;
-		private final RendererModel Knauf;
-		private final RendererModel cube_r1;
-		private final RendererModel cube_r2;
-		private final RendererModel Schneide;
-		private final RendererModel bb_main;
+	public static class ModelSpeer extends EntityModel<Entity> {
+		private final ModelRenderer Stiel;
+		private final ModelRenderer Stiel_r1;
+		private final ModelRenderer Knauf;
+		private final ModelRenderer Knauf_r1;
+		private final ModelRenderer cube_r1;
+		private final ModelRenderer cube_r2_r1;
+		private final ModelRenderer cube_r2;
+		private final ModelRenderer cube_r2_r2;
+		private final ModelRenderer Schneide;
+		private final ModelRenderer Schneide_r1;
+		private final ModelRenderer bb_main;
+		private final ModelRenderer bb_main_r1;
 		public ModelSpeer() {
 			textureWidth = 128;
 			textureHeight = 128;
-			Stiel = new RendererModel(this);
+			Stiel = new ModelRenderer(this);
 			Stiel.setRotationPoint(0.0F, 10.0F, 0.0F);
-			Stiel.cubeList.add(new ModelBox(Stiel, 16, 16, 0.0F, -78.0F, -9.0F, 1, 63, 1, 0.0F, false));
-			Stiel.cubeList.add(new ModelBox(Stiel, 12, 12, 1.0F, -78.0F, -9.0F, 1, 63, 1, 0.0F, false));
-			Stiel.cubeList.add(new ModelBox(Stiel, 8, 8, 0.0F, -78.0F, -10.0F, 1, 63, 1, 0.0F, false));
-			Stiel.cubeList.add(new ModelBox(Stiel, 4, 4, 0.0F, -78.0F, -8.0F, 1, 63, 1, 0.0F, false));
-			Stiel.cubeList.add(new ModelBox(Stiel, 0, 0, -1.0F, -78.0F, -9.0F, 1, 63, 1, 0.0F, false));
-			Knauf = new RendererModel(this);
+			Stiel_r1 = new ModelRenderer(this);
+			Stiel_r1.setRotationPoint(0.0F, -18.0F, -9.0F);
+			Stiel.addChild(Stiel_r1);
+			setRotationAngle(Stiel_r1, 0.0F, 0.0F, -3.1416F);
+			Stiel_r1.setTextureOffset(0, 0).addBox(-1.0F, -74.0F, 0.0F, 1.0F, 63.0F, 1.0F, 0.0F, false);
+			Stiel_r1.setTextureOffset(4, 4).addBox(0.0F, -74.0F, 1.0F, 1.0F, 63.0F, 1.0F, 0.0F, false);
+			Stiel_r1.setTextureOffset(8, 8).addBox(0.0F, -74.0F, -1.0F, 1.0F, 63.0F, 1.0F, 0.0F, false);
+			Stiel_r1.setTextureOffset(12, 12).addBox(1.0F, -74.0F, 0.0F, 1.0F, 63.0F, 1.0F, 0.0F, false);
+			Stiel_r1.setTextureOffset(16, 16).addBox(0.0F, -74.0F, 0.0F, 1.0F, 63.0F, 1.0F, 0.0F, false);
+			Knauf = new ModelRenderer(this);
 			Knauf.setRotationPoint(0.0F, 7.0F, -16.0F);
-			Knauf.cubeList.add(new ModelBox(Knauf, 34, 12, -1.0F, -80.0F, 6.0F, 3, 1, 3, 0.0F, false));
-			Knauf.cubeList.add(new ModelBox(Knauf, 44, 4, -1.0F, -79.0F, 9.0F, 3, 3, 1, 0.0F, false));
-			Knauf.cubeList.add(new ModelBox(Knauf, 43, 11, -1.0F, -79.0F, 5.0F, 3, 3, 1, 0.0F, false));
-			Knauf.cubeList.add(new ModelBox(Knauf, 33, 25, -1.0F, -76.0F, 6.0F, 3, 1, 3, 0.0F, false));
-			cube_r1 = new RendererModel(this);
+			Knauf_r1 = new ModelRenderer(this);
+			Knauf_r1.setRotationPoint(0.0F, -15.0F, 7.0F);
+			Knauf.addChild(Knauf_r1);
+			setRotationAngle(Knauf_r1, 0.0F, 0.0F, -3.1416F);
+			Knauf_r1.setTextureOffset(33, 25).addBox(-1.0F, -75.0F, -1.0F, 3.0F, 1.0F, 3.0F, 0.0F, false);
+			Knauf_r1.setTextureOffset(43, 11).addBox(-1.0F, -78.0F, -2.0F, 3.0F, 3.0F, 1.0F, 0.0F, false);
+			Knauf_r1.setTextureOffset(44, 4).addBox(-1.0F, -78.0F, 2.0F, 3.0F, 3.0F, 1.0F, 0.0F, false);
+			Knauf_r1.setTextureOffset(34, 12).addBox(-1.0F, -79.0F, -1.0F, 3.0F, 1.0F, 3.0F, 0.0F, false);
+			cube_r1 = new ModelRenderer(this);
 			cube_r1.setRotationPoint(3.0F, -76.0F, 6.0F);
 			Knauf.addChild(cube_r1);
 			setRotationAngle(cube_r1, 0.0F, -1.5708F, 0.0F);
-			cube_r1.cubeList.add(new ModelBox(cube_r1, 27, 43, 0.0F, -3.0F, 0.0F, 3, 3, 1, 0.0F, false));
-			cube_r2 = new RendererModel(this);
+			cube_r2_r1 = new ModelRenderer(this);
+			cube_r2_r1.setRotationPoint(-3.0F, 7.0F, 1.0F);
+			cube_r1.addChild(cube_r2_r1);
+			setRotationAngle(cube_r2_r1, 0.0F, 0.0F, -3.1416F);
+			cube_r2_r1.setTextureOffset(27, 43).addBox(-6.0F, -132.0F, 0.0F, 3.0F, 3.0F, 1.0F, 0.0F, false);
+			cube_r2_r1.setTextureOffset(27, 43).addBox(-6.0F, -132.0F, 4.0F, 3.0F, 3.0F, 1.0F, 0.0F, false);
+			cube_r2 = new ModelRenderer(this);
 			cube_r2.setRotationPoint(-1.0F, -76.0F, 6.0F);
 			Knauf.addChild(cube_r2);
 			setRotationAngle(cube_r2, 0.0F, -1.5708F, 0.0F);
-			cube_r2.cubeList.add(new ModelBox(cube_r2, 42, 38, 0.0F, -3.0F, 0.0F, 3, 3, 1, 0.0F, false));
-			Schneide = new RendererModel(this);
+			cube_r2_r2 = new ModelRenderer(this);
+			cube_r2_r2.setRotationPoint(1.0F, 7.0F, 1.0F);
+			cube_r2.addChild(cube_r2_r2);
+			setRotationAngle(cube_r2_r2, 0.0F, 0.0F, -3.1416F);
+			cube_r2_r2.setTextureOffset(42, 38).addBox(-1.0F, -132.0F, -1.0F, 3.0F, 3.0F, 1.0F, 0.0F, false);
+			Schneide = new ModelRenderer(this);
 			Schneide.setRotationPoint(0.0F, 24.0F, 0.0F);
-			Schneide.cubeList.add(new ModelBox(Schneide, 39, 43, 0.0F, -18.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 42, 42, 0.0F, -19.0F, -10.0F, 1, 1, 3, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 20, 34, 0.0F, -20.0F, -11.0F, 1, 1, 5, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 35, 43, 0.0F, -22.0F, -13.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 42, 25, 0.0F, -22.0F, -5.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 41, 21, 0.0F, -22.0F, -10.0F, 1, 1, 3, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 20, 20, 0.0F, -24.0F, -12.0F, 1, 1, 7, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 16, 8, 0.0F, -21.0F, -12.0F, 1, 1, 7, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 25, 40, 0.0F, -25.0F, -5.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 32, 6, 0.0F, -23.0F, -11.0F, 1, 1, 5, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 34, 39, 0.0F, -25.0F, -13.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 41, 17, 0.0F, -25.0F, -10.0F, 1, 1, 3, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 31, 0, 0.0F, -26.0F, -11.0F, 1, 1, 5, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 20, 36, 0.0F, -26.0F, -4.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 32, 35, 0.0F, -26.0F, -14.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 34, 16, 0.0F, -28.0F, -5.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 20, 34, 0.0F, -28.0F, -13.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 32, 9, 0.0F, -29.0F, -4.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 32, 7, 0.0F, -29.0F, -14.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 31, 2, 0.0F, -30.0F, -3.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 31, 0, 0.0F, -30.0F, -15.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 40, 34, 0.0F, -28.0F, -10.0F, 1, 1, 3, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 29, 19, 0.0F, -29.0F, -11.0F, 1, 1, 5, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 8, 0, 0.0F, -27.0F, -12.0F, 1, 1, 7, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 27, 30, 1.0F, -19.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 17, 8, -1.0F, -19.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 20, 40, 1.0F, -20.0F, -10.0F, 1, 1, 3, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 4, 0, -1.0F, -20.0F, -10.0F, 1, 1, 3, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 27, 29, 1.0F, -21.0F, -11.0F, 1, 1, 5, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 17, 0, -1.0F, -21.0F, -11.0F, 1, 1, 5, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 20, 30, 2.0F, -20.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 19, 11, -2.0F, -20.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 39, 30, 2.0F, -21.0F, -10.0F, 1, 1, 3, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 12, 8, -2.0F, -21.0F, -10.0F, 1, 1, 3, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 29, 25, 1.0F, -22.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 20, 20, -1.0F, -22.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 39, 6, 1.0F, -23.0F, -10.0F, 1, 1, 3, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 20, 16, -1.0F, -23.0F, -10.0F, 1, 1, 3, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 20, 28, 1.0F, -24.0F, -11.0F, 1, 1, 5, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 24, 1, -1.0F, -24.0F, -11.0F, 1, 1, 5, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 29, 21, 1.0F, -25.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 23, 21, -1.0F, -25.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 37, 39, 1.0F, -26.0F, -10.0F, 1, 1, 3, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 27, 35, -1.0F, -26.0F, -10.0F, 1, 1, 3, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 27, 13, 1.0F, -27.0F, -11.0F, 1, 1, 5, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 25, 7, -1.0F, -27.0F, -11.0F, 1, 1, 5, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 29, 19, 1.0F, -28.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 24, 2, -1.0F, -28.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 29, 39, 1.0F, -29.0F, -10.0F, 1, 1, 3, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 36, 16, -1.0F, -29.0F, -10.0F, 1, 1, 3, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 27, 28, 2.0F, -23.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 20, 22, -2.0F, -23.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 38, 0, 2.0F, -24.0F, -10.0F, 1, 1, 3, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 34, 29, -2.0F, -24.0F, -10.0F, 1, 1, 3, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 20, 28, 2.0F, -26.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 20, 24, -2.0F, -26.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 36, 20, 2.0F, -27.0F, -10.0F, 1, 1, 3, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 35, 35, -2.0F, -27.0F, -10.0F, 1, 1, 3, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 25, 9, 2.0F, -29.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 23, 25, -2.0F, -29.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 25, 13, 3.0F, -24.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 23, 23, -3.0F, -24.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 25, 16, 3.0F, -27.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 25, 16, 4.0F, -28.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 24, 0, -3.0F, -27.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 25, 7, 3.0F, -21.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			Schneide.cubeList.add(new ModelBox(Schneide, 19, 13, -3.0F, -21.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			bb_main = new RendererModel(this);
+			Schneide_r1 = new ModelRenderer(this);
+			Schneide_r1.setRotationPoint(0.0F, -32.0F, -9.0F);
+			Schneide.addChild(Schneide_r1);
+			setRotationAngle(Schneide_r1, 0.0F, 0.0F, -3.1416F);
+			Schneide_r1.setTextureOffset(19, 13).addBox(-3.0F, -3.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(25, 7).addBox(3.0F, -3.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(24, 0).addBox(-3.0F, -9.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(25, 16).addBox(4.0F, -10.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(25, 16).addBox(3.0F, -9.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(23, 23).addBox(-3.0F, -6.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(25, 13).addBox(3.0F, -6.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(23, 25).addBox(-2.0F, -11.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(25, 9).addBox(2.0F, -11.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(35, 35).addBox(-2.0F, -9.0F, -1.0F, 1.0F, 1.0F, 3.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(36, 20).addBox(2.0F, -9.0F, -1.0F, 1.0F, 1.0F, 3.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(20, 24).addBox(-2.0F, -8.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(20, 28).addBox(2.0F, -8.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(34, 29).addBox(-2.0F, -6.0F, -1.0F, 1.0F, 1.0F, 3.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(38, 0).addBox(2.0F, -6.0F, -1.0F, 1.0F, 1.0F, 3.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(20, 22).addBox(-2.0F, -5.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(27, 28).addBox(2.0F, -5.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(36, 16).addBox(-1.0F, -11.0F, -1.0F, 1.0F, 1.0F, 3.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(29, 39).addBox(1.0F, -11.0F, -1.0F, 1.0F, 1.0F, 3.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(24, 2).addBox(-1.0F, -10.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(29, 19).addBox(1.0F, -10.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(25, 7).addBox(-1.0F, -9.0F, -2.0F, 1.0F, 1.0F, 5.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(27, 13).addBox(1.0F, -9.0F, -2.0F, 1.0F, 1.0F, 5.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(27, 35).addBox(-1.0F, -8.0F, -1.0F, 1.0F, 1.0F, 3.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(37, 39).addBox(1.0F, -8.0F, -1.0F, 1.0F, 1.0F, 3.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(23, 21).addBox(-1.0F, -7.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(29, 21).addBox(1.0F, -7.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(24, 1).addBox(-1.0F, -6.0F, -2.0F, 1.0F, 1.0F, 5.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(20, 28).addBox(1.0F, -6.0F, -2.0F, 1.0F, 1.0F, 5.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(20, 16).addBox(-1.0F, -5.0F, -1.0F, 1.0F, 1.0F, 3.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(39, 6).addBox(1.0F, -5.0F, -1.0F, 1.0F, 1.0F, 3.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(20, 20).addBox(-1.0F, -4.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(29, 25).addBox(1.0F, -4.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(12, 8).addBox(-2.0F, -3.0F, -1.0F, 1.0F, 1.0F, 3.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(39, 30).addBox(2.0F, -3.0F, -1.0F, 1.0F, 1.0F, 3.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(19, 11).addBox(-2.0F, -2.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(20, 30).addBox(2.0F, -2.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(17, 0).addBox(-1.0F, -3.0F, -2.0F, 1.0F, 1.0F, 5.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(27, 29).addBox(1.0F, -3.0F, -2.0F, 1.0F, 1.0F, 5.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(4, 0).addBox(-1.0F, -2.0F, -1.0F, 1.0F, 1.0F, 3.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(20, 40).addBox(1.0F, -2.0F, -1.0F, 1.0F, 1.0F, 3.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(17, 8).addBox(-1.0F, -1.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(27, 30).addBox(1.0F, -1.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(8, 0).addBox(0.0F, -9.0F, -3.0F, 1.0F, 1.0F, 7.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(29, 19).addBox(0.0F, -11.0F, -2.0F, 1.0F, 1.0F, 5.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(40, 34).addBox(0.0F, -10.0F, -1.0F, 1.0F, 1.0F, 3.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(31, 0).addBox(0.0F, -12.0F, -6.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(31, 2).addBox(0.0F, -12.0F, 6.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(32, 7).addBox(0.0F, -11.0F, -5.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(32, 9).addBox(0.0F, -11.0F, 5.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(20, 34).addBox(0.0F, -10.0F, -4.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(34, 16).addBox(0.0F, -10.0F, 4.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(32, 35).addBox(0.0F, -8.0F, -5.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(20, 36).addBox(0.0F, -8.0F, 5.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(31, 0).addBox(0.0F, -8.0F, -2.0F, 1.0F, 1.0F, 5.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(41, 17).addBox(0.0F, -7.0F, -1.0F, 1.0F, 1.0F, 3.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(34, 39).addBox(0.0F, -7.0F, -4.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(32, 6).addBox(0.0F, -5.0F, -2.0F, 1.0F, 1.0F, 5.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(25, 40).addBox(0.0F, -7.0F, 4.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(16, 8).addBox(0.0F, -3.0F, -3.0F, 1.0F, 1.0F, 7.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(20, 20).addBox(0.0F, -6.0F, -3.0F, 1.0F, 1.0F, 7.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(41, 21).addBox(0.0F, -4.0F, -1.0F, 1.0F, 1.0F, 3.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(42, 25).addBox(0.0F, -4.0F, 4.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(35, 43).addBox(0.0F, -4.0F, -4.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(20, 34).addBox(0.0F, -2.0F, -2.0F, 1.0F, 1.0F, 5.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(42, 42).addBox(0.0F, -1.0F, -1.0F, 1.0F, 1.0F, 3.0F, 0.0F, false);
+			Schneide_r1.setTextureOffset(39, 43).addBox(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			bb_main = new ModelRenderer(this);
 			bb_main.setRotationPoint(0.0F, 24.0F, 0.0F);
-			bb_main.cubeList.add(new ModelBox(bb_main, 17, 2, -4.0F, -25.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			bb_main.cubeList.add(new ModelBox(bb_main, 17, 0, -5.0F, -29.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			bb_main.cubeList.add(new ModelBox(bb_main, 16, 12, -4.0F, -28.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			bb_main.cubeList.add(new ModelBox(bb_main, 11, 3, 4.0F, -25.0F, -9.0F, 1, 1, 1, 0.0F, false));
-			bb_main.cubeList.add(new ModelBox(bb_main, 8, 4, 5.0F, -29.0F, -9.0F, 1, 1, 1, 0.0F, false));
+			bb_main_r1 = new ModelRenderer(this);
+			bb_main_r1.setRotationPoint(0.0F, -32.0F, -9.0F);
+			bb_main.addChild(bb_main_r1);
+			setRotationAngle(bb_main_r1, 0.0F, 0.0F, -3.1416F);
+			bb_main_r1.setTextureOffset(8, 4).addBox(5.0F, -11.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			bb_main_r1.setTextureOffset(11, 3).addBox(4.0F, -7.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			bb_main_r1.setTextureOffset(16, 12).addBox(-4.0F, -10.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			bb_main_r1.setTextureOffset(17, 0).addBox(-5.0F, -11.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+			bb_main_r1.setTextureOffset(17, 2).addBox(-4.0F, -7.0F, 0.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
 		}
 
 		@Override
-		public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-			Stiel.render(f5);
-			Knauf.render(f5);
-			Schneide.render(f5);
-			bb_main.render(f5);
+		public void setRotationAngles(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+			// previously the render function, render code was moved to a method below
 		}
 
-		public void setRotationAngle(RendererModel modelRenderer, float x, float y, float z) {
+		@Override
+		public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue,
+				float alpha) {
+			Stiel.render(matrixStack, buffer, packedLight, packedOverlay);
+			Knauf.render(matrixStack, buffer, packedLight, packedOverlay);
+			Schneide.render(matrixStack, buffer, packedLight, packedOverlay);
+			bb_main.render(matrixStack, buffer, packedLight, packedOverlay);
+		}
+
+		public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
 			modelRenderer.rotateAngleX = x;
 			modelRenderer.rotateAngleY = y;
 			modelRenderer.rotateAngleZ = z;
-		}
-
-		public void setRotationAngles(Entity e, float f, float f1, float f2, float f3, float f4, float f5) {
-			super.setRotationAngles(e, f, f1, f2, f3, f4, f5);
 		}
 	}
 	public static ArrowCustomEntity shoot(World world, LivingEntity entity, Random random, float power, double damage, int knockback) {
@@ -349,9 +387,9 @@ public class SpeerItem extends MinecraftEragonPersonallibModElements.ModElement 
 		entityarrow.setDamage(damage);
 		entityarrow.setKnockbackStrength(knockback);
 		world.addEntity(entityarrow);
-		double x = entity.posX;
-		double y = entity.posY;
-		double z = entity.posZ;
+		double x = entity.getPosX();
+		double y = entity.getPosY();
+		double z = entity.getPosZ();
 		world.playSound((PlayerEntity) null, (double) x, (double) y, (double) z,
 				(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.arrow.shoot")),
 				SoundCategory.PLAYERS, 1, 1f / (random.nextFloat() * 0.5f + 1) + (power / 2));
@@ -360,18 +398,18 @@ public class SpeerItem extends MinecraftEragonPersonallibModElements.ModElement 
 
 	public static ArrowCustomEntity shoot(LivingEntity entity, LivingEntity target) {
 		ArrowCustomEntity entityarrow = new ArrowCustomEntity(arrow, entity, entity.world);
-		double d0 = target.posY + (double) target.getEyeHeight() - 1.1;
-		double d1 = target.posX - entity.posX;
-		double d3 = target.posZ - entity.posZ;
-		entityarrow.shoot(d1, d0 - entityarrow.posY + (double) MathHelper.sqrt(d1 * d1 + d3 * d3) * 0.2F, d3, 1f * 2, 12.0F);
+		double d0 = target.getPosY() + (double) target.getEyeHeight() - 1.1;
+		double d1 = target.getPosX() - entity.getPosX();
+		double d3 = target.getPosZ() - entity.getPosZ();
+		entityarrow.shoot(d1, d0 - entityarrow.getPosY() + (double) MathHelper.sqrt(d1 * d1 + d3 * d3) * 0.2F, d3, 1f * 2, 12.0F);
 		entityarrow.setSilent(true);
 		entityarrow.setDamage(5);
 		entityarrow.setKnockbackStrength(5);
 		entityarrow.setIsCritical(false);
 		entity.world.addEntity(entityarrow);
-		double x = entity.posX;
-		double y = entity.posY;
-		double z = entity.posZ;
+		double x = entity.getPosX();
+		double y = entity.getPosY();
+		double z = entity.getPosZ();
 		entity.world.playSound((PlayerEntity) null, (double) x, (double) y, (double) z,
 				(net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.arrow.shoot")),
 				SoundCategory.PLAYERS, 1, 1f / (new Random().nextFloat() * 0.5f + 1));

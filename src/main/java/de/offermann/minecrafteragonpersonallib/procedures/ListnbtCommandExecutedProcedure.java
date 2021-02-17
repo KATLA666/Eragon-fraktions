@@ -10,22 +10,21 @@ import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibModElem
 import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibMod;
 
 @MinecraftEragonPersonallibModElements.ModElement.Tag
-public class SAaktiveCommandExecutedProcedure extends MinecraftEragonPersonallibModElements.ModElement {
-	public SAaktiveCommandExecutedProcedure(MinecraftEragonPersonallibModElements instance) {
-		super(instance, 25);
+public class ListnbtCommandExecutedProcedure extends MinecraftEragonPersonallibModElements.ModElement {
+	public ListnbtCommandExecutedProcedure(MinecraftEragonPersonallibModElements instance) {
+		super(instance, 33);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {
 		if (dependencies.get("entity") == null) {
 			if (!dependencies.containsKey("entity"))
-				MinecraftEragonPersonallibMod.LOGGER.warn("Failed to load dependency entity for procedure SAaktiveCommandExecuted!");
+				MinecraftEragonPersonallibMod.LOGGER.warn("Failed to load dependency entity for procedure ListnbtCommandExecuted!");
 			return;
 		}
 		Entity entity = (Entity) dependencies.get("entity");
-		entity.getPersistentData().putDouble("clockready", 1);
-		entity.getPersistentData().putDouble("clockreadystrong", 1);
 		if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
-			((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("Aktive"), (false));
+			((PlayerEntity) entity).sendStatusMessage(new StringTextComponent((((entity.getPersistentData().getBoolean("dash"))) + "" + (null))),
+					(false));
 		}
 	}
 }

@@ -1,5 +1,6 @@
 modLoader="javafml"
-loaderVersion="[28,)"
+loaderVersion="[35,)"
+license="Not specified"
 
 [[mods]]
 modId="minecraft_eragon__personallib"
@@ -12,7 +13,7 @@ authors="Moritz Offermann"
 [[dependencies.minecraft_eragon__personallib]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.14.4]"
+    versionRange="[1.16.4]"
     ordering="NONE"
     side="BOTH"
 

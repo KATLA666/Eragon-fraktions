@@ -20,6 +20,7 @@ import io.netty.buffer.Unpooled;
 
 import de.offermann.minecrafteragonpersonallib.gui.FractionRegistryGui;
 import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibModElements;
+import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibMod;
 
 @MinecraftEragonPersonallibModElements.ModElement.Tag
 public class RegistryFractionOnKeyPressedProcedure extends MinecraftEragonPersonallibModElements.ModElement {
@@ -30,27 +31,27 @@ public class RegistryFractionOnKeyPressedProcedure extends MinecraftEragonPerson
 	public static void executeProcedure(Map<String, Object> dependencies) {
 		if (dependencies.get("entity") == null) {
 			if (!dependencies.containsKey("entity"))
-				System.err.println("Failed to load dependency entity for procedure RegistryFractionOnKeyPressed!");
+				MinecraftEragonPersonallibMod.LOGGER.warn("Failed to load dependency entity for procedure RegistryFractionOnKeyPressed!");
 			return;
 		}
 		if (dependencies.get("x") == null) {
 			if (!dependencies.containsKey("x"))
-				System.err.println("Failed to load dependency x for procedure RegistryFractionOnKeyPressed!");
+				MinecraftEragonPersonallibMod.LOGGER.warn("Failed to load dependency x for procedure RegistryFractionOnKeyPressed!");
 			return;
 		}
 		if (dependencies.get("y") == null) {
 			if (!dependencies.containsKey("y"))
-				System.err.println("Failed to load dependency y for procedure RegistryFractionOnKeyPressed!");
+				MinecraftEragonPersonallibMod.LOGGER.warn("Failed to load dependency y for procedure RegistryFractionOnKeyPressed!");
 			return;
 		}
 		if (dependencies.get("z") == null) {
 			if (!dependencies.containsKey("z"))
-				System.err.println("Failed to load dependency z for procedure RegistryFractionOnKeyPressed!");
+				MinecraftEragonPersonallibMod.LOGGER.warn("Failed to load dependency z for procedure RegistryFractionOnKeyPressed!");
 			return;
 		}
 		if (dependencies.get("world") == null) {
 			if (!dependencies.containsKey("world"))
-				System.err.println("Failed to load dependency world for procedure RegistryFractionOnKeyPressed!");
+				MinecraftEragonPersonallibMod.LOGGER.warn("Failed to load dependency world for procedure RegistryFractionOnKeyPressed!");
 			return;
 		}
 		Entity entity = (Entity) dependencies.get("entity");

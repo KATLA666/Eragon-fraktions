@@ -14,6 +14,7 @@ import java.util.HashMap;
 
 import de.offermann.minecrafteragonpersonallib.potion.ElfischStrenghPotion;
 import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibModElements;
+import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibMod;
 
 @MinecraftEragonPersonallibModElements.ModElement.Tag
 public class FraktionElfenProcedure extends MinecraftEragonPersonallibModElements.ModElement {
@@ -25,7 +26,7 @@ public class FraktionElfenProcedure extends MinecraftEragonPersonallibModElement
 	public static void executeProcedure(Map<String, Object> dependencies) {
 		if (dependencies.get("entity") == null) {
 			if (!dependencies.containsKey("entity"))
-				System.err.println("Failed to load dependency entity for procedure FraktionElfen!");
+				MinecraftEragonPersonallibMod.LOGGER.warn("Failed to load dependency entity for procedure FraktionElfen!");
 			return;
 		}
 		Entity entity = (Entity) dependencies.get("entity");
@@ -40,9 +41,9 @@ public class FraktionElfenProcedure extends MinecraftEragonPersonallibModElement
 		if (event.phase == TickEvent.Phase.END) {
 			Entity entity = event.player;
 			World world = entity.world;
-			double i = entity.posX;
-			double j = entity.posY;
-			double k = entity.posZ;
+			double i = entity.getPosX();
+			double j = entity.getPosY();
+			double k = entity.getPosZ();
 			Map<String, Object> dependencies = new HashMap<>();
 			dependencies.put("x", i);
 			dependencies.put("y", j);

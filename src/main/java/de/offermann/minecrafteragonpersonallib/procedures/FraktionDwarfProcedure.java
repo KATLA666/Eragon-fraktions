@@ -5,18 +5,13 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.common.MinecraftForge;
 
 import net.minecraft.world.World;
-import net.minecraft.potion.Effects;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.item.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.Entity;
 
 import java.util.Map;
 import java.util.HashMap;
 
 import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibModElements;
+import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibMod;
 
 @MinecraftEragonPersonallibModElements.ModElement.Tag
 public class FraktionDwarfProcedure extends MinecraftEragonPersonallibModElements.ModElement {
@@ -28,38 +23,45 @@ public class FraktionDwarfProcedure extends MinecraftEragonPersonallibModElement
 	public static void executeProcedure(Map<String, Object> dependencies) {
 		if (dependencies.get("entity") == null) {
 			if (!dependencies.containsKey("entity"))
-				System.err.println("Failed to load dependency entity for procedure FraktionDwarf!");
+				MinecraftEragonPersonallibMod.LOGGER.warn("Failed to load dependency entity for procedure FraktionDwarf!");
 			return;
 		}
 		Entity entity = (Entity) dependencies.get("entity");
 		if (((entity.getPersistentData().getDouble("zwergen")) == 1)) {
-			if (entity instanceof LivingEntity)
-				((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.HASTE, (int) 20, (int) 0, (false), (false)));
-			if (((((entity instanceof PlayerEntity) ? ((PlayerEntity) entity).inventory.getStackInSlot((int) 0) : ItemStack.EMPTY)
-					.getItem() == new ItemStack(Items.DIAMOND, (int) (1)).getItem())
-					|| ((((entity instanceof PlayerEntity) ? ((PlayerEntity) entity).inventory.getStackInSlot((int) 1) : ItemStack.EMPTY)
-							.getItem() == new ItemStack(Items.DIAMOND, (int) (1)).getItem())
-							|| ((((entity instanceof PlayerEntity) ? ((PlayerEntity) entity).inventory.getStackInSlot((int) 2) : ItemStack.EMPTY)
-									.getItem() == new ItemStack(Items.DIAMOND, (int) (1)).getItem())
-									|| ((((entity instanceof PlayerEntity)
-											? ((PlayerEntity) entity).inventory.getStackInSlot((int) 3)
-											: ItemStack.EMPTY).getItem() == new ItemStack(Items.DIAMOND, (int) (1)).getItem())
-											|| ((((entity instanceof PlayerEntity)
-													? ((PlayerEntity) entity).inventory.getStackInSlot((int) 4)
-													: ItemStack.EMPTY).getItem() == new ItemStack(Items.DIAMOND, (int) (1)).getItem())
-													|| ((((entity instanceof PlayerEntity)
-															? ((PlayerEntity) entity).inventory.getStackInSlot((int) 5)
-															: ItemStack.EMPTY).getItem() == new ItemStack(Items.DIAMOND, (int) (1)).getItem())
-															|| ((((entity instanceof PlayerEntity)
-																	? ((PlayerEntity) entity).inventory.getStackInSlot((int) 6)
-																	: ItemStack.EMPTY).getItem() == new ItemStack(Items.DIAMOND, (int) (1)).getItem())
-																	|| ((((entity instanceof PlayerEntity)
-																			? ((PlayerEntity) entity).inventory.getStackInSlot((int) 7)
-																			: ItemStack.EMPTY)
-																					.getItem() == new ItemStack(Items.DIAMOND, (int) (1)).getItem())
-																			|| (true)))))))))) {
-				if (entity instanceof LivingEntity)
-					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.RESISTANCE, (int) 20, (int) 0, (false), (false)));
+			{
+				Entity _ent = entity;
+				if (!_ent.world.isRemote && _ent.world.getServer() != null) {
+					_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
+							"attribute @p forge:reach_distance base set 6");
+				}
+			}
+			{
+				Entity _ent = entity;
+				if (!_ent.world.isRemote && _ent.world.getServer() != null) {
+					_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
+							"attribute @p minecraft:generic.luck base set 1");
+				}
+			}
+			{
+				Entity _ent = entity;
+				if (!_ent.world.isRemote && _ent.world.getServer() != null) {
+					_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
+							"attribute @p minecraft:generic.movement_speed base set 0.085");
+				}
+			}
+			{
+				Entity _ent = entity;
+				if (!_ent.world.isRemote && _ent.world.getServer() != null) {
+					_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
+							"attribute @p minecraft:generic.max_health base set 26");
+				}
+			}
+			{
+				Entity _ent = entity;
+				if (!_ent.world.isRemote && _ent.world.getServer() != null) {
+					_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
+							"attribute @p minecraft:generic.attack_damage base set 1.5");
+				}
 			}
 		}
 	}
@@ -69,9 +71,9 @@ public class FraktionDwarfProcedure extends MinecraftEragonPersonallibModElement
 		if (event.phase == TickEvent.Phase.END) {
 			Entity entity = event.player;
 			World world = entity.world;
-			double i = entity.posX;
-			double j = entity.posY;
-			double k = entity.posZ;
+			double i = entity.getPosX();
+			double j = entity.getPosY();
+			double k = entity.getPosZ();
 			Map<String, Object> dependencies = new HashMap<>();
 			dependencies.put("x", i);
 			dependencies.put("y", j);

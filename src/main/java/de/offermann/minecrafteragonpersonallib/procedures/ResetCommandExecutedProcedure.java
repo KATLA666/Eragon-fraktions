@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import java.util.Map;
 
 import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibModElements;
+import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibMod;
 
 @MinecraftEragonPersonallibModElements.ModElement.Tag
 public class ResetCommandExecutedProcedure extends MinecraftEragonPersonallibModElements.ModElement {
@@ -17,7 +18,7 @@ public class ResetCommandExecutedProcedure extends MinecraftEragonPersonallibMod
 	public static void executeProcedure(Map<String, Object> dependencies) {
 		if (dependencies.get("entity") == null) {
 			if (!dependencies.containsKey("entity"))
-				System.err.println("Failed to load dependency entity for procedure ResetCommandExecuted!");
+				MinecraftEragonPersonallibMod.LOGGER.warn("Failed to load dependency entity for procedure ResetCommandExecuted!");
 			return;
 		}
 		Entity entity = (Entity) dependencies.get("entity");
@@ -34,7 +35,7 @@ public class ResetCommandExecutedProcedure extends MinecraftEragonPersonallibMod
 		entity.getPersistentData().putDouble("clockready", 0);
 		entity.getPersistentData().putDouble("clockreadystrong", 0);
 		entity.getPersistentData().putBoolean("rage", (false));
-		if (entity instanceof PlayerEntity && !entity.world.isRemote) {
+		if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 			((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7creseted!"), (false));
 		}
 	}

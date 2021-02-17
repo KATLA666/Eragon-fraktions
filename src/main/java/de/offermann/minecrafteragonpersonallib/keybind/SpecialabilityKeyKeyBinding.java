@@ -83,9 +83,9 @@ public class SpecialabilityKeyKeyBinding extends MinecraftEragonPersonallibModEl
 	}
 	private static void pressAction(PlayerEntity entity, int type, int pressedms) {
 		World world = entity.world;
-		double x = entity.posX;
-		double y = entity.posY;
-		double z = entity.posZ;
+		double x = entity.getPosX();
+		double y = entity.getPosY();
+		double z = entity.getPosZ();
 		// security measure to prevent arbitrary chunk generation
 		if (!world.isBlockLoaded(new BlockPos(x, y, z)))
 			return;
@@ -93,7 +93,6 @@ public class SpecialabilityKeyKeyBinding extends MinecraftEragonPersonallibModEl
 			{
 				Map<String, Object> $_dependencies = new HashMap<>();
 				$_dependencies.put("entity", entity);
-				$_dependencies.put("world", world);
 				SpecialAbilityProcedure.executeProcedure($_dependencies);
 			}
 		}

@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibModElements;
+import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibMod;
 
 @MinecraftEragonPersonallibModElements.ModElement.Tag
 public class FraktionSurdaProcedure extends MinecraftEragonPersonallibModElements.ModElement {
@@ -25,7 +26,7 @@ public class FraktionSurdaProcedure extends MinecraftEragonPersonallibModElement
 	public static void executeProcedure(Map<String, Object> dependencies) {
 		if (dependencies.get("entity") == null) {
 			if (!dependencies.containsKey("entity"))
-				System.err.println("Failed to load dependency entity for procedure FraktionSurda!");
+				MinecraftEragonPersonallibMod.LOGGER.warn("Failed to load dependency entity for procedure FraktionSurda!");
 			return;
 		}
 		Entity entity = (Entity) dependencies.get("entity");
@@ -37,10 +38,7 @@ public class FraktionSurdaProcedure extends MinecraftEragonPersonallibModElement
 					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.RESISTANCE, (int) 20, (int) 0, (false), (false)));
 				if ((entity.getRidingEntity()) instanceof LivingEntity)
 					((LivingEntity) (entity.getRidingEntity()))
-							.addPotionEffect(new EffectInstance(Effects.SPEED, (int) 20, (int) 1, (false), (false)));
-				if ((entity.getRidingEntity()) instanceof LivingEntity)
-					((LivingEntity) (entity.getRidingEntity()))
-							.addPotionEffect(new EffectInstance(Effects.RESISTANCE, (int) 20, (int) 0, (false), (false)));
+							.addPotionEffect(new EffectInstance(Effects.SPEED, (int) 20, (int) 2, (false), (false)));
 			}
 		}
 	}
@@ -50,9 +48,9 @@ public class FraktionSurdaProcedure extends MinecraftEragonPersonallibModElement
 		if (event.phase == TickEvent.Phase.END) {
 			Entity entity = event.player;
 			World world = entity.world;
-			double i = entity.posX;
-			double j = entity.posY;
-			double k = entity.posZ;
+			double i = entity.getPosX();
+			double j = entity.getPosY();
+			double k = entity.getPosZ();
 			Map<String, Object> dependencies = new HashMap<>();
 			dependencies.put("x", i);
 			dependencies.put("y", j);

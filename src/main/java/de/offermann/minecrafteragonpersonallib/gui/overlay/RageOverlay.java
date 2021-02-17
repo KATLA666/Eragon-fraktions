@@ -16,6 +16,7 @@ import net.minecraft.client.Minecraft;
 import de.offermann.minecrafteragonpersonallib.procedures.RageDisplayOverlayIngameProcedure;
 import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibModElements;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.platform.GlStateManager;
 
 import com.google.common.collect.ImmutableMap;
@@ -39,23 +40,23 @@ public class RageOverlay extends MinecraftEragonPersonallibModElements.ModElemen
 			int posY = (event.getWindow().getScaledHeight()) / 2;
 			PlayerEntity entity = Minecraft.getInstance().player;
 			World world = entity.world;
-			double x = entity.posX;
-			double y = entity.posY;
-			double z = entity.posZ;
+			double x = entity.getPosX();
+			double y = entity.getPosY();
+			double z = entity.getPosZ();
 			if (RageDisplayOverlayIngameProcedure.executeProcedure(ImmutableMap.of("entity", entity))) {
-				GlStateManager.disableDepthTest();
-				GlStateManager.depthMask(false);
-				GlStateManager.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA,
+				RenderSystem.disableDepthTest();
+				RenderSystem.depthMask(false);
+				RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA,
 						GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-				GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-				GlStateManager.disableAlphaTest();
+				RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+				RenderSystem.disableAlphaTest();
 				Minecraft.getInstance().getTextureManager().bindTexture(new ResourceLocation("minecraft_eragon__personallib:textures/babierage.png"));
-				Minecraft.getInstance().ingameGUI.blit(0, 0, 0, 0, event.getWindow().getScaledWidth(), event.getWindow().getScaledHeight(),
-						event.getWindow().getScaledWidth(), event.getWindow().getScaledHeight());
-				GlStateManager.depthMask(true);
-				GlStateManager.enableDepthTest();
-				GlStateManager.enableAlphaTest();
-				GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+				Minecraft.getInstance().ingameGUI.blit(event.getMatrixStack(), 0, 0, 0, 0, event.getWindow().getScaledWidth(),
+						event.getWindow().getScaledHeight(), event.getWindow().getScaledWidth(), event.getWindow().getScaledHeight());
+				RenderSystem.depthMask(true);
+				RenderSystem.enableDepthTest();
+				RenderSystem.enableAlphaTest();
+				RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 			}
 		}
 	}

@@ -125,10 +125,6 @@
           {
             "name": "entity",
             "type": "entity"
-          },
-          {
-            "name": "world",
-            "type": "world"
           }
         ]
       }
@@ -333,7 +329,7 @@
       "type": "procedure",
       "sortid": 19,
       "compiles": true,
-      "locked_code": true,
+      "locked_code": false,
       "ids": {},
       "registry_name": "fraktion_surda",
       "metadata": {
@@ -469,10 +465,6 @@
           {
             "name": "entity",
             "type": "entity"
-          },
-          {
-            "name": "world",
-            "type": "world"
           }
         ]
       }
@@ -482,7 +474,7 @@
       "type": "gun",
       "sortid": 27,
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "ids": {},
       "registry_name": "dwarfs_throwable_axe"
     },
@@ -491,7 +483,7 @@
       "type": "gun",
       "sortid": 28,
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "ids": {},
       "registry_name": "speer"
     },
@@ -548,6 +540,32 @@
       "locked_code": false,
       "ids": {},
       "registry_name": "last_man_standing"
+    },
+    {
+      "name": "ListnbtCommandExecuted",
+      "type": "procedure",
+      "sortid": 33,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "listnbt_command_executed",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Listnbt",
+      "type": "command",
+      "sortid": 33,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "listnbt"
     }
   ],
   "variable_elements": [],
@@ -555,9 +573,9 @@
   "language_map": {
     "en_us": {
       "item.minecraft.splash_potion.effect.elfisch_strengh": "Splash Elvish strength",
-      "item.minecraft_eragon__personallib.dwarfs_throwable_axe": "Dwarfs Throwable Axe",
-      "item.minecraft.potion.effect.elfisch_strengh": "Elvish strength",
       "effect.last_man_standing": "Last Man Standing",
+      "item.minecraft.potion.effect.elfisch_strengh": "Elvish strength",
+      "item.minecraft_eragon__personallib.dwarfs_throwable_axe": "Dwarfs Throwable Axe",
       "item.minecraft.tipped_arrow.effect.last_man_standing": "Arrow of Last Man Standing",
       "effect.elfisch_strengh": "Elvish strength",
       "itemGroup.taberagon": "Eragon",
@@ -577,16 +595,17 @@
     "modName": "Minecraft Eragon 2 Personallib",
     "version": "1.0.0",
     "author": "Moritz Offermann",
+    "websiteURL": "https://mcreator.net",
     "disableForgeVersionCheck": true,
     "serverSideOnly": false,
     "requiredMods": [],
     "dependencies": [],
     "dependants": [],
     "mcreatorDependencies": [],
-    "currentGenerator": "forge-1.14.4",
+    "currentGenerator": "forge-1.16.4",
     "credits": "Created using mod maker MCreator - https://mcreator.net/about and Eclipse  https://www.eclipse.org/ ",
     "modElementsPackage": "de.offermann.minecrafteragonpersonallib",
     "lockBaseModFiles": false
   },
-  "mcreatorVersion": 202000547520
+  "mcreatorVersion": 202100103117
 }

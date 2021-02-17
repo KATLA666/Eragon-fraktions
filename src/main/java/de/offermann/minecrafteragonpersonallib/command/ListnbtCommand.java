@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Arrays;
 
-import de.offermann.minecrafteragonpersonallib.procedures.SAaktiveCommandExecutedProcedure;
+import de.offermann.minecrafteragonpersonallib.procedures.ListnbtCommandExecutedProcedure;
 import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibModElements;
 
 import com.mojang.brigadier.context.CommandContext;
@@ -23,9 +23,9 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.arguments.StringArgumentType;
 
 @MinecraftEragonPersonallibModElements.ModElement.Tag
-public class SAaktiveCommand extends MinecraftEragonPersonallibModElements.ModElement {
-	public SAaktiveCommand(MinecraftEragonPersonallibModElements instance) {
-		super(instance, 25);
+public class ListnbtCommand extends MinecraftEragonPersonallibModElements.ModElement {
+	public ListnbtCommand(MinecraftEragonPersonallibModElements instance) {
+		super(instance, 33);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
@@ -35,7 +35,7 @@ public class SAaktiveCommand extends MinecraftEragonPersonallibModElements.ModEl
 	}
 
 	private LiteralArgumentBuilder<CommandSource> customCommand() {
-		return LiteralArgumentBuilder.<CommandSource>literal("saaktive").requires(s -> s.hasPermissionLevel(4))
+		return LiteralArgumentBuilder.<CommandSource>literal("listnbt").requires(s -> s.hasPermissionLevel(2))
 				.then(Commands.argument("arguments", StringArgumentType.greedyString()).executes(this::execute)).executes(this::execute);
 	}
 
@@ -57,7 +57,7 @@ public class SAaktiveCommand extends MinecraftEragonPersonallibModElements.ModEl
 		{
 			Map<String, Object> $_dependencies = new HashMap<>();
 			$_dependencies.put("entity", entity);
-			SAaktiveCommandExecutedProcedure.executeProcedure($_dependencies);
+			ListnbtCommandExecutedProcedure.executeProcedure($_dependencies);
 		}
 		return 0;
 	}
