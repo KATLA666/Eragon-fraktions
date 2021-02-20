@@ -60,7 +60,7 @@ public class FraktionDwarfProcedure extends MinecraftEragonPersonallibModElement
 				Entity _ent = entity;
 				if (!_ent.world.isRemote && _ent.world.getServer() != null) {
 					_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
-							"attribute @p minecraft:generic.attack_damage base set 1.5");
+							"attribute @p minecraft:generic.attack_damage base set 2.5");
 				}
 			}
 		}

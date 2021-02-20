@@ -93,6 +93,7 @@ public class SpecialabilityKeyKeyBinding extends MinecraftEragonPersonallibModEl
 			{
 				Map<String, Object> $_dependencies = new HashMap<>();
 				$_dependencies.put("entity", entity);
+				$_dependencies.put("world", world);
 				SpecialAbilityProcedure.executeProcedure($_dependencies);
 			}
 		}

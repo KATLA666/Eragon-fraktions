@@ -45,7 +45,7 @@ public class SpecialAbilityProcedure extends MinecraftEragonPersonallibModElemen
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
-							(((("\u00A7cDie Abklinkzeit betr\u00E4gt noch ") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
+							(((("\u00A7cThe decay time is still") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
 									+ ("\u00A7Ticks!"))),
 							(true));
 				}
@@ -66,11 +66,10 @@ public class SpecialAbilityProcedure extends MinecraftEragonPersonallibModElemen
 				entity.getPersistentData().putDouble("clockreadystrong", 0);
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
-					((PlayerEntity) entity)
-							.sendStatusMessage(
-									new StringTextComponent((((("\u00EF\u00BF\u00BDcDie Abklingzeit betr\u00EF\u00BF\u00BDgt noch: ") + ""
-											+ ((6000 - (entity.getPersistentData().getDouble("clock")))))) + "" + (" \u00EF\u00BF\u00BDcTicks!"))),
-									(true));
+					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
+							(((("\u00A7cThe decay time is still") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
+									+ (" \u00EF\u00BF\u00BDcTicks!"))),
+							(true));
 				}
 			}
 		} else if (((entity.getPersistentData().getDouble("zwergen")) == 1)) {
@@ -85,11 +84,10 @@ public class SpecialAbilityProcedure extends MinecraftEragonPersonallibModElemen
 				entity.getPersistentData().putDouble("clockreadystrong", 0);
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
-					((PlayerEntity) entity)
-							.sendStatusMessage(
-									new StringTextComponent((((("\u00EF\u00BF\u00BDcDie Abklingzeit betr\u00EF\u00BF\u00BDgt noch: ") + ""
-											+ ((6000 - (entity.getPersistentData().getDouble("clock")))))) + "" + (" \u00EF\u00BF\u00BDcTicks!"))),
-									(true));
+					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
+							(((("\u00A7cThe decay time is still") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
+									+ (" \u00EF\u00BF\u00BDcTicks!"))),
+							(true));
 				}
 			}
 		} else if (((entity.getPersistentData().getDouble("surda")) == 1)) {
@@ -105,7 +103,7 @@ public class SpecialAbilityProcedure extends MinecraftEragonPersonallibModElemen
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
-							(((("\u00A7cDie Abklinkzeit betr\u00E4gt noch ") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
+							(((("\u00A7cThe decay time is still") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
 									+ ("\u00A7cTicks!"))),
 							(true));
 				}
@@ -122,17 +120,17 @@ public class SpecialAbilityProcedure extends MinecraftEragonPersonallibModElemen
 			if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00EF\u00BF\u00BDcin working"), (false));
 			}
-		} else if (((entity.getPersistentData().getDouble("urgal")) == 1)) {
-			if (((entity.getPersistentData().getDouble("clockready")) == 1)) {
-				entity.getPersistentData().putDouble("clock", 0);
-				entity.getPersistentData().putDouble("clockready", 0);
-				entity.getPersistentData().putBoolean("dash", (true));
+		}
+		if (((entity.getPersistentData().getDouble("urgal")) == 1)) {
+			if ((((entity instanceof PlayerEntity) ? ((PlayerEntity) entity).getFoodStats().getFoodLevel() : 0) >= 15)) {
+				entity.setMotion((Math.sin(Math.toRadians(((entity.rotationYaw) + 180))) * 3), Math.sin(Math.toRadians((0 - (entity.rotationPitch)))),
+						(Math.cos(Math.toRadians((entity.rotationYaw))) * 3));
+				if (entity instanceof PlayerEntity)
+					((PlayerEntity) entity).getFoodStats().setFoodLevel(
+							(int) (((entity instanceof PlayerEntity) ? ((PlayerEntity) entity).getFoodStats().getFoodLevel() : 0) - 10));
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
-					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
-							(((("\u00A7cDie Abklinkzeit betr\u00E4gt noch ") + "" + ((3000 - (entity.getPersistentData().getDouble("clock")))))) + ""
-									+ ("\u00A7cTicks!"))),
-							(true));
+					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7cNot enough Food!"), (true));
 				}
 			}
 		}

@@ -23,7 +23,7 @@ public class ListnbtCommandExecutedProcedure extends MinecraftEragonPersonallibM
 		}
 		Entity entity = (Entity) dependencies.get("entity");
 		if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
-			((PlayerEntity) entity).sendStatusMessage(new StringTextComponent((((entity.getPersistentData().getBoolean("dash"))) + "" + (null))),
+			((PlayerEntity) entity).sendStatusMessage(new StringTextComponent((((entity.getPersistentData().getDouble("now"))) + "" + (null))),
 					(false));
 		}
 	}

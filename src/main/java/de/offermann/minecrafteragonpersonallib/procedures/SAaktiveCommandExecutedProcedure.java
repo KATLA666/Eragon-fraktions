@@ -24,6 +24,7 @@ public class SAaktiveCommandExecutedProcedure extends MinecraftEragonPersonallib
 		Entity entity = (Entity) dependencies.get("entity");
 		entity.getPersistentData().putDouble("clockready", 1);
 		entity.getPersistentData().putDouble("clockreadystrong", 1);
+		entity.getPersistentData().putDouble("clock", 6000);
 		if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 			((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("Aktive"), (false));
 		}

@@ -453,23 +453,6 @@
       "registry_name": "s_aaktive"
     },
     {
-      "name": "UrgalDash",
-      "type": "procedure",
-      "sortid": 26,
-      "compiles": true,
-      "locked_code": false,
-      "ids": {},
-      "registry_name": "urgal_dash",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
-        ]
-      }
-    },
-    {
       "name": "DwarfsThrowableAxe",
       "type": "gun",
       "sortid": 27,
@@ -566,6 +549,23 @@
       "locked_code": false,
       "ids": {},
       "registry_name": "listnbt"
+    },
+    {
+      "name": "Dash",
+      "type": "procedure",
+      "sortid": 34,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "dash",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
     }
   ],
   "variable_elements": [],
