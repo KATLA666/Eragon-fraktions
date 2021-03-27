@@ -1,8 +1,6 @@
 
 package de.offermann.minecrafteragonpersonallib.entity;
 
-import net.minecraft.command.arguments.ItemArgument;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.ZombieEntity;
@@ -28,6 +26,7 @@ import net.minecraft.item.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -35,7 +34,6 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.entity.layers.BipedArmorLayer;
@@ -43,7 +41,6 @@ import net.minecraft.client.renderer.entity.BipedRenderer;
 
 import de.offermann.minecrafteragonpersonallib.itemgroup.EragonItemGroup;
 import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibModElements;
-import org.jline.utils.Display;
 
 @MinecraftEragonPersonallibModElements.ModElement.Tag
 public class EmpireSoldierEntity extends MinecraftEragonPersonallibModElements.ModElement {
@@ -92,7 +89,7 @@ public class EmpireSoldierEntity extends MinecraftEragonPersonallibModElements.M
 		ammma = ammma.createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 0.1);
 		GlobalEntityTypeAttributes.put(entity, ammma.create());
 	}
-	public static class CustomEntity extends CreatureEntity {
+	public static class CustomEntity extends WolfEntity {
 		public CustomEntity(FMLPlayMessages.SpawnEntity packet, World world) {
 			this(entity, world);
 		}
@@ -109,10 +106,7 @@ public class EmpireSoldierEntity extends MinecraftEragonPersonallibModElements.M
 			this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(Items.CHAINMAIL_CHESTPLATE, (int) (1)));
 			this.setItemStackToSlot(EquipmentSlotType.LEGS, new ItemStack(Items.LEATHER_LEGGINGS, (int) (1)));
 			this.setItemStackToSlot(EquipmentSlotType.FEET, new ItemStack(Items.IRON_BOOTS, (int) (1)));
-
 		}
-
-
 
 		@Override
 		public IPacket<?> createSpawnPacket() {
@@ -129,7 +123,8 @@ public class EmpireSoldierEntity extends MinecraftEragonPersonallibModElements.M
 			this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
 			this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, ZombieEntity.class, true, false));
 			this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, MonsterEntity.class, true, false));
-
+			this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
+			this.goalSelector.addGoal(1, new SwimGoal(this));
 		}
 
 		@Override

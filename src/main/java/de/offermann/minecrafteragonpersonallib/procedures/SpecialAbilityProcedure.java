@@ -1,18 +1,12 @@
 package de.offermann.minecrafteragonpersonallib.procedures;
 
-import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.World;
 import net.minecraft.world.IWorld;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.potion.Effects;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.Entity;
 
 import java.util.Random;
@@ -23,7 +17,6 @@ import de.offermann.minecrafteragonpersonallib.potion.LastManStandingPotion;
 import de.offermann.minecrafteragonpersonallib.item.SpeerItem;
 import de.offermann.minecrafteragonpersonallib.item.FireballshotItem;
 import de.offermann.minecrafteragonpersonallib.item.DwarfsThrowableAxeItem;
-import de.offermann.minecrafteragonpersonallib.entity.EmpireSoldierEntity;
 import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibModElements;
 import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibMod;
 
@@ -144,40 +137,15 @@ public class SpecialAbilityProcedure extends MinecraftEragonPersonallibModElemen
 			}
 		} else if (((entity.getPersistentData().getDouble("empire_soldier")) == 1)) {
 			if (((entity.getPersistentData().getDouble("clockreadystrong")) == 1)) {
-				if (world instanceof ServerWorld) {
-					Entity entityToSpawn = new EmpireSoldierEntity.CustomEntity(EmpireSoldierEntity.entity, (World) world);
-					entityToSpawn.setLocationAndAngles((x + 4), (y + 1), z, world.getRandom().nextFloat() * 360F, 0);
-					if (entityToSpawn instanceof MobEntity)
-						((MobEntity) entityToSpawn).onInitialSpawn((ServerWorld) world, world.getDifficultyForLocation(entityToSpawn.getPosition()),
-								SpawnReason.MOB_SUMMONED, (ILivingEntityData) null, (CompoundNBT) null);
-					world.addEntity(entityToSpawn);
+				{
+					Map<String, Object> $_dependencies = new HashMap<>();
+					$_dependencies.put("entity", entity);
+					$_dependencies.put("x", x);
+					$_dependencies.put("y", y);
+					$_dependencies.put("z", z);
+					$_dependencies.put("world", world);
+					SummonSoldierProcedure.executeProcedure($_dependencies);
 				}
-				if (world instanceof ServerWorld) {
-					Entity entityToSpawn = new EmpireSoldierEntity.CustomEntity(EmpireSoldierEntity.entity, (World) world);
-					entityToSpawn.setLocationAndAngles((x - 4), (y + 1), z, world.getRandom().nextFloat() * 360F, 0);
-					if (entityToSpawn instanceof MobEntity)
-						((MobEntity) entityToSpawn).onInitialSpawn((ServerWorld) world, world.getDifficultyForLocation(entityToSpawn.getPosition()),
-								SpawnReason.MOB_SUMMONED, (ILivingEntityData) null, (CompoundNBT) null);
-					world.addEntity(entityToSpawn);
-				}
-				if (world instanceof ServerWorld) {
-					Entity entityToSpawn = new EmpireSoldierEntity.CustomEntity(EmpireSoldierEntity.entity, (World) world);
-					entityToSpawn.setLocationAndAngles(x, (y + 1), (z + 4), world.getRandom().nextFloat() * 360F, 0);
-					if (entityToSpawn instanceof MobEntity)
-						((MobEntity) entityToSpawn).onInitialSpawn((ServerWorld) world, world.getDifficultyForLocation(entityToSpawn.getPosition()),
-								SpawnReason.MOB_SUMMONED, (ILivingEntityData) null, (CompoundNBT) null);
-					world.addEntity(entityToSpawn);
-				}
-				if (world instanceof ServerWorld) {
-					Entity entityToSpawn = new EmpireSoldierEntity.CustomEntity(EmpireSoldierEntity.entity, (World) world);
-					entityToSpawn.setLocationAndAngles(x, (y + 1), (z - 4), world.getRandom().nextFloat() * 360F, 0);
-					if (entityToSpawn instanceof MobEntity)
-						((MobEntity) entityToSpawn).onInitialSpawn((ServerWorld) world, world.getDifficultyForLocation(entityToSpawn.getPosition()),
-								SpawnReason.MOB_SUMMONED, (ILivingEntityData) null, (CompoundNBT) null);
-					world.addEntity(entityToSpawn);
-				}
-				entity.getPersistentData().putDouble("clock", 0);
-				entity.getPersistentData().putDouble("clockreadystrong", 0);
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
