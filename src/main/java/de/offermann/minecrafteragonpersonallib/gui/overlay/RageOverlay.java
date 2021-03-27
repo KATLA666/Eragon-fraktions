@@ -50,7 +50,8 @@ public class RageOverlay extends MinecraftEragonPersonallibModElements.ModElemen
 						GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 				RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 				RenderSystem.disableAlphaTest();
-				Minecraft.getInstance().getTextureManager().bindTexture(new ResourceLocation("minecraft_eragon__personallib:textures/babierage.png"));
+				Minecraft.getInstance().getTextureManager()
+						.bindTexture(new ResourceLocation("minecraft_eragon__personallib:textures/rage_overlay.png"));
 				Minecraft.getInstance().ingameGUI.blit(event.getMatrixStack(), 0, 0, 0, 0, event.getWindow().getScaledWidth(),
 						event.getWindow().getScaledHeight(), event.getWindow().getScaledWidth(), event.getWindow().getScaledHeight());
 				RenderSystem.depthMask(true);

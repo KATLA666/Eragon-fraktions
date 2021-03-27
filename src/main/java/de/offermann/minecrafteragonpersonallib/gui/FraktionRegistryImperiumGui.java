@@ -1,8 +1,6 @@
 
 package de.offermann.minecrafteragonpersonallib.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.fml.network.NetworkEvent;
@@ -15,20 +13,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.api.distmarker.Dist;
 
 import net.minecraft.world.World;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.ScreenManager;
-import net.minecraft.client.Minecraft;
 
 import java.util.function.Supplier;
 import java.util.Map;
@@ -40,9 +32,6 @@ import de.offermann.minecrafteragonpersonallib.procedures.ButtonFraktionrazacPro
 import de.offermann.minecrafteragonpersonallib.procedures.ButtonFraktionUrgalProcedure;
 import de.offermann.minecrafteragonpersonallib.procedures.ButtonFraktionShadeProcedure;
 import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibModElements;
-import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibMod;
-
-import com.mojang.blaze3d.matrix.MatrixStack;
 
 @MinecraftEragonPersonallibModElements.ModElement.Tag
 public class FraktionRegistryImperiumGui extends MinecraftEragonPersonallibModElements.ModElement {
@@ -65,7 +54,7 @@ public class FraktionRegistryImperiumGui extends MinecraftEragonPersonallibModEl
 	}
 	@OnlyIn(Dist.CLIENT)
 	public void initElements() {
-		DeferredWorkQueue.runLater(() -> ScreenManager.registerFactory(containerType, GuiWindow::new));
+		DeferredWorkQueue.runLater(() -> ScreenManager.registerFactory(containerType, FraktionRegistryImperiumGuiWindow::new));
 	}
 	public static class GuiContainerModFactory implements IContainerFactory {
 		public GuiContainerMod create(int id, PlayerInventory inv, PacketBuffer extraData) {
@@ -74,9 +63,9 @@ public class FraktionRegistryImperiumGui extends MinecraftEragonPersonallibModEl
 	}
 
 	public static class GuiContainerMod extends Container implements Supplier<Map<Integer, Slot>> {
-		private World world;
-		private PlayerEntity entity;
-		private int x, y, z;
+		World world;
+		PlayerEntity entity;
+		int x, y, z;
 		private IItemHandler internal;
 		private Map<Integer, Slot> customSlots = new HashMap<>();
 		private boolean bound = false;
@@ -101,90 +90,6 @@ public class FraktionRegistryImperiumGui extends MinecraftEragonPersonallibModEl
 		@Override
 		public boolean canInteractWith(PlayerEntity player) {
 			return true;
-		}
-	}
-
-	@OnlyIn(Dist.CLIENT)
-	public static class GuiWindow extends ContainerScreen<GuiContainerMod> {
-		private World world;
-		private int x, y, z;
-		private PlayerEntity entity;
-		public GuiWindow(GuiContainerMod container, PlayerInventory inventory, ITextComponent text) {
-			super(container, inventory, text);
-			this.world = container.world;
-			this.x = container.x;
-			this.y = container.y;
-			this.z = container.z;
-			this.entity = container.entity;
-			this.xSize = 215;
-			this.ySize = 166;
-		}
-		private static final ResourceLocation texture = new ResourceLocation("minecraft_eragon__personallib:textures/fraktion_registry_imperium.png");
-		@Override
-		public void render(MatrixStack ms, int mouseX, int mouseY, float partialTicks) {
-			this.renderBackground(ms);
-			super.render(ms, mouseX, mouseY, partialTicks);
-			this.renderHoveredTooltip(ms, mouseX, mouseY);
-		}
-
-		@Override
-		protected void drawGuiContainerBackgroundLayer(MatrixStack ms, float par1, int par2, int par3) {
-			GL11.glColor4f(1, 1, 1, 1);
-			Minecraft.getInstance().getTextureManager().bindTexture(texture);
-			int k = (this.width - this.xSize) / 2;
-			int l = (this.height - this.ySize) / 2;
-			this.blit(ms, k, l, 0, 0, this.xSize, this.ySize, this.xSize, this.ySize);
-		}
-
-		@Override
-		public boolean keyPressed(int key, int b, int c) {
-			if (key == 256) {
-				this.minecraft.player.closeScreen();
-				return true;
-			}
-			return super.keyPressed(key, b, c);
-		}
-
-		@Override
-		public void tick() {
-			super.tick();
-		}
-
-		@Override
-		protected void drawGuiContainerForegroundLayer(MatrixStack ms, int mouseX, int mouseY) {
-			this.font.drawString(ms, "Empire Minions", 74, 9, -10092544);
-		}
-
-		@Override
-		public void onClose() {
-			super.onClose();
-			Minecraft.getInstance().keyboardListener.enableRepeatEvents(false);
-		}
-
-		@Override
-		public void init(Minecraft minecraft, int width, int height) {
-			super.init(minecraft, width, height);
-			minecraft.keyboardListener.enableRepeatEvents(true);
-			this.addButton(new Button(this.guiLeft + 5, this.guiTop + 27, 105, 20, new StringTextComponent("Empire Soldier"), e -> {
-				MinecraftEragonPersonallibMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(0, x, y, z));
-				handleButtonAction(entity, 0, x, y, z);
-			}));
-			this.addButton(new Button(this.guiLeft + 138, this.guiTop + 27, 50, 20, new StringTextComponent("Shade"), e -> {
-				MinecraftEragonPersonallibMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(1, x, y, z));
-				handleButtonAction(entity, 1, x, y, z);
-			}));
-			this.addButton(new Button(this.guiLeft + 137, this.guiTop + 97, 50, 20, new StringTextComponent("Urgal"), e -> {
-				MinecraftEragonPersonallibMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(2, x, y, z));
-				handleButtonAction(entity, 2, x, y, z);
-			}));
-			this.addButton(new Button(this.guiLeft + 5, this.guiTop + 142, 40, 20, new StringTextComponent("<<<"), e -> {
-				MinecraftEragonPersonallibMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(3, x, y, z));
-				handleButtonAction(entity, 3, x, y, z);
-			}));
-			this.addButton(new Button(this.guiLeft + 6, this.guiTop + 97, 55, 20, new StringTextComponent("Ra'zac"), e -> {
-				MinecraftEragonPersonallibMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(4, x, y, z));
-				handleButtonAction(entity, 4, x, y, z);
-			}));
 		}
 	}
 
@@ -269,7 +174,7 @@ public class FraktionRegistryImperiumGui extends MinecraftEragonPersonallibModEl
 			context.setPacketHandled(true);
 		}
 	}
-	private static void handleButtonAction(PlayerEntity entity, int buttonID, int x, int y, int z) {
+	static void handleButtonAction(PlayerEntity entity, int buttonID, int x, int y, int z) {
 		World world = entity.world;
 		// security measure to prevent arbitrary chunk generation
 		if (!world.isBlockLoaded(new BlockPos(x, y, z)))

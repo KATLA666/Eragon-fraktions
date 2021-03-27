@@ -5,6 +5,9 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.common.MinecraftForge;
 
 import net.minecraft.world.World;
+import net.minecraft.potion.Effects;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.Entity;
 
 import java.util.Map;
@@ -28,40 +31,50 @@ public class FraktionDwarfProcedure extends MinecraftEragonPersonallibModElement
 		}
 		Entity entity = (Entity) dependencies.get("entity");
 		if (((entity.getPersistentData().getDouble("zwergen")) == 1)) {
-			{
-				Entity _ent = entity;
-				if (!_ent.world.isRemote && _ent.world.getServer() != null) {
-					_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
-							"attribute @p forge:reach_distance base set 6");
+			if (entity instanceof LivingEntity)
+				((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.HASTE, (int) 25, (int) 0, (false), (false)));
+			if (((entity.getPersistentData().getDouble("active")) == 0)) {
+				{
+					Entity _ent = entity;
+					if (!_ent.world.isRemote && _ent.world.getServer() != null) {
+						_ent.world.getServer().getCommandManager().handleCommand(
+								_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
+								"attribute @p forge:reach_distance base set 6");
+					}
 				}
-			}
-			{
-				Entity _ent = entity;
-				if (!_ent.world.isRemote && _ent.world.getServer() != null) {
-					_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
-							"attribute @p minecraft:generic.luck base set 1");
+				{
+					Entity _ent = entity;
+					if (!_ent.world.isRemote && _ent.world.getServer() != null) {
+						_ent.world.getServer().getCommandManager().handleCommand(
+								_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
+								"attribute @p minecraft:generic.luck base set 1");
+					}
 				}
-			}
-			{
-				Entity _ent = entity;
-				if (!_ent.world.isRemote && _ent.world.getServer() != null) {
-					_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
-							"attribute @p minecraft:generic.movement_speed base set 0.085");
+				{
+					Entity _ent = entity;
+					if (!_ent.world.isRemote && _ent.world.getServer() != null) {
+						_ent.world.getServer().getCommandManager().handleCommand(
+								_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
+								"attribute @p minecraft:generic.movement_speed base set 0.085");
+					}
 				}
-			}
-			{
-				Entity _ent = entity;
-				if (!_ent.world.isRemote && _ent.world.getServer() != null) {
-					_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
-							"attribute @p minecraft:generic.max_health base set 26");
+				{
+					Entity _ent = entity;
+					if (!_ent.world.isRemote && _ent.world.getServer() != null) {
+						_ent.world.getServer().getCommandManager().handleCommand(
+								_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
+								"attribute @p minecraft:generic.max_health base set 26");
+					}
 				}
-			}
-			{
-				Entity _ent = entity;
-				if (!_ent.world.isRemote && _ent.world.getServer() != null) {
-					_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
-							"attribute @p minecraft:generic.attack_damage base set 2.5");
+				{
+					Entity _ent = entity;
+					if (!_ent.world.isRemote && _ent.world.getServer() != null) {
+						_ent.world.getServer().getCommandManager().handleCommand(
+								_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
+								"attribute @p minecraft:generic.attack_damage base set 2.5");
+					}
 				}
+				entity.getPersistentData().putDouble("active", 1);
 			}
 		}
 	}

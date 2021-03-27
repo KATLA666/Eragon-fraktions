@@ -1,5 +1,5 @@
 {
-  "_fv": 15,
+  "_fv": 17,
   "_type": "potion",
   "definition": {
     "name": "Last Man Standing",
@@ -12,7 +12,7 @@
     "isInstant": true,
     "isBad": false,
     "isBenefitical": false,
-    "registerPotionType": false,
+    "registerPotionType": true,
     "renderStatusInInventory": true,
     "renderStatusInHUD": true
   }

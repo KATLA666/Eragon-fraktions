@@ -26,5 +26,6 @@ public class ListnbtCommandExecutedProcedure extends MinecraftEragonPersonallibM
 			((PlayerEntity) entity).sendStatusMessage(new StringTextComponent((((entity.getPersistentData().getDouble("now"))) + "" + (null))),
 					(false));
 		}
+		entity.getPersistentData().putDouble("varden", 1);
 	}
 }

@@ -1,8 +1,10 @@
 {
   "item.minecraft.splash_potion.effect.elfisch_strengh": "Splash Elvish strength",
-  "effect.last_man_standing": "Last Man Standing",
-  "item.minecraft.potion.effect.elfisch_strengh": "Elvish strength",
   "item.minecraft_eragon__personallib.dwarfs_throwable_axe": "Dwarfs Throwable Axe",
+  "item.minecraft.potion.effect.elfisch_strengh": "Elvish strength",
+  "effect.last_man_standing": "Last Man Standing",
+  "key.minecraft_eragon__personallib.specialability_key": "Specialability Key",
+  "key.mcreator.button_fraktion": "Button Fraktion",
   "item.minecraft.tipped_arrow.effect.last_man_standing": "Arrow of Last Man Standing",
   "effect.elfisch_strengh": "Elvish strength",
   "itemGroup.taberagon": "Eragon",
@@ -10,9 +12,12 @@
   "item.minecraft.lingering_potion.effect.elfisch_strengh": "Lingering Elvish strength",
   "item.minecraft.splash_potion.effect.last_man_standing": "Splash Last Man Standing",
   "item.minecraft_eragon__personallib.speer": "Speer",
-  "key.mcreator.registry_fraction": "Registry Fation",
+  "entity.minecraft_eragon__personallib.empire_soldier": "Empire Soldier",
+  "item.minecraft_eragon__personallib.fireballshot": "Fireballshot",
   "item.minecraft_eragon__personallib.ergaon_logo": "Ergaon Logo",
   "item.minecraft.potion.effect.last_man_standing": "Last Man Standing",
+  "item.minecraft_eragon__personallib.empire_soldier_spawn_egg": "Empire Soldier Spawn Egg",
+  "key.minecraft_eragon__personallib.button_fraktion": "Button Fraktion",
   "item.minecraft.lingering_potion.effect.last_man_standing": "Lingering Last Man Standing",
   "key.mcreator.specialability_key": "Specialability Key"
 }

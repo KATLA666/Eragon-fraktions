@@ -44,15 +44,6 @@
       }
     },
     {
-      "name": "RegistryFraction",
-      "type": "keybind",
-      "sortid": 1,
-      "compiles": true,
-      "locked_code": false,
-      "ids": {},
-      "registry_name": "registry_fraction"
-    },
-    {
       "name": "ButtonFraktionVarden",
       "type": "procedure",
       "sortid": 3,
@@ -125,6 +116,22 @@
           {
             "name": "entity",
             "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
           }
         ]
       }
@@ -566,6 +573,170 @@
           }
         ]
       }
+    },
+    {
+      "name": "Fraktionurgal",
+      "type": "procedure",
+      "sortid": 35,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "fraktionurgal",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "FraktionEmpireSoldier",
+      "type": "procedure",
+      "sortid": 36,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "fraktion_empire_soldier",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EmpireSoldier",
+      "type": "mob",
+      "sortid": 37,
+      "compiles": true,
+      "locked_code": true,
+      "ids": {},
+      "registry_name": "empire_soldier"
+    },
+    {
+      "name": "LahmenderAhtemRazac",
+      "type": "procedure",
+      "sortid": 38,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "lahmender_ahtem_razac",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ButtonFraktion",
+      "type": "keybind",
+      "sortid": 39,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "button_fraktion"
+    },
+    {
+      "name": "FraktionRaZac",
+      "type": "procedure",
+      "sortid": 40,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "fraktion_ra_zac",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "FraktionShade",
+      "type": "procedure",
+      "sortid": 41,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "fraktion_shade",
+      "metadata": {
+        "dependencies": []
+      }
+    },
+    {
+      "name": "Fireballshot",
+      "type": "gun",
+      "sortid": 42,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "fireballshot"
+    },
+    {
+      "name": "FireballshotBulletHitsBlock",
+      "type": "procedure",
+      "sortid": 43,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "fireballshot_bullet_hits_block",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
     }
   ],
   "variable_elements": [],
@@ -573,9 +744,11 @@
   "language_map": {
     "en_us": {
       "item.minecraft.splash_potion.effect.elfisch_strengh": "Splash Elvish strength",
-      "effect.last_man_standing": "Last Man Standing",
-      "item.minecraft.potion.effect.elfisch_strengh": "Elvish strength",
       "item.minecraft_eragon__personallib.dwarfs_throwable_axe": "Dwarfs Throwable Axe",
+      "item.minecraft.potion.effect.elfisch_strengh": "Elvish strength",
+      "effect.last_man_standing": "Last Man Standing",
+      "key.minecraft_eragon__personallib.specialability_key": "Specialability Key",
+      "key.mcreator.button_fraktion": "Button Fraktion",
       "item.minecraft.tipped_arrow.effect.last_man_standing": "Arrow of Last Man Standing",
       "effect.elfisch_strengh": "Elvish strength",
       "itemGroup.taberagon": "Eragon",
@@ -583,17 +756,24 @@
       "item.minecraft.lingering_potion.effect.elfisch_strengh": "Lingering Elvish strength",
       "item.minecraft.splash_potion.effect.last_man_standing": "Splash Last Man Standing",
       "item.minecraft_eragon__personallib.speer": "Speer",
-      "key.mcreator.registry_fraction": "Registry Fation",
+      "entity.minecraft_eragon__personallib.empire_soldier": "Empire Soldier",
+      "item.minecraft_eragon__personallib.fireballshot": "Fireballshot",
       "item.minecraft_eragon__personallib.ergaon_logo": "Ergaon Logo",
       "item.minecraft.potion.effect.last_man_standing": "Last Man Standing",
+      "item.minecraft_eragon__personallib.empire_soldier_spawn_egg": "Empire Soldier Spawn Egg",
+      "key.minecraft_eragon__personallib.button_fraktion": "Button Fraktion",
       "item.minecraft.lingering_potion.effect.last_man_standing": "Lingering Last Man Standing",
       "key.mcreator.specialability_key": "Specialability Key"
     }
   },
+  "foldersRoot": {
+    "name": "~",
+    "children": []
+  },
   "workspaceSettings": {
     "modid": "minecraft_eragon__personallib",
     "modName": "Minecraft Eragon 2 Personallib",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "author": "Moritz Offermann",
     "websiteURL": "https://mcreator.net",
     "license": "Not specified",
@@ -603,10 +783,10 @@
     "dependencies": [],
     "dependants": [],
     "mcreatorDependencies": [],
-    "currentGenerator": "forge-1.16.4",
+    "currentGenerator": "forge-1.16.5",
     "credits": "Created using mod maker MCreator - https://mcreator.net/about and Eclipse  https://www.eclipse.org/ ",
     "modElementsPackage": "de.offermann.minecrafteragonpersonallib",
     "lockBaseModFiles": false
   },
-  "mcreatorVersion": 202100103117
+  "mcreatorVersion": 202100112313
 }

@@ -7,6 +7,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.RegistryEvent;
 
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.EffectType;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effect;
@@ -17,6 +18,8 @@ import de.offermann.minecrafteragonpersonallib.MinecraftEragonPersonallibModElem
 public class LastManStandingPotion extends MinecraftEragonPersonallibModElements.ModElement {
 	@ObjectHolder("minecraft_eragon__personallib:last_man_standing")
 	public static final Effect potion = null;
+	@ObjectHolder("minecraft_eragon__personallib:last_man_standing")
+	public static final Potion potionType = null;
 	public LastManStandingPotion(MinecraftEragonPersonallibModElements instance) {
 		super(instance, 32);
 		FMLJavaModLoadingContext.get().getModEventBus().register(this);
@@ -26,6 +29,18 @@ public class LastManStandingPotion extends MinecraftEragonPersonallibModElements
 	public void registerEffect(RegistryEvent.Register<Effect> event) {
 		event.getRegistry().register(new EffectCustom());
 	}
+
+	@SubscribeEvent
+	public void registerPotion(RegistryEvent.Register<Potion> event) {
+		event.getRegistry().register(new PotionCustom());
+	}
+	public static class PotionCustom extends Potion {
+		public PotionCustom() {
+			super(new EffectInstance(potion, 3600));
+			setRegistryName("last_man_standing");
+		}
+	}
+
 	public static class EffectCustom extends Effect {
 		private final ResourceLocation potionIcon;
 		public EffectCustom() {

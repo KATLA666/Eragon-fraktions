@@ -1,0 +1,121 @@
+{
+  "_fv": 17,
+  "_type": "mob",
+  "definition": {
+    "mobName": "Empire Soldier",
+    "mobLabel": "Empire Soldier",
+    "mobModelName": "Biped",
+    "mobModelTexture": "axe.png",
+    "mobModelGlowTexture": "",
+    "modelWidth": 0.6,
+    "modelHeight": 1.8,
+    "modelShadowSize": 0.5,
+    "mountedYOffset": 0.0,
+    "hasSpawnEgg": true,
+    "spawnEggBaseColor": {
+      "value": -65536,
+      "falpha": 0.0
+    },
+    "spawnEggDotColor": {
+      "value": -16777216,
+      "falpha": 0.0
+    },
+    "creativeTab": {
+      "value": "CUSTOM:Eragon"
+    },
+    "isBoss": false,
+    "bossBarColor": "PINK",
+    "bossBarType": "PROGRESS",
+    "equipmentMainHand": {
+      "value": "Items.IRON_SWORD"
+    },
+    "equipmentOffHand": {
+      "value": ""
+    },
+    "equipmentHelmet": {
+      "value": "Items.IRON_HELMET"
+    },
+    "equipmentBody": {
+      "value": "Items.CHAINMAIL_CHESTPLATE"
+    },
+    "equipmentLeggings": {
+      "value": "Items.LEATHER_LEGGINGS"
+    },
+    "equipmentBoots": {
+      "value": "Items.IRON_BOOTS"
+    },
+    "mobBehaviourType": "Creature",
+    "mobCreatureType": "UNDEFINED",
+    "attackStrength": 0,
+    "attackKnockback": 0.1,
+    "knockbackResistance": 0.0,
+    "movementSpeed": 0.3,
+    "armorBaseValue": 0.0,
+    "trackingRange": 64,
+    "health": 20,
+    "xpAmount": 0,
+    "waterMob": false,
+    "flyingMob": false,
+    "guiBoundTo": "<NONE>",
+    "inventorySize": 9,
+    "inventoryStackSize": 64,
+    "disableCollisions": false,
+    "ridable": false,
+    "canControlForward": false,
+    "canControlStrafe": false,
+    "immuneToFire": false,
+    "immuneToArrows": false,
+    "immuneToFallDamage": false,
+    "immuneToCactus": false,
+    "immuneToDrowning": false,
+    "immuneToLightning": false,
+    "immuneToPotions": false,
+    "immuneToPlayer": false,
+    "immuneToExplosion": false,
+    "immuneToTrident": false,
+    "immuneToAnvil": false,
+    "immuneToWither": false,
+    "immuneToDragonBreath": false,
+    "mobDrop": {
+      "value": ""
+    },
+    "livingSound": {
+      "value": ""
+    },
+    "hurtSound": {
+      "value": "entity.generic.hurt"
+    },
+    "deathSound": {
+      "value": "entity.generic.death"
+    },
+    "stepSound": {
+      "value": ""
+    },
+    "spawnParticles": false,
+    "particleToSpawn": {
+      "value": "EXPLOSION_NORMAL"
+    },
+    "particleSpawningShape": "Spread",
+    "particleSpawningRadious": 0.5,
+    "particleAmount": 4,
+    "hasAI": true,
+    "aiBase": "(none)",
+    "aixml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"attack_action\" x=\"561\" y=\"-19\"><field name=\"callhelp\">FALSE</field><field name=\"condition\">null,null</field></block><block type=\"aitasks_container\" deletable=\"false\" x=\"40\" y=\"40\"><next><block type=\"attack_on_collide\"><field name=\"speed\">1.2</field><field name=\"longmemory\">FALSE</field><field name=\"condition\">null,null</field><next><block type=\"attack_action\"><field name=\"callhelp\">TRUE</field><field name=\"condition\">null,null</field><next><block type=\"wander\"><field name=\"speed\">1</field><field name=\"condition\">null,null</field></block></next></block></next></block></next></block><block type=\"attack_on_collide\" x=\"737\" y=\"86\"><field name=\"speed\">1.2</field><field name=\"longmemory\">FALSE</field><field name=\"condition\">null,null</field></block><block type=\"attack_action\" x=\"835\" y=\"225\"><field name=\"callhelp\">TRUE</field><field name=\"condition\">null,null</field><next><block type=\"attack_on_collide\"><field name=\"speed\">0.6</field><field name=\"longmemory\">TRUE</field><field name=\"condition\">null,null</field></block></next></block><block type=\"attack_on_collide\" x=\"1301\" y=\"289\"><field name=\"speed\">1.2</field><field name=\"longmemory\">FALSE</field><field name=\"condition\">null,null</field></block><block type=\"wander\" x=\"474\" y=\"337\"><field name=\"speed\">0.8</field><field name=\"condition\">null,null</field></block><block type=\"look_around\" x=\"347\" y=\"389\"><field name=\"condition\">null,null</field></block><block type=\"attack_action\" x=\"-228\" y=\"439\"><field name=\"callhelp\">TRUE</field><field name=\"condition\">null,null</field></block><block type=\"wander\" x=\"520\" y=\"426\"><field name=\"speed\">0.8</field><field name=\"condition\">null,null</field><next><block type=\"look_around\"><field name=\"condition\">null,null</field><next><block type=\"attack_entity\"><field name=\"insight\">FALSE</field><field name=\"nearby\">FALSE</field><field name=\"entity\">EntityMob</field><field name=\"condition\">null,null</field></block></next></block></next></block><block type=\"attack_action\" x=\"790\" y=\"412\"><field name=\"callhelp\">FALSE</field><field name=\"condition\">null,null</field><next><block type=\"attack_entity\"><field name=\"insight\">FALSE</field><field name=\"nearby\">FALSE</field><field name=\"entity\">EntityZombie</field><field name=\"condition\">null,null</field></block></next></block><block type=\"look_around\" x=\"211\" y=\"452\"><field name=\"condition\">null,null</field><next><block type=\"swim_in_water\"><field name=\"condition\">null,null</field></block></next></block><block type=\"attack_action\" x=\"1470\" y=\"411\"><field name=\"callhelp\">FALSE</field><field name=\"condition\">null,null</field><next><block type=\"look_around\"><field name=\"condition\">null,null</field><next><block type=\"swim_in_water\"><field name=\"condition\">null,null</field></block></next></block></next></block><block type=\"attack_entity\" x=\"-6\" y=\"550\"><field name=\"insight\">TRUE</field><field name=\"nearby\">TRUE</field><field name=\"entity\">EntityMob</field><field name=\"condition\">null,null</field></block><block type=\"wander\" x=\"902\" y=\"587\"><field name=\"speed\">1</field><field name=\"condition\">null,null</field></block><block type=\"attack_fly\" x=\"40\" y=\"646\"><field name=\"radius\">16</field><field name=\"speed\">1</field><field name=\"condition\">null,null</field><next><block type=\"fly\"><field name=\"speed\">0.8</field><field name=\"condition\">null,null</field><next><block type=\"attack_on_collide\"><field name=\"speed\">1.2</field><field name=\"longmemory\">FALSE</field><field name=\"condition\">null,null</field><next><block type=\"look_around\"><field name=\"condition\">null,null</field><next><block type=\"attack_entity\"><field name=\"insight\">FALSE</field><field name=\"nearby\">FALSE</field><field name=\"entity\">EntityPlayer</field><field name=\"condition\">null,null</field></block></next></block></next></block></next></block></next></block></xml>",
+    "breedable": false,
+    "tameable": false,
+    "breedTriggerItems": [],
+    "ranged": false,
+    "rangedAttackItem": {
+      "value": ""
+    },
+    "rangedItemType": "Default item",
+    "spawnThisMob": false,
+    "doesDespawnWhenIdle": false,
+    "spawningProbability": 20,
+    "mobSpawningType": "monster",
+    "minNumberOfMobsPerGroup": 4,
+    "maxNumberOfMobsPerGroup": 4,
+    "restrictionBiomes": [],
+    "spawnInDungeons": false
+  }
+}

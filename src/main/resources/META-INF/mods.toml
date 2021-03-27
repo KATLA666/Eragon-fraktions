@@ -1,10 +1,10 @@
 modLoader="javafml"
-loaderVersion="[35,)"
+loaderVersion="[36,)"
 license="Not specified"
 
 [[mods]]
 modId="minecraft_eragon__personallib"
-version="1.0.0"
+version="1.0.1"
 displayName="Minecraft Eragon 2 Personallib"
 credits="Created using mod maker MCreator - https://mcreator.net/about and Eclipse  https://www.eclipse.org/ "
 displayURL="https://mcreator.net"
@@ -13,7 +13,7 @@ authors="Moritz Offermann"
 [[dependencies.minecraft_eragon__personallib]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.4]"
+    versionRange="[1.16.5]"
     ordering="NONE"
     side="BOTH"
 

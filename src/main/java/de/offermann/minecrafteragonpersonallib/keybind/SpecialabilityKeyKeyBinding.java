@@ -39,7 +39,7 @@ public class SpecialabilityKeyKeyBinding extends MinecraftEragonPersonallibModEl
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void initElements() {
-		keys = new KeyBinding("key.mcreator.specialability_key", GLFW.GLFW_KEY_V, "key.categories.misc");
+		keys = new KeyBinding("key.minecraft_eragon__personallib.specialability_key", GLFW.GLFW_KEY_R, "key.categories.fraktion");
 		ClientRegistry.registerKeyBinding(keys);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
@@ -93,6 +93,9 @@ public class SpecialabilityKeyKeyBinding extends MinecraftEragonPersonallibModEl
 			{
 				Map<String, Object> $_dependencies = new HashMap<>();
 				$_dependencies.put("entity", entity);
+				$_dependencies.put("x", x);
+				$_dependencies.put("y", y);
+				$_dependencies.put("z", z);
 				$_dependencies.put("world", world);
 				SpecialAbilityProcedure.executeProcedure($_dependencies);
 			}
