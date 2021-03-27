@@ -3,14 +3,14 @@ loaderVersion="[36,)"
 license="Not specified"
 
 [[mods]]
-modId="minecraft_eragon__personallib"
+modId="minecraft_eragon_fraktions"
 version="1.0.1"
-displayName="Minecraft Eragon 2 Personallib"
+displayName="Minecraft Eragon fraktions"
 credits="Created using mod maker MCreator - https://mcreator.net/about and Eclipse  https://www.eclipse.org/ "
 displayURL="https://mcreator.net"
-authors="Moritz Offermann"
+authors="KATLA66"
 
-[[dependencies.minecraft_eragon__personallib]]
+[[dependencies.minecraft_eragon_fraktions]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.16.5]"
