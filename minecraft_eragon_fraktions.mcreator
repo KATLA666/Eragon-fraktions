@@ -473,7 +473,7 @@
       "type": "gun",
       "sortid": 28,
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "ids": {},
       "registry_name": "speer"
     },
@@ -810,7 +810,7 @@
     "mcreatorDependencies": [],
     "currentGenerator": "forge-1.16.5",
     "credits": "Created using mod maker MCreator - https://mcreator.net/about and Eclipse  https://www.eclipse.org/ ",
-    "modElementsPackage": "de.katla66.minecrafteragonpersonallib",
+    "modElementsPackage": "de.katla66.minecrafteragon",
     "lockBaseModFiles": false
   },
   "mcreatorVersion": 202100112313
