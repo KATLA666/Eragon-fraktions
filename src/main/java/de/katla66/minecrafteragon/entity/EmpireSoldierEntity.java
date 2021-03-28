@@ -19,13 +19,16 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraft.world.World;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Hand;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.network.IPacket;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.item.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -39,6 +42,10 @@ import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.entity.layers.BipedArmorLayer;
 import net.minecraft.client.renderer.entity.BipedRenderer;
 
+import java.util.Map;
+import java.util.HashMap;
+
+import de.katla66.minecrafteragon.procedures.EmpireSoldierRightClickedOnEntityProcedure;
 import de.katla66.minecrafteragon.itemgroup.EragonItemGroup;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsModElements;
 
@@ -98,7 +105,7 @@ public class EmpireSoldierEntity extends MinecraftEragonFraktionsModElements.Mod
 			super(type, world);
 			experienceValue = 0;
 			setNoAI(false);
-			setCustomName(new StringTextComponent("Empire Soldier"));
+			setCustomName(new StringTextComponent("Empiresoldier"));
 			setCustomNameVisible(true);
 			enablePersistence();
 			this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.IRON_SWORD, (int) (1)));
@@ -116,15 +123,14 @@ public class EmpireSoldierEntity extends MinecraftEragonFraktionsModElements.Mod
 		@Override
 		protected void registerGoals() {
 			super.registerGoals();
-			this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2, false));
+			this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2, true));
 			this.targetSelector.addGoal(2, new HurtByTargetGoal(this).setCallsForHelp(this.getClass()));
-			this.goalSelector.addGoal(3, new RandomWalkingGoal(this, 1));
-			this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2, false));
+			this.goalSelector.addGoal(1, new RandomWalkingGoal(this, 1));
 			this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
 			this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, ZombieEntity.class, true, false));
 			this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, MonsterEntity.class, true, false));
-			this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
-			this.goalSelector.addGoal(1, new SwimGoal(this));
+			this.goalSelector.addGoal(10, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
+			this.goalSelector.addGoal(2, new SwimGoal(this));
 		}
 
 		@Override
@@ -145,6 +151,23 @@ public class EmpireSoldierEntity extends MinecraftEragonFraktionsModElements.Mod
 		@Override
 		public net.minecraft.util.SoundEvent getDeathSound() {
 			return (net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.death"));
+		}
+
+		@Override
+		public ActionResultType func_230254_b_(PlayerEntity sourceentity, Hand hand) {
+			ItemStack itemstack = sourceentity.getHeldItem(hand);
+			ActionResultType retval = ActionResultType.func_233537_a_(this.world.isRemote());
+			super.func_230254_b_(sourceentity, hand);
+			double x = this.getPosX();
+			double y = this.getPosY();
+			double z = this.getPosZ();
+			Entity entity = this;
+			{
+				Map<String, Object> $_dependencies = new HashMap<>();
+				$_dependencies.put("entity", entity);
+				EmpireSoldierRightClickedOnEntityProcedure.executeProcedure($_dependencies);
+			}
+			return retval;
 		}
 	}
 }

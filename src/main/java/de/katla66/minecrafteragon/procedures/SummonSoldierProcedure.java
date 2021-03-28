@@ -24,7 +24,7 @@ public class SummonSoldierProcedure extends MinecraftEragonFraktionsModElements.
 			Entity _ent = entity;
 			if (!_ent.world.isRemote && _ent.world.getServer() != null) {
 				_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
-						(("summon minecraft_eragon__personallib:empire_soldier ~ ~ ~ {Owner:") + ""
+						(("summon minecraft_eragon_fraktions:empire_soldier ~ ~ ~ {Owner:") + ""
 								+ ((((entity.getDisplayName().getString())) + "" + ("}")))));
 			}
 		}
@@ -32,7 +32,7 @@ public class SummonSoldierProcedure extends MinecraftEragonFraktionsModElements.
 			Entity _ent = entity;
 			if (!_ent.world.isRemote && _ent.world.getServer() != null) {
 				_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
-						(("summon minecraft_eragon__personallib:empire_soldier ~ ~ ~ {Owner:") + ""
+						(("summon minecraft_eragon_fraktions:empire_soldier ~ ~ ~ {Owner:") + ""
 								+ ((((entity.getDisplayName().getString())) + "" + ("}")))));
 			}
 		}
@@ -40,7 +40,7 @@ public class SummonSoldierProcedure extends MinecraftEragonFraktionsModElements.
 			Entity _ent = entity;
 			if (!_ent.world.isRemote && _ent.world.getServer() != null) {
 				_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
-						(("summon minecraft_eragon__personallib:empire_soldier ~ ~ ~ {Owner:") + ""
+						(("summon minecraft_eragon_fraktions:empire_soldier ~ ~ ~ {Owner:") + ""
 								+ ((((entity.getDisplayName().getString())) + "" + ("}")))));
 			}
 		}
@@ -48,7 +48,7 @@ public class SummonSoldierProcedure extends MinecraftEragonFraktionsModElements.
 			Entity _ent = entity;
 			if (!_ent.world.isRemote && _ent.world.getServer() != null) {
 				_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
-						(("summon minecraft_eragon__personallib:empire_soldier ~ ~ ~ {Owner:") + ""
+						(("summon minecraft_eragon_fraktions:empire_soldier ~ ~ ~ {Owner:") + ""
 								+ ((((entity.getDisplayName().getString())) + "" + ("}")))));
 			}
 		}

@@ -754,6 +754,23 @@
           }
         ]
       }
+    },
+    {
+      "name": "EmpireSoldierRightClickedOnEntity",
+      "type": "procedure",
+      "sortid": 45,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "empire_soldier_right_clicked_on_entity",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
     }
   ],
   "variable_elements": [],
@@ -798,7 +815,7 @@
   "workspaceSettings": {
     "modid": "minecraft_eragon_fraktions",
     "modName": "Minecraft Eragon fraktions",
-    "version": "1.0.1",
+    "version": "1.0.1.1",
     "author": "KATLA66",
     "websiteURL": "https://mcreator.net",
     "license": "Not specified",
