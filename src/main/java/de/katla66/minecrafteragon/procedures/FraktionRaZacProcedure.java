@@ -85,6 +85,8 @@ public class FraktionRaZacProcedure extends MinecraftEragonFraktionsModElements.
 					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.SPEED, (int) 25, (int) 0, (false), (false)));
 				if (entity instanceof LivingEntity)
 					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.STRENGTH, (int) 25, (int) 0, (false), (false)));
+				if (entity instanceof LivingEntity)
+					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, (int) 25, (int) 0, (false), (false)));
 			}
 		}
 	}

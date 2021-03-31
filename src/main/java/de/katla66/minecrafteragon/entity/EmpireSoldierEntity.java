@@ -124,13 +124,15 @@ public class EmpireSoldierEntity extends MinecraftEragonFraktionsModElements.Mod
 		protected void registerGoals() {
 			super.registerGoals();
 			this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2, true));
-			this.targetSelector.addGoal(2, new HurtByTargetGoal(this).setCallsForHelp(this.getClass()));
+			this.targetSelector.addGoal(4, new HurtByTargetGoal(this).setCallsForHelp(this.getClass()));
 			this.goalSelector.addGoal(1, new RandomWalkingGoal(this, 1));
 			this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
 			this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, ZombieEntity.class, true, false));
 			this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, MonsterEntity.class, true, false));
 			this.goalSelector.addGoal(10, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
-			this.goalSelector.addGoal(2, new SwimGoal(this));
+			this.goalSelector.addGoal(3, new SwimGoal(this));
+			this.goalSelector.addGoal(1, new LookRandomlyGoal(this));
+			this.goalSelector.addGoal(11, new OpenDoorGoal(this, true));
 		}
 
 		@Override

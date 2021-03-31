@@ -24,35 +24,9 @@ public class SummonSoldierProcedure extends MinecraftEragonFraktionsModElements.
 			Entity _ent = entity;
 			if (!_ent.world.isRemote && _ent.world.getServer() != null) {
 				_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
-						(("summon minecraft_eragon_fraktions:empire_soldier ~ ~ ~ {Owner:") + ""
-								+ ((((entity.getDisplayName().getString())) + "" + ("}")))));
+						(("summon minecraft_eragon_fraktions:empire_soldier ~ ~ ~ {Tags:[\"") + "" + ((((entity.getDisplayName().getString())) + ""
+								+ ((("\"],Owner:") + "" + ((((entity.getDisplayName().getString())) + "" + ("}")))))))));
 			}
 		}
-		{
-			Entity _ent = entity;
-			if (!_ent.world.isRemote && _ent.world.getServer() != null) {
-				_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
-						(("summon minecraft_eragon_fraktions:empire_soldier ~ ~ ~ {Owner:") + ""
-								+ ((((entity.getDisplayName().getString())) + "" + ("}")))));
-			}
-		}
-		{
-			Entity _ent = entity;
-			if (!_ent.world.isRemote && _ent.world.getServer() != null) {
-				_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
-						(("summon minecraft_eragon_fraktions:empire_soldier ~ ~ ~ {Owner:") + ""
-								+ ((((entity.getDisplayName().getString())) + "" + ("}")))));
-			}
-		}
-		{
-			Entity _ent = entity;
-			if (!_ent.world.isRemote && _ent.world.getServer() != null) {
-				_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
-						(("summon minecraft_eragon_fraktions:empire_soldier ~ ~ ~ {Owner:") + ""
-								+ ((((entity.getDisplayName().getString())) + "" + ("}")))));
-			}
-		}
-		entity.getPersistentData().putDouble("clock", 0);
-		entity.getPersistentData().putDouble("clockreadystrong", 0);
 	}
 }

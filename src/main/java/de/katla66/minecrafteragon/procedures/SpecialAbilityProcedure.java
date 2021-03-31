@@ -17,6 +17,7 @@ import de.katla66.minecrafteragon.potion.LastManStandingPotion;
 import de.katla66.minecrafteragon.item.SpeerItem;
 import de.katla66.minecrafteragon.item.FireballshotItem;
 import de.katla66.minecrafteragon.item.DwarfsThrowableAxeItem;
+import de.katla66.minecrafteragon.MinecraftEragonFraktionsModVariables;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsModElements;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsMod;
 
@@ -57,7 +58,8 @@ public class SpecialAbilityProcedure extends MinecraftEragonFraktionsModElements
 		double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
 		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
 		IWorld world = (IWorld) dependencies.get("world");
-		if (((entity.getPersistentData().getDouble("varden")) == 1)) {
+		if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+				.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).varden) == 1)) {
 			if (((entity.getPersistentData().getDouble("clockreadystrong")) == 1)) {
 				if (entity instanceof LivingEntity)
 					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.ABSORPTION, (int) 600, (int) 1, (false), (false)));
@@ -72,12 +74,13 @@ public class SpecialAbilityProcedure extends MinecraftEragonFraktionsModElements
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
-							(((("\u00A7cThe decay time is still") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
-									+ ("\u00A7Ticks!"))),
+							(((("\u00A7cThe decay time is still ") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
+									+ ("Ticks!"))),
 							(true));
 				}
 			}
-		} else if (((entity.getPersistentData().getDouble("elfen")) == 1)) {
+		} else if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+				.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).elfen) == 1)) {
 			if (((entity.getPersistentData().getDouble("clockreadystrong")) == 1)) {
 				if (entity instanceof LivingEntity) {
 					Entity _ent = entity;
@@ -94,12 +97,13 @@ public class SpecialAbilityProcedure extends MinecraftEragonFraktionsModElements
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
-							(((("\u00A7cThe decay time is still") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
-									+ (" \u00EF\u00BF\u00BDcTicks!"))),
+							(((("\u00A7cThe decay time is still ") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
+									+ ("Ticks!"))),
 							(true));
 				}
 			}
-		} else if (((entity.getPersistentData().getDouble("zwergen")) == 1)) {
+		} else if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+				.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).zwergen) == 1)) {
 			if (((entity.getPersistentData().getDouble("clockreadystrong")) == 1)) {
 				if (entity instanceof LivingEntity) {
 					Entity _ent = entity;
@@ -112,12 +116,13 @@ public class SpecialAbilityProcedure extends MinecraftEragonFraktionsModElements
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
-							(((("\u00A7cThe decay time is still") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
-									+ (" \u00EF\u00BF\u00BDcTicks!"))),
+							(((("\u00A7cThe decay time is still ") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
+									+ ("Ticks!"))),
 							(true));
 				}
 			}
-		} else if (((entity.getPersistentData().getDouble("surda")) == 1)) {
+		} else if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+				.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).surda) == 1)) {
 			if (((entity.getPersistentData().getDouble("clockreadystrong")) == 1)) {
 				if (entity instanceof LivingEntity) {
 					Entity _ent = entity;
@@ -130,12 +135,13 @@ public class SpecialAbilityProcedure extends MinecraftEragonFraktionsModElements
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
-							(((("\u00A7cThe decay time is still") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
-									+ ("\u00A7cTicks!"))),
+							(((("\u00A7cThe decay time is still ") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
+									+ ("Ticks!"))),
 							(true));
 				}
 			}
-		} else if (((entity.getPersistentData().getDouble("empire_soldier")) == 1)) {
+		} else if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+				.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).empireSoldier) == 1)) {
 			if (((entity.getPersistentData().getDouble("clockreadystrong")) == 1)) {
 				{
 					Map<String, Object> $_dependencies = new HashMap<>();
@@ -145,12 +151,13 @@ public class SpecialAbilityProcedure extends MinecraftEragonFraktionsModElements
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
-							(((("\u00A7cThe decay time is still") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
+							(((("\u00A7cThe decay time is still ") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
 									+ ("\u00A7cTicks!"))),
 							(true));
 				}
 			}
-		} else if (((entity.getPersistentData().getDouble("shade")) == 1)) {
+		} else if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+				.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).shade) == 1)) {
 			if (entity instanceof LivingEntity) {
 				Entity _ent = entity;
 				if (!_ent.world.isRemote()) {
@@ -172,19 +179,20 @@ public class SpecialAbilityProcedure extends MinecraftEragonFraktionsModElements
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
-							(((("\u00A7cThe decay time is still") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
-									+ ("\u00A7cTicks!"))),
+							(((("\u00A7cThe decay time is still ") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
+									+ ("Ticks!"))),
 							(true));
 				}
 			}
 		}
-		if (((entity.getPersistentData().getDouble("urgal")) == 1)) {
+		if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+				.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).urgal) == 1)) {
 			if ((((entity instanceof PlayerEntity) ? ((PlayerEntity) entity).getFoodStats().getFoodLevel() : 0) >= 15)) {
 				entity.setMotion((Math.sin(Math.toRadians(((entity.rotationYaw) + 180))) * 3), Math.sin(Math.toRadians((0 - (entity.rotationPitch)))),
 						(Math.cos(Math.toRadians((entity.rotationYaw))) * 3));
 				if (entity instanceof PlayerEntity)
 					((PlayerEntity) entity).getFoodStats().setFoodLevel(
-							(int) (((entity instanceof PlayerEntity) ? ((PlayerEntity) entity).getFoodStats().getFoodLevel() : 0) - 10));
+							(int) (((entity instanceof PlayerEntity) ? ((PlayerEntity) entity).getFoodStats().getFoodLevel() : 0) - 12));
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7cNot enough Food!"), (true));

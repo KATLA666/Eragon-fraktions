@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 
 import java.util.Map;
 
+import de.katla66.minecrafteragon.MinecraftEragonFraktionsModVariables;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsModElements;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsMod;
 
@@ -23,14 +24,20 @@ public class ButtonFraktionElfenProcedure extends MinecraftEragonFraktionsModEle
 		}
 		Entity entity = (Entity) dependencies.get("entity");
 		if (((entity.getPersistentData().getDouble("clicked")) == 0)) {
-			entity.getPersistentData().putDouble("elfen", 1);
+			{
+				double _setval = (double) 1;
+				entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+					capability.elfen = _setval;
+					capability.syncPlayerVariables(entity);
+				});
+			}
 			entity.getPersistentData().putDouble("clicked", 1);
 			if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
-				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00EF\u00BF\u00BDaYou have joined the Elfen faction"), (false));
+				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7aYou have joined the Elfen faction"), (false));
 			}
 		} else {
 			if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
-				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00EF\u00BF\u00BDcYou are already in a faction"), (false));
+				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7cYou are already in a faction"), (false));
 			}
 		}
 	}
