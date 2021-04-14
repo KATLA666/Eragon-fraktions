@@ -1,44 +1,51 @@
 package de.katla66.minecrafteragon.procedures;
 
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.common.MinecraftForge;
+
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.IWorld;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector2f;
+import net.minecraft.entity.Entity;
 import net.minecraft.command.ICommandSource;
 import net.minecraft.command.CommandSource;
 
 import java.util.Map;
+import java.util.HashMap;
 
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsModElements;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsMod;
 
 @MinecraftEragonFraktionsModElements.ModElement.Tag
-public class LahmenderAhtemRazacProcedure extends MinecraftEragonFraktionsModElements.ModElement {
-	public LahmenderAhtemRazacProcedure(MinecraftEragonFraktionsModElements instance) {
-		super(instance, 38);
+public class OnBuildProcedure extends MinecraftEragonFraktionsModElements.ModElement {
+	public OnBuildProcedure(MinecraftEragonFraktionsModElements instance) {
+		super(instance, 47);
+		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	public static void executeProcedure(Map<String, Object> dependencies) {
 		if (dependencies.get("x") == null) {
 			if (!dependencies.containsKey("x"))
-				MinecraftEragonFraktionsMod.LOGGER.warn("Failed to load dependency x for procedure LahmenderAhtemRazac!");
+				MinecraftEragonFraktionsMod.LOGGER.warn("Failed to load dependency x for procedure OnBuild!");
 			return;
 		}
 		if (dependencies.get("y") == null) {
 			if (!dependencies.containsKey("y"))
-				MinecraftEragonFraktionsMod.LOGGER.warn("Failed to load dependency y for procedure LahmenderAhtemRazac!");
+				MinecraftEragonFraktionsMod.LOGGER.warn("Failed to load dependency y for procedure OnBuild!");
 			return;
 		}
 		if (dependencies.get("z") == null) {
 			if (!dependencies.containsKey("z"))
-				MinecraftEragonFraktionsMod.LOGGER.warn("Failed to load dependency z for procedure LahmenderAhtemRazac!");
+				MinecraftEragonFraktionsMod.LOGGER.warn("Failed to load dependency z for procedure OnBuild!");
 			return;
 		}
 		if (dependencies.get("world") == null) {
 			if (!dependencies.containsKey("world"))
-				MinecraftEragonFraktionsMod.LOGGER.warn("Failed to load dependency world for procedure LahmenderAhtemRazac!");
+				MinecraftEragonFraktionsMod.LOGGER.warn("Failed to load dependency world for procedure OnBuild!");
 			return;
 		}
 		double x = dependencies.get("x") instanceof Integer ? (int) dependencies.get("x") : (double) dependencies.get("x");
@@ -46,16 +53,28 @@ public class LahmenderAhtemRazacProcedure extends MinecraftEragonFraktionsModEle
 		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
 		IWorld world = (IWorld) dependencies.get("world");
 		if (world instanceof ServerWorld) {
-			((World) world).getServer().getCommandManager().handleCommand(
-					new CommandSource(ICommandSource.DUMMY, new Vector3d(x, y, z), Vector2f.ZERO, (ServerWorld) world, 4, "",
-							new StringTextComponent(""), ((World) world).getServer(), null).withFeedbackDisabled(),
-					"effect give @e[distance=1..4] minecraft_eragon_fraktions:lahmender_athem 20 0  false");
+			((World) world).getServer().getCommandManager().handleCommand(new CommandSource(ICommandSource.DUMMY, new Vector3d(x, y, z),
+					Vector2f.ZERO, (ServerWorld) world, 4, "", new StringTextComponent(""), ((World) world).getServer(), null).withFeedbackDisabled(),
+					"team add elveninforest");
 		}
 		if (world instanceof ServerWorld) {
 			((World) world).getServer().getCommandManager().handleCommand(
 					new CommandSource(ICommandSource.DUMMY, new Vector3d(x, y, z), Vector2f.ZERO, (ServerWorld) world, 4, "",
 							new StringTextComponent(""), ((World) world).getServer(), null).withFeedbackDisabled(),
-					"particle composter ~ ~1 ~ 4 4 4 0.5 4000 normal");
+					"team modify elveninforest nametagVisibility never");
 		}
+	}
+
+	@SubscribeEvent
+	public void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
+		Entity entity = event.getPlayer();
+		Map<String, Object> dependencies = new HashMap<>();
+		dependencies.put("x", entity.getPosX());
+		dependencies.put("y", entity.getPosY());
+		dependencies.put("z", entity.getPosZ());
+		dependencies.put("world", entity.world);
+		dependencies.put("entity", entity);
+		dependencies.put("event", event);
+		this.executeProcedure(dependencies);
 	}
 }

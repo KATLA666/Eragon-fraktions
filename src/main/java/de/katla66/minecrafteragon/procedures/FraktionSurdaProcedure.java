@@ -13,6 +13,7 @@ import net.minecraft.entity.Entity;
 import java.util.Map;
 import java.util.HashMap;
 
+import de.katla66.minecrafteragon.MinecraftEragonFraktionsModVariables;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsModElements;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsMod;
 
@@ -30,7 +31,8 @@ public class FraktionSurdaProcedure extends MinecraftEragonFraktionsModElements.
 			return;
 		}
 		Entity entity = (Entity) dependencies.get("entity");
-		if (((entity.getPersistentData().getDouble("surda")) == 1)) {
+		if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+				.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).surda) == 1)) {
 			if ((entity.isPassenger())) {
 				if (entity instanceof LivingEntity)
 					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.STRENGTH, (int) 20, (int) 0, (false), (false)));

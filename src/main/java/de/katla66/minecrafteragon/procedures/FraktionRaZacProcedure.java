@@ -18,6 +18,7 @@ import net.minecraft.entity.Entity;
 import java.util.Map;
 import java.util.HashMap;
 
+import de.katla66.minecrafteragon.MinecraftEragonFraktionsModVariables;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsModElements;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsMod;
 
@@ -59,7 +60,8 @@ public class FraktionRaZacProcedure extends MinecraftEragonFraktionsModElements.
 		double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
 		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
 		IWorld world = (IWorld) dependencies.get("world");
-		if (((entity.getPersistentData().getDouble("ra'zac")) == 1)) {
+		if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+				.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).razac) == 1)) {
 			if (((world.getWorldInfo().getDayTime()) <= 12000)) {
 				if (((world.getLight(new BlockPos((int) x, (int) y, (int) z))) >= 6)) {
 					if ((!((entity instanceof PlayerEntity)

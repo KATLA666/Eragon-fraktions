@@ -158,6 +158,22 @@
           {
             "name": "entity",
             "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
           }
         ]
       }
@@ -788,6 +804,61 @@
           }
         ]
       }
+    },
+    {
+      "name": "OnBuild",
+      "type": "procedure",
+      "sortid": 47,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "on_build",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LahmenderAthemPotionStartedapplied",
+      "type": "procedure",
+      "sortid": 48,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "lahmender_athem_potion_startedapplied",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LahmenderAthem",
+      "type": "potion",
+      "sortid": 48,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "lahmender_athem"
     }
   ],
   "variable_elements": [
@@ -838,11 +909,18 @@
       "type": "number",
       "scope": "player_lifetime",
       "value": "0"
+    },
+    {
+      "name": "elvenenteredforest",
+      "type": "number",
+      "scope": "player_lifetime",
+      "value": "0"
     }
   ],
   "sound_elements": [],
   "language_map": {
     "en_us": {
+      "item.minecraft.tipped_arrow.effect.lahmender_athem": "Arrow of Lähmender Athem",
       "key.minecraft_eragon_fraktions.specialability_key": "Specialability Key",
       "item.minecraft.potion.effect.elfisch_strengh": "Elvish strength",
       "item.minecraft_eragon__personallib.dwarfs_throwable_axe": "Dwarfs Throwable Axe",
@@ -851,6 +929,7 @@
       "effect.elfisch_strengh": "Elvish strength",
       "itemGroup.taberagon": "Eragon",
       "item.minecraft_eragon_fraktions.fireballshot": "Fireballshot",
+      "item.minecraft.splash_potion.effect.lahmender_athem": "Splash Lähmender Athem",
       "item.minecraft_eragon__personallib.speer": "Speer",
       "item.minecraft_eragon_fraktions.ergaon_logo": "Ergaon Logo",
       "item.minecraft_eragon__personallib.ergaon_logo": "Ergaon Logo",
@@ -862,10 +941,13 @@
       "item.minecraft.splash_potion.effect.elfisch_strengh": "Splash Elvish strength",
       "effect.last_man_standing": "Last Man Standing",
       "item.minecraft.tipped_arrow.effect.last_man_standing": "Arrow of Last Man Standing",
+      "item.minecraft.potion.effect.lahmender_athem": "Lähmender Athem",
       "item.minecraft.tipped_arrow.effect.elfisch_strengh": "Arrow of Elvish strength",
+      "effect.lahmender_athem": "Lahmender Athem",
       "item.minecraft.lingering_potion.effect.elfisch_strengh": "Lingering Elvish strength",
       "item.minecraft.splash_potion.effect.last_man_standing": "Splash Last Man Standing",
       "item.minecraft_eragon_fraktions.speer": "Speer",
+      "item.minecraft.lingering_potion.effect.lahmender_athem": "Lingering Lähmender Athem",
       "entity.minecraft_eragon__personallib.empire_soldier": "Empire Soldier",
       "item.minecraft_eragon__personallib.fireballshot": "Fireballshot",
       "item.minecraft.potion.effect.last_man_standing": "Last Man Standing",

@@ -5,6 +5,10 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.common.MinecraftForge;
 
 import net.minecraft.world.World;
+import net.minecraft.world.IWorld;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.Entity;
@@ -13,6 +17,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 import de.katla66.minecrafteragon.potion.ElfischStrenghPotion;
+import de.katla66.minecrafteragon.MinecraftEragonFraktionsModVariables;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsModElements;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsMod;
 
@@ -29,10 +34,893 @@ public class FraktionElfenProcedure extends MinecraftEragonFraktionsModElements.
 				MinecraftEragonFraktionsMod.LOGGER.warn("Failed to load dependency entity for procedure FraktionElfen!");
 			return;
 		}
+		if (dependencies.get("x") == null) {
+			if (!dependencies.containsKey("x"))
+				MinecraftEragonFraktionsMod.LOGGER.warn("Failed to load dependency x for procedure FraktionElfen!");
+			return;
+		}
+		if (dependencies.get("y") == null) {
+			if (!dependencies.containsKey("y"))
+				MinecraftEragonFraktionsMod.LOGGER.warn("Failed to load dependency y for procedure FraktionElfen!");
+			return;
+		}
+		if (dependencies.get("z") == null) {
+			if (!dependencies.containsKey("z"))
+				MinecraftEragonFraktionsMod.LOGGER.warn("Failed to load dependency z for procedure FraktionElfen!");
+			return;
+		}
+		if (dependencies.get("world") == null) {
+			if (!dependencies.containsKey("world"))
+				MinecraftEragonFraktionsMod.LOGGER.warn("Failed to load dependency world for procedure FraktionElfen!");
+			return;
+		}
 		Entity entity = (Entity) dependencies.get("entity");
-		if (((entity.getPersistentData().getDouble("elfen")) == 1)) {
+		double x = dependencies.get("x") instanceof Integer ? (int) dependencies.get("x") : (double) dependencies.get("x");
+		double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
+		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
+		IWorld world = (IWorld) dependencies.get("world");
+		if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+				.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).elfen) == 1)) {
 			if (entity instanceof LivingEntity)
 				((LivingEntity) entity).addPotionEffect(new EffectInstance(ElfischStrenghPotion.potion, (int) 1, (int) 0, (false), (false)));
+			{
+				Entity _ent = entity;
+				if (!_ent.world.isRemote && _ent.world.getServer() != null) {
+					_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
+							"attribute @s minecraft:generic.movement_speed base set 0.125");
+				}
+			}
+			{
+				Entity _ent = entity;
+				if (!_ent.world.isRemote && _ent.world.getServer() != null) {
+					_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
+							"attribute @s minecraft:generic.attack_speed base set 5");
+				}
+			}
+			if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+					.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).elvenenteredforest) == 0)) {
+				if (((world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(new BlockPos((int) x, (int) y, (int) z))) != null
+						&& world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(new BlockPos((int) x, (int) y, (int) z)))
+								.equals(new ResourceLocation("jungle")))
+						|| ((world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(new BlockPos((int) x, (int) y,
+								(int) z))) != null && world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(
+										new BlockPos((int) x, (int) y, (int) z))).equals(new ResourceLocation("forest")))
+								|| ((world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(new BlockPos((int) x, (int) y,
+										(int) z))) != null && world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(
+												new BlockPos((int) x, (int) y, (int) z))).equals(new ResourceLocation("birch_forest")))
+										|| ((world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(new BlockPos((int) x,
+												(int) y, (int) z))) != null && world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world
+														.getBiome(new BlockPos((int) x, (int) y, (int) z))).equals(new ResourceLocation(
+																"birch_forest_hills")))
+												|| ((world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(new BlockPos((int) x,
+														(int) y, (int) z))) != null && world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(
+																world.getBiome(new BlockPos((int) x, (int) y, (int) z))).equals(
+																		new ResourceLocation("dark_forest")))
+														|| ((world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(new BlockPos(
+																(int) x, (int) y, (int) z))) != null && world.func_241828_r().getRegistry(
+																		Registry.BIOME_KEY).getKey(
+																				world.getBiome(new BlockPos((int) x, (int) y, (int) z)))
+																		.equals(new ResourceLocation("wooded_hills")))
+																|| ((world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(
+																		new BlockPos((int) x, (int) y, (int) z))) != null && world.func_241828_r()
+																				.getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(new BlockPos(
+																						(int) x, (int) y, (int) z)))
+																				.equals(new ResourceLocation("jungle_edge")))
+																		|| ((world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world
+																				.getBiome(new BlockPos((int) x, (int) y, (int) z))) != null && world
+																						.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world
+																								.getBiome(new BlockPos((int) x, (int) y, (int) z)))
+																						.equals(new ResourceLocation("flower_forest")))
+																				|| ((world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(
+																						world.getBiome(new BlockPos((int) x, (int) y,
+																								(int) z))) != null
+																						&& world.func_241828_r().getRegistry(Registry.BIOME_KEY)
+																								.getKey(world.getBiome(new BlockPos((int) x, (int) y,
+																										(int) z)))
+																								.equals(new ResourceLocation("taiga_mountains")))
+																						|| ((world.func_241828_r().getRegistry(Registry.BIOME_KEY)
+																								.getKey(world.getBiome(new BlockPos((int) x, (int) y,
+																										(int) z))) != null
+																								&& world.func_241828_r()
+																										.getRegistry(Registry.BIOME_KEY)
+																										.getKey(world.getBiome(new BlockPos((int) x,
+																												(int) y, (int) z)))
+																										.equals(new ResourceLocation(
+																												"snowy_taiga_hills")))
+																								|| ((world.func_241828_r()
+																										.getRegistry(Registry.BIOME_KEY)
+																										.getKey(world.getBiome(new BlockPos((int) x,
+																												(int) y, (int) z))) != null
+																										&& world.func_241828_r()
+																												.getRegistry(Registry.BIOME_KEY)
+																												.getKey(world.getBiome(new BlockPos(
+																														(int) x, (int) y, (int) z)))
+																												.equals(new ResourceLocation(
+																														"giant_tree_taiga")))
+																										|| ((world.func_241828_r()
+																												.getRegistry(Registry.BIOME_KEY)
+																												.getKey(world.getBiome(
+																														new BlockPos((int) x, (int) y,
+																																(int) z))) != null
+																												&& world.func_241828_r()
+																														.getRegistry(
+																																Registry.BIOME_KEY)
+																														.getKey(world.getBiome(
+																																new BlockPos((int) x,
+																																		(int) y,
+																																		(int) z)))
+																														.equals(new ResourceLocation(
+																																"giant_tree_taiga_hills")))
+																												|| ((world.func_241828_r()
+																														.getRegistry(
+																																Registry.BIOME_KEY)
+																														.getKey(world.getBiome(
+																																new BlockPos((int) x,
+																																		(int) y,
+																																		(int) z))) != null
+																														&& world.func_241828_r()
+																																.getRegistry(
+																																		Registry.BIOME_KEY)
+																																.getKey(world
+																																		.getBiome(
+																																				new BlockPos(
+																																						(int) x,
+																																						(int) y,
+																																						(int) z)))
+																																.equals(new ResourceLocation(
+																																		"wooded_mountains")))
+																														|| ((world.func_241828_r()
+																																.getRegistry(
+																																		Registry.BIOME_KEY)
+																																.getKey(world
+																																		.getBiome(
+																																				new BlockPos(
+																																						(int) x,
+																																						(int) y,
+																																						(int) z))) != null
+																																&& world.func_241828_r()
+																																		.getRegistry(
+																																				Registry.BIOME_KEY)
+																																		.getKey(world
+																																				.getBiome(
+																																						new BlockPos(
+																																								(int) x,
+																																								(int) y,
+																																								(int) z)))
+																																		.equals(new ResourceLocation(
+																																				"modified_jungle")))
+																																|| ((world
+																																		.func_241828_r()
+																																		.getRegistry(
+																																				Registry.BIOME_KEY)
+																																		.getKey(world
+																																				.getBiome(
+																																						new BlockPos(
+																																								(int) x,
+																																								(int) y,
+																																								(int) z))) != null
+																																		&& world.func_241828_r()
+																																				.getRegistry(
+																																						Registry.BIOME_KEY)
+																																				.getKey(world
+																																						.getBiome(
+																																								new BlockPos(
+																																										(int) x,
+																																										(int) y,
+																																										(int) z)))
+																																				.equals(new ResourceLocation(
+																																						"modified_jungle_edge")))
+																																		|| ((world
+																																				.func_241828_r()
+																																				.getRegistry(
+																																						Registry.BIOME_KEY)
+																																				.getKey(world
+																																						.getBiome(
+																																								new BlockPos(
+																																										(int) x,
+																																										(int) y,
+																																										(int) z))) != null
+																																				&& world.func_241828_r()
+																																						.getRegistry(
+																																								Registry.BIOME_KEY)
+																																						.getKey(world
+																																								.getBiome(
+																																										new BlockPos(
+																																												(int) x,
+																																												(int) y,
+																																												(int) z)))
+																																						.equals(new ResourceLocation(
+																																								"tall_birch_forest")))
+																																				|| ((world
+																																						.func_241828_r()
+																																						.getRegistry(
+																																								Registry.BIOME_KEY)
+																																						.getKey(world
+																																								.getBiome(
+																																										new BlockPos(
+																																												(int) x,
+																																												(int) y,
+																																												(int) z))) != null
+																																						&& world.func_241828_r()
+																																								.getRegistry(
+																																										Registry.BIOME_KEY)
+																																								.getKey(world
+																																										.getBiome(
+																																												new BlockPos(
+																																														(int) x,
+																																														(int) y,
+																																														(int) z)))
+																																								.equals(new ResourceLocation(
+																																										"tall_birch_hills")))
+																																						|| ((world
+																																								.func_241828_r()
+																																								.getRegistry(
+																																										Registry.BIOME_KEY)
+																																								.getKey(world
+																																										.getBiome(
+																																												new BlockPos(
+																																														(int) x,
+																																														(int) y,
+																																														(int) z))) != null
+																																								&& world.func_241828_r()
+																																										.getRegistry(
+																																												Registry.BIOME_KEY)
+																																										.getKey(world
+																																												.getBiome(
+																																														new BlockPos(
+																																																(int) x,
+																																																(int) y,
+																																																(int) z)))
+																																										.equals(new ResourceLocation(
+																																												"dark_forest_hills")))
+																																								|| ((world
+																																										.func_241828_r()
+																																										.getRegistry(
+																																												Registry.BIOME_KEY)
+																																										.getKey(world
+																																												.getBiome(
+																																														new BlockPos(
+																																																(int) x,
+																																																(int) y,
+																																																(int) z))) != null
+																																										&& world.func_241828_r()
+																																												.getRegistry(
+																																														Registry.BIOME_KEY)
+																																												.getKey(world
+																																														.getBiome(
+																																																new BlockPos(
+																																																		(int) x,
+																																																		(int) y,
+																																																		(int) z)))
+																																												.equals(new ResourceLocation(
+																																														"bamboo_jungle_hills")))
+																																										|| ((world
+																																												.func_241828_r()
+																																												.getRegistry(
+																																														Registry.BIOME_KEY)
+																																												.getKey(world
+																																														.getBiome(
+																																																new BlockPos(
+																																																		(int) x,
+																																																		(int) y,
+																																																		(int) z))) != null
+																																												&& world.func_241828_r()
+																																														.getRegistry(
+																																																Registry.BIOME_KEY)
+																																														.getKey(world
+																																																.getBiome(
+																																																		new BlockPos(
+																																																				(int) x,
+																																																				(int) y,
+																																																				(int) z)))
+																																														.equals(new ResourceLocation(
+																																																"warped_forest")))
+																																												|| ((world
+																																														.func_241828_r()
+																																														.getRegistry(
+																																																Registry.BIOME_KEY)
+																																														.getKey(world
+																																																.getBiome(
+																																																		new BlockPos(
+																																																				(int) x,
+																																																				(int) y,
+																																																				(int) z))) != null
+																																														&& world.func_241828_r()
+																																																.getRegistry(
+																																																		Registry.BIOME_KEY)
+																																																.getKey(world
+																																																		.getBiome(
+																																																				new BlockPos(
+																																																						(int) x,
+																																																						(int) y,
+																																																						(int) z)))
+																																																.equals(new ResourceLocation(
+																																																		"snowy_taiga_mountains")))
+																																														|| ((world
+																																																.func_241828_r()
+																																																.getRegistry(
+																																																		Registry.BIOME_KEY)
+																																																.getKey(world
+																																																		.getBiome(
+																																																				new BlockPos(
+																																																						(int) x,
+																																																						(int) y,
+																																																						(int) z))) != null
+																																																&& world.func_241828_r()
+																																																		.getRegistry(
+																																																				Registry.BIOME_KEY)
+																																																		.getKey(world
+																																																				.getBiome(
+																																																						new BlockPos(
+																																																								(int) x,
+																																																								(int) y,
+																																																								(int) z)))
+																																																		.equals(new ResourceLocation(
+																																																				"warped_forest")))
+																																																|| ((world
+																																																		.func_241828_r()
+																																																		.getRegistry(
+																																																				Registry.BIOME_KEY)
+																																																		.getKey(world
+																																																				.getBiome(
+																																																						new BlockPos(
+																																																								(int) x,
+																																																								(int) y,
+																																																								(int) z))) != null
+																																																		&& world.func_241828_r()
+																																																				.getRegistry(
+																																																						Registry.BIOME_KEY)
+																																																				.getKey(world
+																																																						.getBiome(
+																																																								new BlockPos(
+																																																										(int) x,
+																																																										(int) y,
+																																																										(int) z)))
+																																																				.equals(new ResourceLocation(
+																																																						"giant_spruce_taiga_hills")))
+																																																		|| ((world
+																																																				.func_241828_r()
+																																																				.getRegistry(
+																																																						Registry.BIOME_KEY)
+																																																				.getKey(world
+																																																						.getBiome(
+																																																								new BlockPos(
+																																																										(int) x,
+																																																										(int) y,
+																																																										(int) z))) != null
+																																																				&& world.func_241828_r()
+																																																						.getRegistry(
+																																																								Registry.BIOME_KEY)
+																																																						.getKey(world
+																																																								.getBiome(
+																																																										new BlockPos(
+																																																												(int) x,
+																																																												(int) y,
+																																																												(int) z)))
+																																																						.equals(new ResourceLocation(
+																																																								"crimson_forest")))
+																																																				|| ((world
+																																																						.func_241828_r()
+																																																						.getRegistry(
+																																																								Registry.BIOME_KEY)
+																																																						.getKey(world
+																																																								.getBiome(
+																																																										new BlockPos(
+																																																												(int) x,
+																																																												(int) y,
+																																																												(int) z))) != null
+																																																						&& world.func_241828_r()
+																																																								.getRegistry(
+																																																										Registry.BIOME_KEY)
+																																																								.getKey(world
+																																																										.getBiome(
+																																																												new BlockPos(
+																																																														(int) x,
+																																																														(int) y,
+																																																														(int) z)))
+																																																								.equals(new ResourceLocation(
+																																																										"giant_spruce_taiga")))
+																																																						|| ((world
+																																																								.func_241828_r()
+																																																								.getRegistry(
+																																																										Registry.BIOME_KEY)
+																																																								.getKey(world
+																																																										.getBiome(
+																																																												new BlockPos(
+																																																														(int) x,
+																																																														(int) y,
+																																																														(int) z))) != null
+																																																								&& world.func_241828_r()
+																																																										.getRegistry(
+																																																												Registry.BIOME_KEY)
+																																																										.getKey(world
+																																																												.getBiome(
+																																																														new BlockPos(
+																																																																(int) x,
+																																																																(int) y,
+																																																																(int) z)))
+																																																										.equals(new ResourceLocation(
+																																																												"bamboo_jungle")))
+																																																								|| ((world
+																																																										.func_241828_r()
+																																																										.getRegistry(
+																																																												Registry.BIOME_KEY)
+																																																										.getKey(world
+																																																												.getBiome(
+																																																														new BlockPos(
+																																																																(int) x,
+																																																																(int) y,
+																																																																(int) z))) != null
+																																																										&& world.func_241828_r()
+																																																												.getRegistry(
+																																																														Registry.BIOME_KEY)
+																																																												.getKey(world
+																																																														.getBiome(
+																																																																new BlockPos(
+																																																																		(int) x,
+																																																																		(int) y,
+																																																																		(int) z)))
+																																																												.equals(new ResourceLocation(
+																																																														"snowy_taiga")))
+																																																										|| (world
+																																																												.func_241828_r()
+																																																												.getRegistry(
+																																																														Registry.BIOME_KEY)
+																																																												.getKey(world
+																																																														.getBiome(
+																																																																new BlockPos(
+																																																																		(int) x,
+																																																																		(int) y,
+																																																																		(int) z))) != null
+																																																												&& world.func_241828_r()
+																																																														.getRegistry(
+																																																																Registry.BIOME_KEY)
+																																																														.getKey(world
+																																																																.getBiome(
+																																																																		new BlockPos(
+																																																																				(int) x,
+																																																																				(int) y,
+																																																																				(int) z)))
+																																																														.equals(new ResourceLocation(
+																																																																"jungle_hills"))))))))))))))))))))))))))))))) {
+					{
+						Entity _ent = entity;
+						if (!_ent.world.isRemote && _ent.world.getServer() != null) {
+							_ent.world.getServer().getCommandManager().handleCommand(
+									_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4), "team join elveninforest @s");
+						}
+					}
+					{
+						double _setval = (double) 1;
+						entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+							capability.elvenenteredforest = _setval;
+							capability.syncPlayerVariables(entity);
+						});
+					}
+				}
+			}
+			if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+					.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).elvenenteredforest) == 1)) {
+				if ((!((world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(new BlockPos((int) x, (int) y, (int) z))) != null
+						&& world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(new BlockPos((int) x, (int) y, (int) z)))
+								.equals(new ResourceLocation("jungle")))
+						|| ((world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(new BlockPos((int) x, (int) y,
+								(int) z))) != null && world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(
+										new BlockPos((int) x, (int) y, (int) z))).equals(new ResourceLocation("forest")))
+								|| ((world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(new BlockPos((int) x, (int) y,
+										(int) z))) != null && world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(
+												new BlockPos((int) x, (int) y, (int) z))).equals(new ResourceLocation("birch_forest")))
+										|| ((world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(new BlockPos((int) x,
+												(int) y, (int) z))) != null && world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world
+														.getBiome(new BlockPos((int) x, (int) y, (int) z))).equals(new ResourceLocation(
+																"birch_forest_hills")))
+												|| ((world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(new BlockPos((int) x,
+														(int) y, (int) z))) != null && world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(
+																world.getBiome(new BlockPos((int) x, (int) y, (int) z))).equals(
+																		new ResourceLocation("dark_forest")))
+														|| ((world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(new BlockPos(
+																(int) x, (int) y, (int) z))) != null && world.func_241828_r().getRegistry(
+																		Registry.BIOME_KEY).getKey(
+																				world.getBiome(new BlockPos((int) x, (int) y, (int) z)))
+																		.equals(new ResourceLocation("wooded_hills")))
+																|| ((world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(
+																		new BlockPos((int) x, (int) y, (int) z))) != null && world.func_241828_r()
+																				.getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(new BlockPos(
+																						(int) x, (int) y, (int) z)))
+																				.equals(new ResourceLocation("jungle_edge")))
+																		|| ((world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world
+																				.getBiome(new BlockPos((int) x, (int) y, (int) z))) != null && world
+																						.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world
+																								.getBiome(new BlockPos((int) x, (int) y, (int) z)))
+																						.equals(new ResourceLocation("flower_forest")))
+																				|| ((world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(
+																						world.getBiome(new BlockPos((int) x, (int) y,
+																								(int) z))) != null
+																						&& world.func_241828_r().getRegistry(Registry.BIOME_KEY)
+																								.getKey(world.getBiome(new BlockPos((int) x, (int) y,
+																										(int) z)))
+																								.equals(new ResourceLocation("taiga_mountains")))
+																						|| ((world.func_241828_r().getRegistry(Registry.BIOME_KEY)
+																								.getKey(world.getBiome(new BlockPos((int) x, (int) y,
+																										(int) z))) != null
+																								&& world.func_241828_r()
+																										.getRegistry(Registry.BIOME_KEY)
+																										.getKey(world.getBiome(new BlockPos((int) x,
+																												(int) y, (int) z)))
+																										.equals(new ResourceLocation(
+																												"snowy_taiga_hills")))
+																								|| ((world.func_241828_r()
+																										.getRegistry(Registry.BIOME_KEY)
+																										.getKey(world.getBiome(new BlockPos((int) x,
+																												(int) y, (int) z))) != null
+																										&& world.func_241828_r()
+																												.getRegistry(Registry.BIOME_KEY)
+																												.getKey(world.getBiome(new BlockPos(
+																														(int) x, (int) y, (int) z)))
+																												.equals(new ResourceLocation(
+																														"giant_tree_taiga")))
+																										|| ((world.func_241828_r()
+																												.getRegistry(Registry.BIOME_KEY)
+																												.getKey(world.getBiome(
+																														new BlockPos((int) x, (int) y,
+																																(int) z))) != null
+																												&& world.func_241828_r()
+																														.getRegistry(
+																																Registry.BIOME_KEY)
+																														.getKey(world.getBiome(
+																																new BlockPos((int) x,
+																																		(int) y,
+																																		(int) z)))
+																														.equals(new ResourceLocation(
+																																"giant_tree_taiga_hills")))
+																												|| ((world.func_241828_r()
+																														.getRegistry(
+																																Registry.BIOME_KEY)
+																														.getKey(world.getBiome(
+																																new BlockPos((int) x,
+																																		(int) y,
+																																		(int) z))) != null
+																														&& world.func_241828_r()
+																																.getRegistry(
+																																		Registry.BIOME_KEY)
+																																.getKey(world
+																																		.getBiome(
+																																				new BlockPos(
+																																						(int) x,
+																																						(int) y,
+																																						(int) z)))
+																																.equals(new ResourceLocation(
+																																		"wooded_mountains")))
+																														|| ((world.func_241828_r()
+																																.getRegistry(
+																																		Registry.BIOME_KEY)
+																																.getKey(world
+																																		.getBiome(
+																																				new BlockPos(
+																																						(int) x,
+																																						(int) y,
+																																						(int) z))) != null
+																																&& world.func_241828_r()
+																																		.getRegistry(
+																																				Registry.BIOME_KEY)
+																																		.getKey(world
+																																				.getBiome(
+																																						new BlockPos(
+																																								(int) x,
+																																								(int) y,
+																																								(int) z)))
+																																		.equals(new ResourceLocation(
+																																				"modified_jungle")))
+																																|| ((world
+																																		.func_241828_r()
+																																		.getRegistry(
+																																				Registry.BIOME_KEY)
+																																		.getKey(world
+																																				.getBiome(
+																																						new BlockPos(
+																																								(int) x,
+																																								(int) y,
+																																								(int) z))) != null
+																																		&& world.func_241828_r()
+																																				.getRegistry(
+																																						Registry.BIOME_KEY)
+																																				.getKey(world
+																																						.getBiome(
+																																								new BlockPos(
+																																										(int) x,
+																																										(int) y,
+																																										(int) z)))
+																																				.equals(new ResourceLocation(
+																																						"modified_jungle_edge")))
+																																		|| ((world
+																																				.func_241828_r()
+																																				.getRegistry(
+																																						Registry.BIOME_KEY)
+																																				.getKey(world
+																																						.getBiome(
+																																								new BlockPos(
+																																										(int) x,
+																																										(int) y,
+																																										(int) z))) != null
+																																				&& world.func_241828_r()
+																																						.getRegistry(
+																																								Registry.BIOME_KEY)
+																																						.getKey(world
+																																								.getBiome(
+																																										new BlockPos(
+																																												(int) x,
+																																												(int) y,
+																																												(int) z)))
+																																						.equals(new ResourceLocation(
+																																								"tall_birch_forest")))
+																																				|| ((world
+																																						.func_241828_r()
+																																						.getRegistry(
+																																								Registry.BIOME_KEY)
+																																						.getKey(world
+																																								.getBiome(
+																																										new BlockPos(
+																																												(int) x,
+																																												(int) y,
+																																												(int) z))) != null
+																																						&& world.func_241828_r()
+																																								.getRegistry(
+																																										Registry.BIOME_KEY)
+																																								.getKey(world
+																																										.getBiome(
+																																												new BlockPos(
+																																														(int) x,
+																																														(int) y,
+																																														(int) z)))
+																																								.equals(new ResourceLocation(
+																																										"tall_birch_hills")))
+																																						|| ((world
+																																								.func_241828_r()
+																																								.getRegistry(
+																																										Registry.BIOME_KEY)
+																																								.getKey(world
+																																										.getBiome(
+																																												new BlockPos(
+																																														(int) x,
+																																														(int) y,
+																																														(int) z))) != null
+																																								&& world.func_241828_r()
+																																										.getRegistry(
+																																												Registry.BIOME_KEY)
+																																										.getKey(world
+																																												.getBiome(
+																																														new BlockPos(
+																																																(int) x,
+																																																(int) y,
+																																																(int) z)))
+																																										.equals(new ResourceLocation(
+																																												"dark_forest_hills")))
+																																								|| ((world
+																																										.func_241828_r()
+																																										.getRegistry(
+																																												Registry.BIOME_KEY)
+																																										.getKey(world
+																																												.getBiome(
+																																														new BlockPos(
+																																																(int) x,
+																																																(int) y,
+																																																(int) z))) != null
+																																										&& world.func_241828_r()
+																																												.getRegistry(
+																																														Registry.BIOME_KEY)
+																																												.getKey(world
+																																														.getBiome(
+																																																new BlockPos(
+																																																		(int) x,
+																																																		(int) y,
+																																																		(int) z)))
+																																												.equals(new ResourceLocation(
+																																														"bamboo_jungle_hills")))
+																																										|| ((world
+																																												.func_241828_r()
+																																												.getRegistry(
+																																														Registry.BIOME_KEY)
+																																												.getKey(world
+																																														.getBiome(
+																																																new BlockPos(
+																																																		(int) x,
+																																																		(int) y,
+																																																		(int) z))) != null
+																																												&& world.func_241828_r()
+																																														.getRegistry(
+																																																Registry.BIOME_KEY)
+																																														.getKey(world
+																																																.getBiome(
+																																																		new BlockPos(
+																																																				(int) x,
+																																																				(int) y,
+																																																				(int) z)))
+																																														.equals(new ResourceLocation(
+																																																"warped_forest")))
+																																												|| ((world
+																																														.func_241828_r()
+																																														.getRegistry(
+																																																Registry.BIOME_KEY)
+																																														.getKey(world
+																																																.getBiome(
+																																																		new BlockPos(
+																																																				(int) x,
+																																																				(int) y,
+																																																				(int) z))) != null
+																																														&& world.func_241828_r()
+																																																.getRegistry(
+																																																		Registry.BIOME_KEY)
+																																																.getKey(world
+																																																		.getBiome(
+																																																				new BlockPos(
+																																																						(int) x,
+																																																						(int) y,
+																																																						(int) z)))
+																																																.equals(new ResourceLocation(
+																																																		"snowy_taiga_mountains")))
+																																														|| ((world
+																																																.func_241828_r()
+																																																.getRegistry(
+																																																		Registry.BIOME_KEY)
+																																																.getKey(world
+																																																		.getBiome(
+																																																				new BlockPos(
+																																																						(int) x,
+																																																						(int) y,
+																																																						(int) z))) != null
+																																																&& world.func_241828_r()
+																																																		.getRegistry(
+																																																				Registry.BIOME_KEY)
+																																																		.getKey(world
+																																																				.getBiome(
+																																																						new BlockPos(
+																																																								(int) x,
+																																																								(int) y,
+																																																								(int) z)))
+																																																		.equals(new ResourceLocation(
+																																																				"warped_forest")))
+																																																|| ((world
+																																																		.func_241828_r()
+																																																		.getRegistry(
+																																																				Registry.BIOME_KEY)
+																																																		.getKey(world
+																																																				.getBiome(
+																																																						new BlockPos(
+																																																								(int) x,
+																																																								(int) y,
+																																																								(int) z))) != null
+																																																		&& world.func_241828_r()
+																																																				.getRegistry(
+																																																						Registry.BIOME_KEY)
+																																																				.getKey(world
+																																																						.getBiome(
+																																																								new BlockPos(
+																																																										(int) x,
+																																																										(int) y,
+																																																										(int) z)))
+																																																				.equals(new ResourceLocation(
+																																																						"giant_spruce_taiga_hills")))
+																																																		|| ((world
+																																																				.func_241828_r()
+																																																				.getRegistry(
+																																																						Registry.BIOME_KEY)
+																																																				.getKey(world
+																																																						.getBiome(
+																																																								new BlockPos(
+																																																										(int) x,
+																																																										(int) y,
+																																																										(int) z))) != null
+																																																				&& world.func_241828_r()
+																																																						.getRegistry(
+																																																								Registry.BIOME_KEY)
+																																																						.getKey(world
+																																																								.getBiome(
+																																																										new BlockPos(
+																																																												(int) x,
+																																																												(int) y,
+																																																												(int) z)))
+																																																						.equals(new ResourceLocation(
+																																																								"crimson_forest")))
+																																																				|| ((world
+																																																						.func_241828_r()
+																																																						.getRegistry(
+																																																								Registry.BIOME_KEY)
+																																																						.getKey(world
+																																																								.getBiome(
+																																																										new BlockPos(
+																																																												(int) x,
+																																																												(int) y,
+																																																												(int) z))) != null
+																																																						&& world.func_241828_r()
+																																																								.getRegistry(
+																																																										Registry.BIOME_KEY)
+																																																								.getKey(world
+																																																										.getBiome(
+																																																												new BlockPos(
+																																																														(int) x,
+																																																														(int) y,
+																																																														(int) z)))
+																																																								.equals(new ResourceLocation(
+																																																										"giant_spruce_taiga")))
+																																																						|| ((world
+																																																								.func_241828_r()
+																																																								.getRegistry(
+																																																										Registry.BIOME_KEY)
+																																																								.getKey(world
+																																																										.getBiome(
+																																																												new BlockPos(
+																																																														(int) x,
+																																																														(int) y,
+																																																														(int) z))) != null
+																																																								&& world.func_241828_r()
+																																																										.getRegistry(
+																																																												Registry.BIOME_KEY)
+																																																										.getKey(world
+																																																												.getBiome(
+																																																														new BlockPos(
+																																																																(int) x,
+																																																																(int) y,
+																																																																(int) z)))
+																																																										.equals(new ResourceLocation(
+																																																												"bamboo_jungle")))
+																																																								|| ((world
+																																																										.func_241828_r()
+																																																										.getRegistry(
+																																																												Registry.BIOME_KEY)
+																																																										.getKey(world
+																																																												.getBiome(
+																																																														new BlockPos(
+																																																																(int) x,
+																																																																(int) y,
+																																																																(int) z))) != null
+																																																										&& world.func_241828_r()
+																																																												.getRegistry(
+																																																														Registry.BIOME_KEY)
+																																																												.getKey(world
+																																																														.getBiome(
+																																																																new BlockPos(
+																																																																		(int) x,
+																																																																		(int) y,
+																																																																		(int) z)))
+																																																												.equals(new ResourceLocation(
+																																																														"snowy_taiga")))
+																																																										|| (world
+																																																												.func_241828_r()
+																																																												.getRegistry(
+																																																														Registry.BIOME_KEY)
+																																																												.getKey(world
+																																																														.getBiome(
+																																																																new BlockPos(
+																																																																		(int) x,
+																																																																		(int) y,
+																																																																		(int) z))) != null
+																																																												&& world.func_241828_r()
+																																																														.getRegistry(
+																																																																Registry.BIOME_KEY)
+																																																														.getKey(world
+																																																																.getBiome(
+																																																																		new BlockPos(
+																																																																				(int) x,
+																																																																				(int) y,
+																																																																				(int) z)))
+																																																														.equals(new ResourceLocation(
+																																																																"jungle_hills")))))))))))))))))))))))))))))))) {
+					{
+						Entity _ent = entity;
+						if (!_ent.world.isRemote && _ent.world.getServer() != null) {
+							_ent.world.getServer().getCommandManager()
+									.handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4), "team leave @s");
+						}
+					}
+					{
+						double _setval = (double) 0;
+						entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+							capability.elvenenteredforest = _setval;
+							capability.syncPlayerVariables(entity);
+						});
+					}
+				}
+			}
 		}
 	}
 

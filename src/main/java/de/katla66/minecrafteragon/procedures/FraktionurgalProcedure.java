@@ -10,6 +10,7 @@ import net.minecraft.entity.Entity;
 import java.util.Map;
 import java.util.HashMap;
 
+import de.katla66.minecrafteragon.MinecraftEragonFraktionsModVariables;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsModElements;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsMod;
 
@@ -27,7 +28,8 @@ public class FraktionurgalProcedure extends MinecraftEragonFraktionsModElements.
 			return;
 		}
 		Entity entity = (Entity) dependencies.get("entity");
-		if (((entity.getPersistentData().getDouble("urgal")) == 1)) {
+		if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+				.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).urgal) == 1)) {
 			if (((entity.getPersistentData().getDouble("active")) == 0)) {
 				{
 					Entity _ent = entity;

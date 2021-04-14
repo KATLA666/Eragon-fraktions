@@ -86,8 +86,8 @@ public class SpecialAbilityProcedure extends MinecraftEragonFraktionsModElements
 					Entity _ent = entity;
 					if (!_ent.world.isRemote()) {
 						ArrowEntity entityToSpawn = new ArrowEntity(_ent.world, (LivingEntity) entity);
-						entityToSpawn.shoot(entity.getLookVec().x, entity.getLookVec().y, entity.getLookVec().z, (float) 5, 0);
-						entityToSpawn.setDamage((float) 10);
+						entityToSpawn.shoot(entity.getLookVec().x, entity.getLookVec().y, entity.getLookVec().z, (float) 10, 0);
+						entityToSpawn.setDamage((float) 6);
 						entityToSpawn.setKnockbackStrength((int) 5);
 						_ent.world.addEntity(entityToSpawn);
 					}
@@ -164,7 +164,8 @@ public class SpecialAbilityProcedure extends MinecraftEragonFraktionsModElements
 					FireballshotItem.shoot(_ent.world, (LivingEntity) entity, new Random(), (float) 1, (float) 5, (int) 5);
 				}
 			}
-		} else if (((entity.getPersistentData().getDouble("ra'zac")) == 1)) {
+		} else if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+				.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).razac) == 1)) {
 			if (((entity.getPersistentData().getDouble("clockreadystrong")) == 1)) {
 				{
 					Map<String, Object> $_dependencies = new HashMap<>();

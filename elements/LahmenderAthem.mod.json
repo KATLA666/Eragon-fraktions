@@ -1,0 +1,22 @@
+{
+  "_fv": 17,
+  "_type": "potion",
+  "definition": {
+    "name": "Lähmender Athem",
+    "effectName": "Lahmender Athem",
+    "icon": "fireball.png",
+    "color": {
+      "value": -6711040,
+      "falpha": 0.0
+    },
+    "isInstant": false,
+    "isBad": true,
+    "isBenefitical": false,
+    "registerPotionType": false,
+    "renderStatusInInventory": true,
+    "renderStatusInHUD": true,
+    "onStarted": {
+      "name": "LahmenderAthemPotionStartedapplied"
+    }
+  }
+}

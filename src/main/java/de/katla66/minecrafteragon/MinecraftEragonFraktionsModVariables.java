@@ -75,6 +75,7 @@ public class MinecraftEragonFraktionsModVariables {
 			nbt.putDouble("shade", instance.shade);
 			nbt.putDouble("razac", instance.razac);
 			nbt.putDouble("urgal", instance.urgal);
+			nbt.putDouble("elvenenteredforest", instance.elvenenteredforest);
 			return nbt;
 		}
 
@@ -89,6 +90,7 @@ public class MinecraftEragonFraktionsModVariables {
 			instance.shade = nbt.getDouble("shade");
 			instance.razac = nbt.getDouble("razac");
 			instance.urgal = nbt.getDouble("urgal");
+			instance.elvenenteredforest = nbt.getDouble("elvenenteredforest");
 		}
 	}
 
@@ -101,6 +103,7 @@ public class MinecraftEragonFraktionsModVariables {
 		public double shade = 0;
 		public double razac = 0;
 		public double urgal = 0;
+		public double elvenenteredforest = 0;
 		public void syncPlayerVariables(Entity entity) {
 			if (entity instanceof ServerPlayerEntity)
 				MinecraftEragonFraktionsMod.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) entity),
@@ -166,6 +169,7 @@ public class MinecraftEragonFraktionsModVariables {
 					variables.shade = message.data.shade;
 					variables.razac = message.data.razac;
 					variables.urgal = message.data.urgal;
+					variables.elvenenteredforest = message.data.elvenenteredforest;
 				}
 			});
 			context.setPacketHandled(true);
