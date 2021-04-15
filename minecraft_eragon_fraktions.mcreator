@@ -992,11 +992,11 @@
   "sound_elements": [],
   "language_map": {
     "en_us": {
-      "key.minecraft_eragon_fraktions.specialability_key": "Specialability Key",
       "item.minecraft.tipped_arrow.effect.lahmender_athem": "Arrow of Lähmender Athem",
-      "key.minecraft_eragon__personallib.specialability_key": "Specialability Key",
-      "item.minecraft_eragon__personallib.dwarfs_throwable_axe": "Dwarfs Throwable Axe",
+      "key.minecraft_eragon_fraktions.specialability_key": "Specialability Key",
       "item.minecraft.potion.effect.elfisch_strengh": "Elvish strength",
+      "item.minecraft_eragon__personallib.dwarfs_throwable_axe": "Dwarfs Throwable Axe",
+      "key.minecraft_eragon__personallib.specialability_key": "Specialability Key",
       "key.mcreator.button_fraktion": "Button Fraktion",
       "biome.minecraft_eragon_fraktions.regeration_zone": "Regeration Zone",
       "effect.elfisch_strengh": "Elvish strength",
@@ -1038,7 +1038,7 @@
   "workspaceSettings": {
     "modid": "minecraft_eragon_fraktions",
     "modName": "Minecraft Eragon fraktions",
-    "version": "1.0.1.1",
+    "version": "1.0.1.2",
     "author": "KATLA66",
     "websiteURL": "https://mcreator.net",
     "license": "Not specified",
