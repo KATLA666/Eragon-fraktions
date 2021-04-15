@@ -1,0 +1,49 @@
+package de.katla66.minecrafteragon.procedures;
+
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.Entity;
+
+import java.util.Map;
+
+import de.katla66.minecrafteragon.MinecraftEragonFraktionsModVariables;
+import de.katla66.minecrafteragon.MinecraftEragonFraktionsModElements;
+import de.katla66.minecrafteragon.MinecraftEragonFraktionsMod;
+
+@MinecraftEragonFraktionsModElements.ModElement.Tag
+public class SpecialAbillityShadeFireballOnKeyPressedProcedure extends MinecraftEragonFraktionsModElements.ModElement {
+	public SpecialAbillityShadeFireballOnKeyPressedProcedure(MinecraftEragonFraktionsModElements instance) {
+		super(instance, 49);
+	}
+
+	public static void executeProcedure(Map<String, Object> dependencies) {
+		if (dependencies.get("entity") == null) {
+			if (!dependencies.containsKey("entity"))
+				MinecraftEragonFraktionsMod.LOGGER.warn("Failed to load dependency entity for procedure SpecialAbillityShadeFireballOnKeyPressed!");
+			return;
+		}
+		Entity entity = (Entity) dependencies.get("entity");
+		if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+				.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).shade) == 1)) {
+			if (((entity.getPersistentData().getDouble("clockreadystrong")) == 1)) {
+				{
+					Entity _ent = entity;
+					if (!_ent.world.isRemote && _ent.world.getServer() != null) {
+						_ent.world.getServer().getCommandManager().handleCommand(
+								_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
+								"summon minecraft:fireball ^ ^1 ^2 {ExplosionPower:3.5,direction:[0.0,0.0,0.0]}");
+					}
+				}
+				entity.getPersistentData().putDouble("clock", 0);
+				entity.getPersistentData().putDouble("clockreadystrong", 0);
+			} else {
+				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
+					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
+							(((("\u00A7cThe decay time is still ") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
+									+ (" \u00A7cTicks"))),
+							(true));
+				}
+			}
+		}
+	}
+}

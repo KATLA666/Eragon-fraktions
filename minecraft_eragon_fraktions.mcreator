@@ -620,6 +620,10 @@
           {
             "name": "entity",
             "type": "entity"
+          },
+          {
+            "name": "itemstack",
+            "type": "itemstack"
           }
         ]
       }
@@ -713,7 +717,28 @@
       "ids": {},
       "registry_name": "fraktion_shade",
       "metadata": {
-        "dependencies": []
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
       }
     },
     {
@@ -859,6 +884,53 @@
       "locked_code": false,
       "ids": {},
       "registry_name": "lahmender_athem"
+    },
+    {
+      "name": "SpecialAbillityShadeFireballOnKeyPressed",
+      "type": "procedure",
+      "sortid": 49,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "special_abillity_shade_fireball_on_key_pressed",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SpecialAbillityShadeFireball",
+      "type": "keybind",
+      "sortid": 49,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "special_abillity_shade_fireball"
+    },
+    {
+      "name": "RegerationZone",
+      "type": "biome",
+      "sortid": 50,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "regeration_zone"
+    },
+    {
+      "name": "RegenerativeZoneSchatten",
+      "type": "dimension",
+      "sortid": 50,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "regenerative_zone_schatten",
+      "metadata": {
+        "ep": false
+      }
     }
   ],
   "variable_elements": [
@@ -920,22 +992,25 @@
   "sound_elements": [],
   "language_map": {
     "en_us": {
-      "item.minecraft.tipped_arrow.effect.lahmender_athem": "Arrow of Lähmender Athem",
       "key.minecraft_eragon_fraktions.specialability_key": "Specialability Key",
-      "item.minecraft.potion.effect.elfisch_strengh": "Elvish strength",
-      "item.minecraft_eragon__personallib.dwarfs_throwable_axe": "Dwarfs Throwable Axe",
+      "item.minecraft.tipped_arrow.effect.lahmender_athem": "Arrow of Lähmender Athem",
       "key.minecraft_eragon__personallib.specialability_key": "Specialability Key",
+      "item.minecraft_eragon__personallib.dwarfs_throwable_axe": "Dwarfs Throwable Axe",
+      "item.minecraft.potion.effect.elfisch_strengh": "Elvish strength",
       "key.mcreator.button_fraktion": "Button Fraktion",
+      "biome.minecraft_eragon_fraktions.regeration_zone": "Regeration Zone",
       "effect.elfisch_strengh": "Elvish strength",
       "itemGroup.taberagon": "Eragon",
       "item.minecraft_eragon_fraktions.fireballshot": "Fireballshot",
       "item.minecraft.splash_potion.effect.lahmender_athem": "Splash Lähmender Athem",
+      "key.minecraft_eragon_fraktions.special_abillity_shade_fireball": "Special Abillity Shade Fireball",
       "item.minecraft_eragon__personallib.speer": "Speer",
       "item.minecraft_eragon_fraktions.ergaon_logo": "Ergaon Logo",
       "item.minecraft_eragon__personallib.ergaon_logo": "Ergaon Logo",
       "item.minecraft_eragon__personallib.empire_soldier_spawn_egg": "Empire Soldier Spawn Egg",
       "entity.minecraft_eragon_fraktions.empire_soldier": "Empire Soldier",
       "item.minecraft.lingering_potion.effect.last_man_standing": "Lingering Last Man Standing",
+      "item.minecraft_eragon_fraktions.regenerative_zone_schatten": "Regenerative Zone Schatten Portal Igniter",
       "item.minecraft_eragon_fraktions.dwarfs_throwable_axe": "Dwarfs Throwable Axe",
       "item.minecraft_eragon_fraktions.empire_soldier_spawn_egg": "Empire Soldier Spawn Egg",
       "item.minecraft.splash_potion.effect.elfisch_strengh": "Splash Elvish strength",

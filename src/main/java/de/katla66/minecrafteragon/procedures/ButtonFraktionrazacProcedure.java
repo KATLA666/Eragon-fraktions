@@ -32,6 +32,13 @@ public class ButtonFraktionrazacProcedure extends MinecraftEragonFraktionsModEle
 				});
 			}
 			entity.getPersistentData().putDouble("clicked", 1);
+			{
+				Entity _ent = entity;
+				if (!_ent.world.isRemote && _ent.world.getServer() != null) {
+					_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
+							"tag @s add razac");
+				}
+			}
 			if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7aYou have joined the Ra'zac faction"), (false));
 			}

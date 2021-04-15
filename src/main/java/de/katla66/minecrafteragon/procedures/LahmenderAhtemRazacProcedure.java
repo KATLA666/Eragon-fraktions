@@ -49,7 +49,7 @@ public class LahmenderAhtemRazacProcedure extends MinecraftEragonFraktionsModEle
 			((World) world).getServer().getCommandManager().handleCommand(
 					new CommandSource(ICommandSource.DUMMY, new Vector3d(x, y, z), Vector2f.ZERO, (ServerWorld) world, 4, "",
 							new StringTextComponent(""), ((World) world).getServer(), null).withFeedbackDisabled(),
-					"effect give @e[distance=1..4] minecraft_eragon_fraktions:lahmender_athem 20 0  false");
+					"effect give @e[distance=1..4,tag=!razac] minecraft_eragon_fraktions:lahmender_athem 20 0  false");
 		}
 		if (world instanceof ServerWorld) {
 			((World) world).getServer().getCommandManager().handleCommand(

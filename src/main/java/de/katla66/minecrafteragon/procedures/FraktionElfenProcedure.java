@@ -9,6 +9,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.potion.Effects;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.Entity;
@@ -61,6 +62,10 @@ public class FraktionElfenProcedure extends MinecraftEragonFraktionsModElements.
 		IWorld world = (IWorld) dependencies.get("world");
 		if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
 				.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).elfen) == 1)) {
+			if (((world.getLight(new BlockPos((int) x, (int) y, (int) z))) <= 10)) {
+				if (entity instanceof LivingEntity)
+					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, (int) 25, (int) 0, (false), (false)));
+			}
 			if (entity instanceof LivingEntity)
 				((LivingEntity) entity).addPotionEffect(new EffectInstance(ElfischStrenghPotion.potion, (int) 1, (int) 0, (false), (false)));
 			{
