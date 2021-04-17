@@ -1,0 +1,195 @@
+{
+  "_fv": 17,
+  "_type": "gui",
+  "definition": {
+    "type": 0,
+    "width": 134,
+    "height": 166,
+    "inventoryOffsetX": 0,
+    "inventoryOffsetY": 0,
+    "renderBgLayer": true,
+    "doesPauseGame": false,
+    "components": [
+      {
+        "type": "label",
+        "data": {
+          "text": "Varden",
+          "color": {
+            "value": -16763956,
+            "falpha": 0.0
+          },
+          "name": "Varden",
+          "x": 206,
+          "y": 24
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "ACTIVE SKILL:",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "ACTIVE SKILL:",
+          "x": 123,
+          "y": 35
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "-Last man standing",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "-Last man standing",
+          "x": 123,
+          "y": 44
+        }
+      },
+      {
+        "type": "image",
+        "data": {
+          "image": "ingamewikibiggerbook300brighter.png",
+          "use1Xscale": false,
+          "name": "ingamewikibiggerbook300brighter.png",
+          "x": 42,
+          "y": -28
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "PASSIV SKILL:",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "PASSIV SKILL:",
+          "x": 123,
+          "y": 107
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "-With a few life points,",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "-With a few life points,",
+          "x": 123,
+          "y": 116
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " a strength boost activates that gives",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " a strength boost activates that gives",
+          "x": 123,
+          "y": 125
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " you the chance to smash your opponent",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " you the chance to smash your opponent",
+          "x": 123,
+          "y": 134
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " into a thousand pieces.",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " into a thousand pieces.",
+          "x": 123,
+          "y": 143
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Activate your Last man standing ability",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "Activate your Last man standing ability",
+          "x": 126,
+          "y": 53
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "to get the last bit of energy and ",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "to get the last bit of energy and ",
+          "x": 126,
+          "y": 62
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "willpower out of you to strike without",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "willpower out of you to strike without",
+          "x": 126,
+          "y": 71
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " mercy.",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " mercy.",
+          "x": 126,
+          "y": 80
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "-->",
+          "onClick": {
+            "name": "IngameWIKISurdaopen"
+          },
+          "width": 40,
+          "height": 20,
+          "name": "-->",
+          "x": 384,
+          "y": 215
+        }
+      }
+    ]
+  }
+}

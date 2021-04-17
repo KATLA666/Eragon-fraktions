@@ -28,9 +28,10 @@ public class ClockProcedure extends MinecraftEragonFraktionsModElements.ModEleme
 		}
 		Entity entity = (Entity) dependencies.get("entity");
 		entity.getPersistentData().putDouble("clock", ((entity.getPersistentData().getDouble("clock")) + 1));
-		if (((entity.getPersistentData().getDouble("clock")) >= 2500)) {
+		if (((entity.getPersistentData().getDouble("clock")) >= 3000)) {
 			entity.getPersistentData().putDouble("clockready", 1);
-		} else if (((entity.getPersistentData().getDouble("clock")) >= 6000)) {
+		}
+		if (((entity.getPersistentData().getDouble("clock")) >= 6000)) {
 			entity.getPersistentData().putDouble("clockreadystrong", 1);
 			entity.getPersistentData().putDouble("clock", 0);
 		}

@@ -62,26 +62,32 @@ public class FraktionElfenProcedure extends MinecraftEragonFraktionsModElements.
 		IWorld world = (IWorld) dependencies.get("world");
 		if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
 				.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).elfen) == 1)) {
+			if (((entity.getPersistentData().getDouble("activ")) == 0)) {
+				{
+					Entity _ent = entity;
+					if (!_ent.world.isRemote && _ent.world.getServer() != null) {
+						_ent.world.getServer().getCommandManager().handleCommand(
+								_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
+								"attribute @s minecraft:generic.movement_speed base set 0.125");
+					}
+				}
+				{
+					Entity _ent = entity;
+					if (!_ent.world.isRemote && _ent.world.getServer() != null) {
+						_ent.world.getServer().getCommandManager().handleCommand(
+								_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
+								"attribute @s minecraft:generic.attack_speed base set 5");
+					}
+				}
+				entity.getPersistentData().putDouble("activ", 1);
+			}
 			if (((world.getLight(new BlockPos((int) x, (int) y, (int) z))) <= 10)) {
 				if (entity instanceof LivingEntity)
-					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, (int) 25, (int) 0, (false), (false)));
+					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, (int) 2000, (int) 0, (false), (false)));
+				entity.getPersistentData().putDouble("nightvisionactive", 1);
 			}
 			if (entity instanceof LivingEntity)
 				((LivingEntity) entity).addPotionEffect(new EffectInstance(ElfischStrenghPotion.potion, (int) 1, (int) 0, (false), (false)));
-			{
-				Entity _ent = entity;
-				if (!_ent.world.isRemote && _ent.world.getServer() != null) {
-					_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
-							"attribute @s minecraft:generic.movement_speed base set 0.125");
-				}
-			}
-			{
-				Entity _ent = entity;
-				if (!_ent.world.isRemote && _ent.world.getServer() != null) {
-					_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
-							"attribute @s minecraft:generic.attack_speed base set 5");
-				}
-			}
 			if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
 					.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).elvenenteredforest) == 0)) {
 				if (((world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(new BlockPos((int) x, (int) y, (int) z))) != null
@@ -657,7 +663,7 @@ public class FraktionElfenProcedure extends MinecraftEragonFraktionsModElements.
 																																												(int) y,
 																																												(int) z)))
 																																						.equals(new ResourceLocation(
-																																								"tall_birch_forest")))
+																																								"minecraft_eragon_fraktions:regeration_zone")))
 																																				|| ((world
 																																						.func_241828_r()
 																																						.getRegistry(
@@ -699,7 +705,7 @@ public class FraktionElfenProcedure extends MinecraftEragonFraktionsModElements.
 																																																(int) y,
 																																																(int) z)))
 																																										.equals(new ResourceLocation(
-																																												"dark_forest_hills")))
+																																												"minecraft_eragon_fraktions:regeration_zone")))
 																																								|| ((world
 																																										.func_241828_r()
 																																										.getRegistry(
@@ -925,6 +931,13 @@ public class FraktionElfenProcedure extends MinecraftEragonFraktionsModElements.
 						});
 					}
 				}
+			}
+			if ((((world.getWorldInfo().getDayTime()) <= 12000) && (((world.getLight(new BlockPos((int) x, (int) y, (int) z))) > 10)
+					&& ((entity.getPersistentData().getDouble("nightvisionactive")) == 1)))) {
+				if (entity instanceof LivingEntity) {
+					((LivingEntity) entity).removePotionEffect(Effects.NIGHT_VISION);
+				}
+				entity.getPersistentData().putDouble("nightvisionactive", 0);
 			}
 		}
 	}

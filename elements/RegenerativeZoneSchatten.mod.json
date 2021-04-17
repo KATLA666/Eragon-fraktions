@@ -25,6 +25,9 @@
     "sleepResult": "DENY",
     "hasSkyLight": false,
     "imitateOverworldBehaviour": false,
+    "onPlayerLeavesDimension": {
+      "name": "RegenerativeZoneSchattenPlayerLeavesDimension"
+    },
     "portalFrame": {
       "value": ""
     },

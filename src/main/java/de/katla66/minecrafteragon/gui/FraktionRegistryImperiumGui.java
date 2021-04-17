@@ -26,6 +26,7 @@ import java.util.function.Supplier;
 import java.util.Map;
 import java.util.HashMap;
 
+import de.katla66.minecrafteragon.procedures.OpenWIKIProcedure;
 import de.katla66.minecrafteragon.procedures.GUIResistanceProcedure;
 import de.katla66.minecrafteragon.procedures.ButtonfraktionEmpireSoldierProcedure;
 import de.katla66.minecrafteragon.procedures.ButtonFraktionrazacProcedure;
@@ -216,6 +217,17 @@ public class FraktionRegistryImperiumGui extends MinecraftEragonFraktionsModElem
 				Map<String, Object> $_dependencies = new HashMap<>();
 				$_dependencies.put("entity", entity);
 				ButtonFraktionrazacProcedure.executeProcedure($_dependencies);
+			}
+		}
+		if (buttonID == 5) {
+			{
+				Map<String, Object> $_dependencies = new HashMap<>();
+				$_dependencies.put("entity", entity);
+				$_dependencies.put("x", x);
+				$_dependencies.put("y", y);
+				$_dependencies.put("z", z);
+				$_dependencies.put("world", world);
+				OpenWIKIProcedure.executeProcedure($_dependencies);
 			}
 		}
 	}

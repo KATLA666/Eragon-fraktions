@@ -50,6 +50,9 @@ public class FraktionRegistryImperiumGuiWindow extends ContainerScreen<FraktionR
 		int k = (this.width - this.xSize) / 2;
 		int l = (this.height - this.ySize) / 2;
 		this.blit(ms, k, l, 0, 0, this.xSize, this.ySize, this.xSize, this.ySize);
+		Minecraft.getInstance().getTextureManager()
+				.bindTexture(new ResourceLocation("minecraft_eragon_fraktions:textures/treebrenchempireminions.png"));
+		this.blit(ms, this.guiLeft + -2, this.guiTop + -5, 0, 0, 215, 166, 215, 166);
 	}
 
 	@Override
@@ -68,7 +71,8 @@ public class FraktionRegistryImperiumGuiWindow extends ContainerScreen<FraktionR
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(MatrixStack ms, int mouseX, int mouseY) {
-		this.font.drawString(ms, "Empire Minions", 74, 9, -10092544);
+		this.font.drawString(ms, "Choose your faction!", 55, 10, -10092544);
+		this.font.drawString(ms, "Empire Minions", 59, 61, -3368704);
 	}
 
 	@Override
@@ -100,6 +104,10 @@ public class FraktionRegistryImperiumGuiWindow extends ContainerScreen<FraktionR
 		this.addButton(new Button(this.guiLeft + 6, this.guiTop + 97, 55, 20, new StringTextComponent("Ra'zac"), e -> {
 			MinecraftEragonFraktionsMod.PACKET_HANDLER.sendToServer(new FraktionRegistryImperiumGui.ButtonPressedMessage(4, x, y, z));
 			FraktionRegistryImperiumGui.handleButtonAction(entity, 4, x, y, z);
+		}));
+		this.addButton(new Button(this.guiLeft + 290, this.guiTop + -36, 30, 20, new StringTextComponent("?"), e -> {
+			MinecraftEragonFraktionsMod.PACKET_HANDLER.sendToServer(new FraktionRegistryImperiumGui.ButtonPressedMessage(5, x, y, z));
+			FraktionRegistryImperiumGui.handleButtonAction(entity, 5, x, y, z);
 		}));
 	}
 }

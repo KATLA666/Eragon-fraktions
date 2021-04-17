@@ -27,14 +27,14 @@
       {
         "type": "label",
         "data": {
-          "text": "Empire Minions",
+          "text": "Choose your faction!",
           "color": {
             "value": -10092544,
             "falpha": 0.0
           },
-          "name": "Empire Minions",
-          "x": 180,
-          "y": 46
+          "name": "Choose your faction!",
+          "x": 161,
+          "y": 47
         }
       },
       {
@@ -91,6 +91,43 @@
           "name": "Ra'zac",
           "x": 112,
           "y": 134
+        }
+      },
+      {
+        "type": "image",
+        "data": {
+          "image": "treebrenchempireminions.png",
+          "use1Xscale": false,
+          "name": "treebrenchempireminions.png",
+          "x": 104,
+          "y": 32
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Empire Minions",
+          "color": {
+            "value": -3368704,
+            "falpha": 0.0
+          },
+          "name": "Empire Minions",
+          "x": 165,
+          "y": 98
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "?",
+          "onClick": {
+            "name": "OpenWIKI"
+          },
+          "width": 30,
+          "height": 20,
+          "name": "?",
+          "x": 396,
+          "y": 1
         }
       }
     ]

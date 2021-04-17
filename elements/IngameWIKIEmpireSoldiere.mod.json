@@ -1,0 +1,157 @@
+{
+  "_fv": 17,
+  "_type": "gui",
+  "definition": {
+    "type": 0,
+    "width": 176,
+    "height": 166,
+    "inventoryOffsetX": 0,
+    "inventoryOffsetY": 0,
+    "renderBgLayer": true,
+    "doesPauseGame": false,
+    "components": [
+      {
+        "type": "image",
+        "data": {
+          "image": "ingamewikibiggerbook300brighter.png",
+          "use1Xscale": false,
+          "name": "ingamewikibiggerbook300brighter.png",
+          "x": 33,
+          "y": -28
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Empire Soldier",
+          "color": {
+            "value": -65536,
+            "falpha": 0.0
+          },
+          "name": "Empire Soldier",
+          "x": 177,
+          "y": 26
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "ACTIVE SKILL:",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "ACTIVE SKILL:",
+          "x": 114,
+          "y": 35
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "-Call an Empire soldier to your side",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "-Call an Empire soldier to your side",
+          "x": 114,
+          "y": 44
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " who will fight with you your whole",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " who will fight with you your whole",
+          "x": 114,
+          "y": 53
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " life (can be used several times).",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " life (can be used several times).",
+          "x": 114,
+          "y": 62
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "PASSIV SKILL:",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "PASSIV SKILL:",
+          "x": 114,
+          "y": 107
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "-Galbatorix spell makes some potions",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "-Galbatorix spell makes some potions",
+          "x": 114,
+          "y": 116
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " you drink appear one level higher.",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " you drink appear one level higher.",
+          "x": 114,
+          "y": 125
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "<--",
+          "onClick": {
+            "name": "IngameWIKIdwarfOpen"
+          },
+          "width": 40,
+          "height": 20,
+          "name": "<--",
+          "x": 6,
+          "y": 215
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "-->",
+          "onClick": {
+            "name": "IngameWIKIShadeOpne"
+          },
+          "width": 40,
+          "height": 20,
+          "name": "-->",
+          "x": 384,
+          "y": 215
+        }
+      }
+    ]
+  }
+}

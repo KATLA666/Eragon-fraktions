@@ -68,14 +68,18 @@ public class MinecraftEragonFraktionsModVariables {
 		public INBT writeNBT(Capability<PlayerVariables> capability, PlayerVariables instance, Direction side) {
 			CompoundNBT nbt = new CompoundNBT();
 			nbt.putDouble("varden", instance.varden);
-			nbt.putDouble("elfen", instance.elfen);
 			nbt.putDouble("zwergen", instance.zwergen);
+			nbt.putDouble("elfen", instance.elfen);
 			nbt.putDouble("surda", instance.surda);
 			nbt.putDouble("empireSoldier", instance.empireSoldier);
 			nbt.putDouble("shade", instance.shade);
 			nbt.putDouble("razac", instance.razac);
 			nbt.putDouble("urgal", instance.urgal);
 			nbt.putDouble("elvenenteredforest", instance.elvenenteredforest);
+			nbt.putDouble("posShadeOverworldX", instance.posShadeOverworldX);
+			nbt.putDouble("posShadeOverworldY", instance.posShadeOverworldY);
+			nbt.putDouble("posShadeOverworldZ", instance.posShadeOverworldZ);
+			nbt.putString("posShadeDimesionID", instance.posShadeDimesionID);
 			return nbt;
 		}
 
@@ -83,27 +87,35 @@ public class MinecraftEragonFraktionsModVariables {
 		public void readNBT(Capability<PlayerVariables> capability, PlayerVariables instance, Direction side, INBT inbt) {
 			CompoundNBT nbt = (CompoundNBT) inbt;
 			instance.varden = nbt.getDouble("varden");
-			instance.elfen = nbt.getDouble("elfen");
 			instance.zwergen = nbt.getDouble("zwergen");
+			instance.elfen = nbt.getDouble("elfen");
 			instance.surda = nbt.getDouble("surda");
 			instance.empireSoldier = nbt.getDouble("empireSoldier");
 			instance.shade = nbt.getDouble("shade");
 			instance.razac = nbt.getDouble("razac");
 			instance.urgal = nbt.getDouble("urgal");
 			instance.elvenenteredforest = nbt.getDouble("elvenenteredforest");
+			instance.posShadeOverworldX = nbt.getDouble("posShadeOverworldX");
+			instance.posShadeOverworldY = nbt.getDouble("posShadeOverworldY");
+			instance.posShadeOverworldZ = nbt.getDouble("posShadeOverworldZ");
+			instance.posShadeDimesionID = nbt.getString("posShadeDimesionID");
 		}
 	}
 
 	public static class PlayerVariables {
 		public double varden = 0;
-		public double elfen = 0;
 		public double zwergen = 0;
+		public double elfen = 0;
 		public double surda = 0;
 		public double empireSoldier = 0;
 		public double shade = 0;
 		public double razac = 0;
 		public double urgal = 0;
 		public double elvenenteredforest = 0;
+		public double posShadeOverworldX = 0;
+		public double posShadeOverworldY = 0;
+		public double posShadeOverworldZ = 0;
+		public String posShadeDimesionID = "";
 		public void syncPlayerVariables(Entity entity) {
 			if (entity instanceof ServerPlayerEntity)
 				MinecraftEragonFraktionsMod.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) entity),
@@ -162,14 +174,18 @@ public class MinecraftEragonFraktionsModVariables {
 					PlayerVariables variables = ((PlayerVariables) Minecraft.getInstance().player.getCapability(PLAYER_VARIABLES_CAPABILITY, null)
 							.orElse(new PlayerVariables()));
 					variables.varden = message.data.varden;
-					variables.elfen = message.data.elfen;
 					variables.zwergen = message.data.zwergen;
+					variables.elfen = message.data.elfen;
 					variables.surda = message.data.surda;
 					variables.empireSoldier = message.data.empireSoldier;
 					variables.shade = message.data.shade;
 					variables.razac = message.data.razac;
 					variables.urgal = message.data.urgal;
 					variables.elvenenteredforest = message.data.elvenenteredforest;
+					variables.posShadeOverworldX = message.data.posShadeOverworldX;
+					variables.posShadeOverworldY = message.data.posShadeOverworldY;
+					variables.posShadeOverworldZ = message.data.posShadeOverworldZ;
+					variables.posShadeDimesionID = message.data.posShadeDimesionID;
 				}
 			});
 			context.setPacketHandled(true);

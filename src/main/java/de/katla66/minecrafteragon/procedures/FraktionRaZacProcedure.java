@@ -62,6 +62,11 @@ public class FraktionRaZacProcedure extends MinecraftEragonFraktionsModElements.
 		IWorld world = (IWorld) dependencies.get("world");
 		if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
 				.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).razac) == 1)) {
+			if (((world.getLight(new BlockPos((int) x, (int) y, (int) z))) <= 10)) {
+				if (entity instanceof LivingEntity)
+					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, (int) 2000, (int) 0, (false), (false)));
+				entity.getPersistentData().putDouble("nightvisionactive", 1);
+			}
 			if (((world.getWorldInfo().getDayTime()) <= 12000)) {
 				if (((world.getLight(new BlockPos((int) x, (int) y, (int) z))) >= 6)) {
 					if ((!((entity instanceof PlayerEntity)
@@ -79,16 +84,19 @@ public class FraktionRaZacProcedure extends MinecraftEragonFraktionsModElements.
 					}
 				}
 			} else if (((world.getWorldInfo().getDayTime()) >= 12000)) {
-				if (((world.getLight(new BlockPos((int) x, (int) y, (int) z))) >= 12)) {
-					if (entity instanceof LivingEntity)
-						((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.BAD_OMEN, (int) 25, (int) 0, (false), (false)));
-				}
+				if (entity instanceof LivingEntity)
+					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.BAD_OMEN, (int) 25, (int) 0, (false), (false)));
 				if (entity instanceof LivingEntity)
 					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.SPEED, (int) 25, (int) 0, (false), (false)));
 				if (entity instanceof LivingEntity)
 					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.STRENGTH, (int) 25, (int) 0, (false), (false)));
-				if (entity instanceof LivingEntity)
-					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, (int) 25, (int) 0, (false), (false)));
+			}
+			if ((((world.getWorldInfo().getDayTime()) <= 12000) && (((world.getLight(new BlockPos((int) x, (int) y, (int) z))) > 10)
+					&& ((entity.getPersistentData().getDouble("nightvisionactive")) == 1)))) {
+				if (entity instanceof LivingEntity) {
+					((LivingEntity) entity).removePotionEffect(Effects.NIGHT_VISION);
+				}
+				entity.getPersistentData().putDouble("nightvisionactive", 0);
 			}
 		}
 	}

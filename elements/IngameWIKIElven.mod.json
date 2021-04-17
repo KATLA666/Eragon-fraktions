@@ -1,0 +1,209 @@
+{
+  "_fv": 17,
+  "_type": "gui",
+  "definition": {
+    "type": 0,
+    "width": 176,
+    "height": 166,
+    "inventoryOffsetX": 0,
+    "inventoryOffsetY": 0,
+    "renderBgLayer": true,
+    "doesPauseGame": false,
+    "components": [
+      {
+        "type": "image",
+        "data": {
+          "image": "ingamewikibiggerbook300brighter.png",
+          "use1Xscale": false,
+          "name": "ingamewikibiggerbook300brighter.png",
+          "x": 33,
+          "y": -28
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Elven",
+          "color": {
+            "value": -16763956,
+            "falpha": 0.0
+          },
+          "name": "Elven",
+          "x": 195,
+          "y": 26
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "ACTIVE SKILL:",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "ACTIVE SKILL:",
+          "x": 114,
+          "y": 35
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "-Shoot an incredibly powerful arrow that",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "-Shoot an incredibly powerful arrow that",
+          "x": 114,
+          "y": 44
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " remains 98% accurate over 100 blocks",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " remains 98% accurate over 100 blocks",
+          "x": 114,
+          "y": 53
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " and inflicts massive damage and",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " and inflicts massive damage and",
+          "x": 114,
+          "y": 62
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " knockback to its victim.",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " knockback to its victim.",
+          "x": 114,
+          "y": 71
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "PASSIV SKILL:",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "PASSIV SKILL:",
+          "x": 114,
+          "y": 107
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "-As an elf you are much faster than",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "-As an elf you are much faster than",
+          "x": 114,
+          "y": 116
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " humans or Urgals, this also applies to",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " humans or Urgals, this also applies to",
+          "x": 114,
+          "y": 125
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " your attack speed. In forests you",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " your attack speed. In forests you",
+          "x": 114,
+          "y": 134
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " become almost invisible and you",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " become almost invisible and you",
+          "x": 114,
+          "y": 143
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " can see well in the dark.",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " can see well in the dark.",
+          "x": 114,
+          "y": 152
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "<--",
+          "onClick": {
+            "name": "FraktionSurda"
+          },
+          "width": 40,
+          "height": 20,
+          "name": "<--",
+          "x": 6,
+          "y": 215
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "-->",
+          "onClick": {
+            "name": "IngameWIKIdwarfOpen"
+          },
+          "width": 40,
+          "height": 20,
+          "name": "-->",
+          "x": 384,
+          "y": 215
+        }
+      }
+    ]
+  }
+}

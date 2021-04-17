@@ -1,0 +1,196 @@
+{
+  "_fv": 17,
+  "_type": "gui",
+  "definition": {
+    "type": 0,
+    "width": 176,
+    "height": 166,
+    "inventoryOffsetX": 0,
+    "inventoryOffsetY": 0,
+    "renderBgLayer": true,
+    "doesPauseGame": false,
+    "components": [
+      {
+        "type": "image",
+        "data": {
+          "image": "ingamewikibiggerbook300brighter.png",
+          "use1Xscale": false,
+          "name": "ingamewikibiggerbook300brighter.png",
+          "x": 33,
+          "y": -28
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Dwarf",
+          "color": {
+            "value": -16763956,
+            "falpha": 0.0
+          },
+          "name": "Dwarf",
+          "x": 195,
+          "y": 26
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "ACTIVE SKILL:",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "ACTIVE SKILL:",
+          "x": 114,
+          "y": 35
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "-Throw one of the dwarves' infamous",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "-Throw one of the dwarves' infamous",
+          "x": 114,
+          "y": 44
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " throwing axes to bring your",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " throwing axes to bring your",
+          "x": 114,
+          "y": 53
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " enemies to their knees.",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " enemies to their knees.",
+          "x": 114,
+          "y": 62
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "PASSIV SKILL:",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "PASSIV SKILL:",
+          "x": 114,
+          "y": 107
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "-Dwarves are slow, but they have",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "-Dwarves are slow, but they have",
+          "x": 114,
+          "y": 116
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " slightly more hp than humans and do",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " slightly more hp than humans and do",
+          "x": 114,
+          "y": 125
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " significantly more damage. In addition,",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " significantly more damage. In addition,",
+          "x": 114,
+          "y": 134
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " they are generally lucky and have",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " they are generally lucky and have",
+          "x": 114,
+          "y": 143
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " a greater and faster mining range. ",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " a greater and faster mining range. ",
+          "x": 114,
+          "y": 152
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "<--",
+          "onClick": {
+            "name": "IngameWIKiElvenOpen"
+          },
+          "width": 40,
+          "height": 20,
+          "name": "<--",
+          "x": 6,
+          "y": 215
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "-->",
+          "onClick": {
+            "name": "IngameWIKIEmpirSoldierOpen"
+          },
+          "width": 40,
+          "height": 20,
+          "name": "-->",
+          "x": 384,
+          "y": 215
+        }
+      }
+    ]
+  }
+}

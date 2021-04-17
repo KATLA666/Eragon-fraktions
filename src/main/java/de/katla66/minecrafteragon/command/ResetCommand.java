@@ -35,7 +35,7 @@ public class ResetCommand extends MinecraftEragonFraktionsModElements.ModElement
 	}
 
 	private LiteralArgumentBuilder<CommandSource> customCommand() {
-		return LiteralArgumentBuilder.<CommandSource>literal("reset").requires(s -> s.hasPermissionLevel(4))
+		return LiteralArgumentBuilder.<CommandSource>literal("debugfactions").requires(s -> s.hasPermissionLevel(4))
 				.then(Commands.argument("arguments", StringArgumentType.greedyString()).executes(this::execute)).executes(this::execute);
 	}
 

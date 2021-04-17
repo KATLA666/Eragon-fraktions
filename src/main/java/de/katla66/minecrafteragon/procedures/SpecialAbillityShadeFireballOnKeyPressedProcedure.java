@@ -25,24 +25,8 @@ public class SpecialAbillityShadeFireballOnKeyPressedProcedure extends Minecraft
 		Entity entity = (Entity) dependencies.get("entity");
 		if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
 				.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).shade) == 1)) {
-			if (((entity.getPersistentData().getDouble("clockreadystrong")) == 1)) {
-				{
-					Entity _ent = entity;
-					if (!_ent.world.isRemote && _ent.world.getServer() != null) {
-						_ent.world.getServer().getCommandManager().handleCommand(
-								_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
-								"summon minecraft:fireball ^ ^1 ^2 {ExplosionPower:3.5,direction:[0.0,0.0,0.0]}");
-					}
-				}
-				entity.getPersistentData().putDouble("clock", 0);
-				entity.getPersistentData().putDouble("clockreadystrong", 0);
-			} else {
-				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
-					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
-							(((("\u00A7cThe decay time is still ") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
-									+ (" \u00A7cTicks"))),
-							(true));
-				}
+			if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
+				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7cUnder Construction"), (false));
 			}
 		}
 	}

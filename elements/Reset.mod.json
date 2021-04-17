@@ -2,7 +2,7 @@
   "_fv": 17,
   "_type": "command",
   "definition": {
-    "commandName": "reset",
+    "commandName": "debugfactions",
     "permissionLevel": "4",
     "onCommandExecuted": {
       "name": "ResetCommandExecuted"

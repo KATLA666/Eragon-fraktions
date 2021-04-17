@@ -1,0 +1,169 @@
+{
+  "_fv": 17,
+  "_type": "gui",
+  "definition": {
+    "type": 0,
+    "width": 176,
+    "height": 166,
+    "inventoryOffsetX": 0,
+    "inventoryOffsetY": 0,
+    "renderBgLayer": true,
+    "doesPauseGame": false,
+    "components": [
+      {
+        "type": "image",
+        "data": {
+          "image": "ingamewikibiggerbook300brighter.png",
+          "use1Xscale": false,
+          "name": "ingamewikibiggerbook300brighter.png",
+          "x": 33,
+          "y": -28
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Urgal",
+          "color": {
+            "value": -65536,
+            "falpha": 0.0
+          },
+          "name": "Urgal",
+          "x": 195,
+          "y": 26
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "ACTIV SKILL:",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "ACTIV SKILL:",
+          "x": 114,
+          "y": 35
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "-You can cover many metres in a rush,",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "-You can cover many metres in a rush,",
+          "x": 114,
+          "y": 44
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " but afterwards you are exhausted",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " but afterwards you are exhausted",
+          "x": 114,
+          "y": 53
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " and have to eat something.",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " and have to eat something.",
+          "x": 114,
+          "y": 62
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "PASSIV SKILL:",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "PASSIV SKILL:",
+          "x": 114,
+          "y": 107
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "-Urgals are big, fast and strong",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "-Urgals are big, fast and strong",
+          "x": 114,
+          "y": 116
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " monsters. they have thick leathery",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " monsters. they have thick leathery",
+          "x": 114,
+          "y": 125
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " skin, which gives them general",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " skin, which gives them general",
+          "x": 114,
+          "y": 134
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " protection.",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " protection.",
+          "x": 114,
+          "y": 143
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "<--",
+          "onClick": {
+            "name": "IngameWIKIRaZacOpen"
+          },
+          "width": 40,
+          "height": 20,
+          "name": "<--",
+          "x": 6,
+          "y": 215
+        }
+      }
+    ]
+  }
+}

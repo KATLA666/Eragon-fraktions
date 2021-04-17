@@ -50,6 +50,8 @@ public class FractionRegistryGuiWindow extends ContainerScreen<FractionRegistryG
 		int k = (this.width - this.xSize) / 2;
 		int l = (this.height - this.ySize) / 2;
 		this.blit(ms, k, l, 0, 0, this.xSize, this.ySize, this.xSize, this.ySize);
+		Minecraft.getInstance().getTextureManager().bindTexture(new ResourceLocation("minecraft_eragon_fraktions:textures/treebrench2.png"));
+		this.blit(ms, this.guiLeft + 6, this.guiTop + 0, 0, 0, 215, 166, 215, 166);
 	}
 
 	@Override
@@ -68,7 +70,8 @@ public class FractionRegistryGuiWindow extends ContainerScreen<FractionRegistryG
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(MatrixStack ms, int mouseX, int mouseY) {
-		this.font.drawString(ms, "W\u00E4hle Deine Fraction!", 56, 7, -6750208);
+		this.font.drawString(ms, "Choose your faction!", 56, 7, -16763956);
+		this.font.drawString(ms, "Resistance", 77, 67, -16711681);
 	}
 
 	@Override
@@ -100,6 +103,10 @@ public class FractionRegistryGuiWindow extends ContainerScreen<FractionRegistryG
 		this.addButton(new Button(this.guiLeft + 139, this.guiTop + 34, 50, 20, new StringTextComponent("Surda"), e -> {
 			MinecraftEragonFraktionsMod.PACKET_HANDLER.sendToServer(new FractionRegistryGui.ButtonPressedMessage(4, x, y, z));
 			FractionRegistryGui.handleButtonAction(entity, 4, x, y, z);
+		}));
+		this.addButton(new Button(this.guiLeft + 289, this.guiTop + -35, 30, 20, new StringTextComponent("?"), e -> {
+			MinecraftEragonFraktionsMod.PACKET_HANDLER.sendToServer(new FractionRegistryGui.ButtonPressedMessage(5, x, y, z));
+			FractionRegistryGui.handleButtonAction(entity, 5, x, y, z);
 		}));
 	}
 }

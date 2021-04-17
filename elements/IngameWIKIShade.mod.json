@@ -1,0 +1,209 @@
+{
+  "_fv": 17,
+  "_type": "gui",
+  "definition": {
+    "type": 0,
+    "width": 176,
+    "height": 166,
+    "inventoryOffsetX": 0,
+    "inventoryOffsetY": 0,
+    "renderBgLayer": true,
+    "doesPauseGame": false,
+    "components": [
+      {
+        "type": "image",
+        "data": {
+          "image": "ingamewikibiggerbook300brighter.png",
+          "use1Xscale": false,
+          "name": "ingamewikibiggerbook300brighter.png",
+          "x": 42,
+          "y": -28
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Shade",
+          "color": {
+            "value": -65536,
+            "falpha": 0.0
+          },
+          "name": "Shade",
+          "x": 204,
+          "y": 26
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "ACTIV SKILL:",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "ACTIV SKILL:",
+          "x": 123,
+          "y": 35
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "-You can summon a large fireball",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "-You can summon a large fireball",
+          "x": 123,
+          "y": 44
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " in front of you that you can",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " in front of you that you can",
+          "x": 123,
+          "y": 53
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " shoot in the direction you are looking.",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " shoot in the direction you are looking.",
+          "x": 123,
+          "y": 62
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "PASSIV SKILL:",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "PASSIV SKILL:",
+          "x": 123,
+          "y": 98
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "-Shadows cannot be killed with an arrow.",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "-Shadows cannot be killed with an arrow.",
+          "x": 123,
+          "y": 107
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " If so, teleport to a dimension only you",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " If so, teleport to a dimension only you",
+          "x": 123,
+          "y": 116
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " can enter. They automatically reappear",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " can enter. They automatically reappear",
+          "x": 123,
+          "y": 125
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " in the overworld when they are fully",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " in the overworld when they are fully",
+          "x": 123,
+          "y": 134
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " alive. They also have excellent vision",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " alive. They also have excellent vision",
+          "x": 123,
+          "y": 143
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " in the dark.",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " in the dark.",
+          "x": 123,
+          "y": 152
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "<--",
+          "onClick": {
+            "name": "IngameWIKIEmpirSoldierOpen"
+          },
+          "width": 40,
+          "height": 20,
+          "name": "<--",
+          "x": 6,
+          "y": 215
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "-->",
+          "onClick": {
+            "name": "IngameWIKIRaZacOpen"
+          },
+          "width": 40,
+          "height": 20,
+          "name": "-->",
+          "x": 384,
+          "y": 215
+        }
+      }
+    ]
+  }
+}

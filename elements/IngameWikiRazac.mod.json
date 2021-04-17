@@ -1,0 +1,222 @@
+{
+  "_fv": 17,
+  "_type": "gui",
+  "definition": {
+    "type": 0,
+    "width": 176,
+    "height": 166,
+    "inventoryOffsetX": 0,
+    "inventoryOffsetY": 0,
+    "renderBgLayer": true,
+    "doesPauseGame": false,
+    "components": [
+      {
+        "type": "image",
+        "data": {
+          "image": "ingamewikibiggerbook300brighter.png",
+          "use1Xscale": false,
+          "name": "ingamewikibiggerbook300brighter.png",
+          "x": 42,
+          "y": -28
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "Ra'zac",
+          "color": {
+            "value": -65536,
+            "falpha": 0.0
+          },
+          "name": "Ra'zac",
+          "x": 204,
+          "y": 26
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "ACTIV SKILL:",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "ACTIV SKILL:",
+          "x": 123,
+          "y": 35
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "-Ra'zacs can paralyse their enemies",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "-Ra'zacs can paralyse their enemies",
+          "x": 123,
+          "y": 44
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " with their breath and blind them",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " with their breath and blind them",
+          "x": 123,
+          "y": 53
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " for a short time in an area of 3 blocks.",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " for a short time in an area of 3 blocks.",
+          "x": 123,
+          "y": 62
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "PASSIV SKILL:",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "PASSIV SKILL:",
+          "x": 123,
+          "y": 107
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": "-They are creatures of the night, which",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": "-They are creatures of the night, which",
+          "x": 123,
+          "y": 116
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " means they can see perfectly in the",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " means they can see perfectly in the",
+          "x": 123,
+          "y": 125
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " dark and when it is night they get a",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " dark and when it is night they get a",
+          "x": 123,
+          "y": 134
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " strength and speed boost. During the",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " strength and speed boost. During the",
+          "x": 123,
+          "y": 143
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " day, however, they must cover their",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " day, however, they must cover their",
+          "x": 123,
+          "y": 152
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " heads, otherwise they are blinded",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " heads, otherwise they are blinded",
+          "x": 123,
+          "y": 161
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "text": " and very weak and slow.",
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "name": " and very weak and slow.",
+          "x": 123,
+          "y": 170
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "<--",
+          "onClick": {
+            "name": "IngameWIKIShadeOpne"
+          },
+          "width": 40,
+          "height": 20,
+          "name": "<--",
+          "x": 6,
+          "y": 215
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "text": "-->",
+          "onClick": {
+            "name": "IngameWIKIUrgalOpne"
+          },
+          "width": 40,
+          "height": 20,
+          "name": "-->",
+          "x": 384,
+          "y": 215
+        }
+      }
+    ]
+  }
+}

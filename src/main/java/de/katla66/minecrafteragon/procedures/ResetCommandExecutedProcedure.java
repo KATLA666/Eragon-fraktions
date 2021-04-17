@@ -22,21 +22,13 @@ public class ResetCommandExecutedProcedure extends MinecraftEragonFraktionsModEl
 			return;
 		}
 		Entity entity = (Entity) dependencies.get("entity");
-		entity.getPersistentData().putDouble("clicked", 0);
-		entity.getPersistentData().putDouble("varden", 0);
-		entity.getPersistentData().putDouble("elfen", 0);
-		entity.getPersistentData().putDouble("zwergen", 0);
-		entity.getPersistentData().putDouble("surda", 0);
-		entity.getPersistentData().putDouble("empire_soldier", 0);
-		entity.getPersistentData().putDouble("shade", 0);
-		entity.getPersistentData().putDouble("ra'zac", 0);
-		entity.getPersistentData().putDouble("urgal", 0);
-		entity.getPersistentData().putDouble("clock", 0);
-		entity.getPersistentData().putDouble("clockready", 0);
-		entity.getPersistentData().putDouble("clockreadystrong", 0);
-		entity.getPersistentData().putBoolean("rage", (false));
 		if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
-			((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7creseted!"), (false));
+			((PlayerEntity) entity)
+					.sendStatusMessage(new StringTextComponent((((("Clock: ") + ""
+							+ ((((entity.getPersistentData().getDouble("clock"))) + ""
+									+ (((" Clockready: ") + "" + ((((entity.getPersistentData().getDouble("clockready"))) + ""
+											+ (((" clockreadystrong ") + "" + ((entity.getPersistentData().getDouble("clockreadystrong")))))))))))))
+							+ "" + (null))), (false));
 		}
 	}
 }
