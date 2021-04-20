@@ -79,7 +79,7 @@ public class EmpireSoldierEntity extends MinecraftEragonFraktionsModElements.Mod
 				BipedRenderer customRender = new BipedRenderer(renderManager, new BipedModel(0), 0.5f) {
 					@Override
 					public ResourceLocation getEntityTexture(Entity entity) {
-						return new ResourceLocation("minecraft_eragon_fraktions:textures/axe.png");
+						return new ResourceLocation("minecraft_eragon_fraktions:textures/steve.png");
 					}
 				};
 				customRender.addLayer(new BipedArmorLayer(customRender, new BipedModel(0.5f), new BipedModel(1)));
@@ -89,11 +89,12 @@ public class EmpireSoldierEntity extends MinecraftEragonFraktionsModElements.Mod
 	}
 	private void setupAttributes() {
 		AttributeModifierMap.MutableAttribute ammma = MobEntity.func_233666_p_();
-		ammma = ammma.createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3);
+		ammma = ammma.createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.125);
 		ammma = ammma.createMutableAttribute(Attributes.MAX_HEALTH, 20);
 		ammma = ammma.createMutableAttribute(Attributes.ARMOR, 0);
 		ammma = ammma.createMutableAttribute(Attributes.ATTACK_DAMAGE, 0);
 		ammma = ammma.createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 0.1);
+		ammma = ammma.createMutableAttribute(Attributes.ATTACK_SPEED, 4);
 		GlobalEntityTypeAttributes.put(entity, ammma.create());
 	}
 	public static class CustomEntity extends WolfEntity {
@@ -123,7 +124,7 @@ public class EmpireSoldierEntity extends MinecraftEragonFraktionsModElements.Mod
 		@Override
 		protected void registerGoals() {
 			super.registerGoals();
-			this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2, true));
+			this.goalSelector.addGoal(12, new MeleeAttackGoal(this, 1.0D, true));
 			this.targetSelector.addGoal(4, new HurtByTargetGoal(this).setCallsForHelp(this.getClass()));
 			this.goalSelector.addGoal(1, new RandomWalkingGoal(this, 1));
 			this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
@@ -133,6 +134,8 @@ public class EmpireSoldierEntity extends MinecraftEragonFraktionsModElements.Mod
 			this.goalSelector.addGoal(3, new SwimGoal(this));
 			this.goalSelector.addGoal(1, new LookRandomlyGoal(this));
 			this.goalSelector.addGoal(11, new OpenDoorGoal(this, true));
+			this.goalSelector.addGoal(10, new LookAtGoal(this, PlayerEntity.class, 16.0F));
+			this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.5F));
 		}
 
 		@Override

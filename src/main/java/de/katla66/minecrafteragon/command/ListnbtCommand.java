@@ -35,7 +35,7 @@ public class ListnbtCommand extends MinecraftEragonFraktionsModElements.ModEleme
 	}
 
 	private LiteralArgumentBuilder<CommandSource> customCommand() {
-		return LiteralArgumentBuilder.<CommandSource>literal("listnbt").requires(s -> s.hasPermissionLevel(2))
+		return LiteralArgumentBuilder.<CommandSource>literal("timerset").requires(s -> s.hasPermissionLevel(4))
 				.then(Commands.argument("arguments", StringArgumentType.greedyString()).executes(this::execute)).executes(this::execute);
 	}
 

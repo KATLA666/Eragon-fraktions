@@ -2,8 +2,8 @@
   "_fv": 17,
   "_type": "command",
   "definition": {
-    "commandName": "listnbt",
-    "permissionLevel": "2",
+    "commandName": "timerset",
+    "permissionLevel": "4",
     "onCommandExecuted": {
       "name": "ListnbtCommandExecuted"
     }

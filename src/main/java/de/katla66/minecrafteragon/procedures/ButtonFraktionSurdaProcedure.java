@@ -23,7 +23,8 @@ public class ButtonFraktionSurdaProcedure extends MinecraftEragonFraktionsModEle
 			return;
 		}
 		Entity entity = (Entity) dependencies.get("entity");
-		if (((entity.getPersistentData().getDouble("clicked")) == 0)) {
+		if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+				.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).clicked) == 0)) {
 			{
 				double _setval = (double) 1;
 				entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
@@ -31,7 +32,13 @@ public class ButtonFraktionSurdaProcedure extends MinecraftEragonFraktionsModEle
 					capability.syncPlayerVariables(entity);
 				});
 			}
-			entity.getPersistentData().putDouble("clicked", 1);
+			{
+				double _setval = (double) 1;
+				entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+					capability.clicked = _setval;
+					capability.syncPlayerVariables(entity);
+				});
+			}
 			if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 				((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7aYou have joined the Surda faction"), (false));
 			}

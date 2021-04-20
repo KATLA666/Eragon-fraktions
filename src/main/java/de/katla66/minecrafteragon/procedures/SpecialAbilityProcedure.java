@@ -147,6 +147,8 @@ public class SpecialAbilityProcedure extends MinecraftEragonFraktionsModElements
 					$_dependencies.put("entity", entity);
 					SummonSoldierProcedure.executeProcedure($_dependencies);
 				}
+				entity.getPersistentData().putDouble("clock", 0);
+				entity.getPersistentData().putDouble("clockreadystrong", 0);
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(

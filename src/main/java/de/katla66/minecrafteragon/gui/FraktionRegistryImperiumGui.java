@@ -26,7 +26,7 @@ import java.util.function.Supplier;
 import java.util.Map;
 import java.util.HashMap;
 
-import de.katla66.minecrafteragon.procedures.OpenWIKIProcedure;
+import de.katla66.minecrafteragon.procedures.IngameWIKIEmpirSoldierOpenProcedure;
 import de.katla66.minecrafteragon.procedures.GUIResistanceProcedure;
 import de.katla66.minecrafteragon.procedures.ButtonfraktionEmpireSoldierProcedure;
 import de.katla66.minecrafteragon.procedures.ButtonFraktionrazacProcedure;
@@ -227,7 +227,7 @@ public class FraktionRegistryImperiumGui extends MinecraftEragonFraktionsModElem
 				$_dependencies.put("y", y);
 				$_dependencies.put("z", z);
 				$_dependencies.put("world", world);
-				OpenWIKIProcedure.executeProcedure($_dependencies);
+				IngameWIKIEmpirSoldierOpenProcedure.executeProcedure($_dependencies);
 			}
 		}
 	}

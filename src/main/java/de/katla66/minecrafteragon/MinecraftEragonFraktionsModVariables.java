@@ -80,6 +80,7 @@ public class MinecraftEragonFraktionsModVariables {
 			nbt.putDouble("posShadeOverworldY", instance.posShadeOverworldY);
 			nbt.putDouble("posShadeOverworldZ", instance.posShadeOverworldZ);
 			nbt.putString("posShadeDimesionID", instance.posShadeDimesionID);
+			nbt.putDouble("clicked", instance.clicked);
 			return nbt;
 		}
 
@@ -99,6 +100,7 @@ public class MinecraftEragonFraktionsModVariables {
 			instance.posShadeOverworldY = nbt.getDouble("posShadeOverworldY");
 			instance.posShadeOverworldZ = nbt.getDouble("posShadeOverworldZ");
 			instance.posShadeDimesionID = nbt.getString("posShadeDimesionID");
+			instance.clicked = nbt.getDouble("clicked");
 		}
 	}
 
@@ -116,6 +118,7 @@ public class MinecraftEragonFraktionsModVariables {
 		public double posShadeOverworldY = 0;
 		public double posShadeOverworldZ = 0;
 		public String posShadeDimesionID = "";
+		public double clicked = 0;
 		public void syncPlayerVariables(Entity entity) {
 			if (entity instanceof ServerPlayerEntity)
 				MinecraftEragonFraktionsMod.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) entity),
@@ -186,6 +189,7 @@ public class MinecraftEragonFraktionsModVariables {
 					variables.posShadeOverworldY = message.data.posShadeOverworldY;
 					variables.posShadeOverworldZ = message.data.posShadeOverworldZ;
 					variables.posShadeDimesionID = message.data.posShadeDimesionID;
+					variables.clicked = message.data.clicked;
 				}
 			});
 			context.setPacketHandled(true);

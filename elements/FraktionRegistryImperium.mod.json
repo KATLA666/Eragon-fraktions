@@ -121,7 +121,7 @@
         "data": {
           "text": "?",
           "onClick": {
-            "name": "OpenWIKI"
+            "name": "IngameWIKIEmpirSoldierOpen"
           },
           "width": 30,
           "height": 20,

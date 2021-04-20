@@ -22,10 +22,9 @@ public class ListnbtCommandExecutedProcedure extends MinecraftEragonFraktionsMod
 			return;
 		}
 		Entity entity = (Entity) dependencies.get("entity");
+		entity.getPersistentData().putDouble("clock", 5700);
 		if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
-			((PlayerEntity) entity).sendStatusMessage(new StringTextComponent((((entity.getPersistentData().getDouble("now"))) + "" + (null))),
-					(false));
+			((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("clock set to 5700"), (false));
 		}
-		entity.getPersistentData().putDouble("varden", 1);
 	}
 }
