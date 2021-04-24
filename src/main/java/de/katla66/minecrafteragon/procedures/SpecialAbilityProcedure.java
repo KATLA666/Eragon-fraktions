@@ -107,7 +107,7 @@ public class SpecialAbilityProcedure extends MinecraftEragonFraktionsModElements
 				if (entity instanceof LivingEntity) {
 					Entity _ent = entity;
 					if (!_ent.world.isRemote()) {
-						DwarfsThrowableAxeItem.shoot(_ent.world, (LivingEntity) entity, new Random(), (float) 5, (float) 10, (int) 1);
+						DwarfsThrowableAxeItem.shoot(_ent.world, (LivingEntity) entity, new Random(), (float) 5, (float) 3, (int) 1);
 					}
 				}
 				entity.getPersistentData().putDouble("clock", 0);
@@ -126,7 +126,7 @@ public class SpecialAbilityProcedure extends MinecraftEragonFraktionsModElements
 				if (entity instanceof LivingEntity) {
 					Entity _ent = entity;
 					if (!_ent.world.isRemote()) {
-						SpeerItem.shoot(_ent.world, (LivingEntity) entity, new Random(), (float) 5, (float) 10, (int) 1);
+						SpeerItem.shoot(_ent.world, (LivingEntity) entity, new Random(), (float) 5, (float) 3, (int) 1);
 					}
 				}
 				entity.getPersistentData().putDouble("clock", 0);

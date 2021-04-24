@@ -68,6 +68,19 @@ public class FraktionRaZacProcedure extends MinecraftEragonFraktionsModElements.
 				entity.getPersistentData().putDouble("nightvisionactive", 1);
 			}
 			if (((world.getWorldInfo().getDayTime()) <= 12000)) {
+				if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+						.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).razacBadomen) == (false))) {
+					{
+						boolean _setval = (boolean) (true);
+						entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+							capability.razacBadomen = _setval;
+							capability.syncPlayerVariables(entity);
+						});
+					}
+					if (entity instanceof LivingEntity) {
+						((LivingEntity) entity).removePotionEffect(Effects.BAD_OMEN);
+					}
+				}
 				if (((world.getLight(new BlockPos((int) x, (int) y, (int) z))) >= 6)) {
 					if ((!((entity instanceof PlayerEntity)
 							? ((PlayerEntity) entity).inventory.hasItemStack(((entity instanceof LivingEntity)
@@ -84,8 +97,18 @@ public class FraktionRaZacProcedure extends MinecraftEragonFraktionsModElements.
 					}
 				}
 			} else if (((world.getWorldInfo().getDayTime()) >= 12000)) {
-				if (entity instanceof LivingEntity)
-					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.BAD_OMEN, (int) 25, (int) 0, (false), (false)));
+				if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+						.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).razacBadomen) == (true))) {
+					if (entity instanceof LivingEntity)
+						((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.BAD_OMEN, (int) 12000, (int) 0, (false), (false)));
+					{
+						boolean _setval = (boolean) (false);
+						entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+							capability.razacBadomen = _setval;
+							capability.syncPlayerVariables(entity);
+						});
+					}
+				}
 				if (entity instanceof LivingEntity)
 					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.SPEED, (int) 25, (int) 0, (false), (false)));
 				if (entity instanceof LivingEntity)

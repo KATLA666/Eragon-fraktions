@@ -70,6 +70,13 @@ public class FraktionShadeProcedure extends MinecraftEragonFraktionsModElements.
 					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, (int) 2000, (int) 0, (false), (false)));
 				entity.getPersistentData().putDouble("nightvisionactive", 1);
 			}
+			if ((((world.getWorldInfo().getDayTime()) <= 12000) && (((world.getLight(new BlockPos((int) x, (int) y, (int) z))) > 10)
+					&& ((entity.getPersistentData().getDouble("nightvisionactive")) == 1)))) {
+				if (entity instanceof LivingEntity) {
+					((LivingEntity) entity).removePotionEffect(Effects.NIGHT_VISION);
+				}
+				entity.getPersistentData().putDouble("nightvisionactive", 0);
+			}
 			if (((((entity instanceof LivingEntity) ? ((LivingEntity) entity).getHealth() : -1) <= 4) && (((Entity) world
 					.getEntitiesWithinAABB(ArrowEntity.class,
 							new AxisAlignedBB(x - (3 / 2d), y - (3 / 2d), z - (3 / 2d), x + (3 / 2d), y + (3 / 2d), z + (3 / 2d)), null)
@@ -143,13 +150,6 @@ public class FraktionShadeProcedure extends MinecraftEragonFraktionsModElements.
 						}
 					}
 				}
-			}
-			if ((((world.getWorldInfo().getDayTime()) <= 12000) && (((world.getLight(new BlockPos((int) x, (int) y, (int) z))) > 10)
-					&& ((entity.getPersistentData().getDouble("nightvisionactive")) == 1)))) {
-				if (entity instanceof LivingEntity) {
-					((LivingEntity) entity).removePotionEffect(Effects.NIGHT_VISION);
-				}
-				entity.getPersistentData().putDouble("nightvisionactive", 0);
 			}
 		}
 	}

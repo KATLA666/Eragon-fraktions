@@ -17,7 +17,6 @@ import net.minecraft.entity.Entity;
 import java.util.Map;
 import java.util.HashMap;
 
-import de.katla66.minecrafteragon.potion.ElfischStrenghPotion;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsModVariables;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsModElements;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsMod;
@@ -86,8 +85,13 @@ public class FraktionElfenProcedure extends MinecraftEragonFraktionsModElements.
 					((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, (int) 2000, (int) 0, (false), (false)));
 				entity.getPersistentData().putDouble("nightvisionactive", 1);
 			}
-			if (entity instanceof LivingEntity)
-				((LivingEntity) entity).addPotionEffect(new EffectInstance(ElfischStrenghPotion.potion, (int) 1, (int) 0, (false), (false)));
+			if ((((world.getWorldInfo().getDayTime()) <= 12000) && (((world.getLight(new BlockPos((int) x, (int) y, (int) z))) > 10)
+					&& ((entity.getPersistentData().getDouble("nightvisionactive")) == 1)))) {
+				if (entity instanceof LivingEntity) {
+					((LivingEntity) entity).removePotionEffect(Effects.NIGHT_VISION);
+				}
+				entity.getPersistentData().putDouble("nightvisionactive", 0);
+			}
 			if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
 					.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).elvenenteredforest) == 0)) {
 				if (((world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(new BlockPos((int) x, (int) y, (int) z))) != null
@@ -931,13 +935,6 @@ public class FraktionElfenProcedure extends MinecraftEragonFraktionsModElements.
 						});
 					}
 				}
-			}
-			if ((((world.getWorldInfo().getDayTime()) <= 12000) && (((world.getLight(new BlockPos((int) x, (int) y, (int) z))) > 10)
-					&& ((entity.getPersistentData().getDouble("nightvisionactive")) == 1)))) {
-				if (entity instanceof LivingEntity) {
-					((LivingEntity) entity).removePotionEffect(Effects.NIGHT_VISION);
-				}
-				entity.getPersistentData().putDouble("nightvisionactive", 0);
 			}
 		}
 	}
