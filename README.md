@@ -5,5 +5,4 @@ This mod was created with the help of Mcreator (https://mcreator.net/) and Intel
 
 Made for the MC mod Project "Eragon"
 Created by KATLA66,
-Textures by Armal412
- + KATLA66
+Textures by Armal412 + KATLA66
