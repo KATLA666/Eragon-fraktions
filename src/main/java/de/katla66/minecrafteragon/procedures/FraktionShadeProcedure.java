@@ -1,5 +1,6 @@
 package de.katla66.minecrafteragon.procedures;
 
+import net.minecraft.util.DamageSource;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -24,6 +25,8 @@ import java.util.Comparator;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsModVariables;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsModElements;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsMod;
+
+import javax.annotation.Nullable;
 
 @MinecraftEragonFraktionsModElements.ModElement.Tag
 public class FraktionShadeProcedure extends MinecraftEragonFraktionsModElements.ModElement {
@@ -173,3 +176,5 @@ public class FraktionShadeProcedure extends MinecraftEragonFraktionsModElements.
 		}
 	}
 }
+
+

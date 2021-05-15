@@ -52,6 +52,7 @@ public class FraktionEmpireSoldierProcedure extends MinecraftEragonFraktionsModE
 		double slownessLevel = 0;
 		double regenerationLevel = 0;
 		double absoprtionLevel = 0;
+		double speedStrong = 0;
 		if ((((itemstack).getItem() == new ItemStack(Items.POTION, (int) (1)).getItem())
 				|| (((itemstack).getItem() == new ItemStack(Items.SPLASH_POTION, (int) (1)).getItem())
 						|| ((itemstack).getItem() == new ItemStack(Items.LINGERING_POTION, (int) (1)).getItem())))) {
@@ -69,18 +70,16 @@ public class FraktionEmpireSoldierProcedure extends MinecraftEragonFraktionsModE
 						return false;
 					}
 				}.check(entity))) {
-					Speed = (double) (new Object() {
-						int check(Entity _entity) {
-							if (_entity instanceof LivingEntity) {
-								Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
-								for (EffectInstance effect : effects) {
-									if (effect.getPotion() == Effects.SPEED)
-										return effect.getDuration();
-								}
-							}
-							return 0;
-						}
-					}.check(entity));
+					if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("strong_swiftness"))) {
+						Speed = (double) 3600;
+						speedStrong = (double) 1;
+					} else if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("long_swiftness"))) {
+						Speed = (double) 9600;
+						speedStrong = (double) 0;
+					} else if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("minecraft:swiftness"))) {
+						Speed = (double) 1800;
+						speedStrong = (double) 0;
+					}
 					speedLevel = (double) (new Object() {
 						int check(Entity _entity) {
 							if (_entity instanceof LivingEntity) {
@@ -94,8 +93,8 @@ public class FraktionEmpireSoldierProcedure extends MinecraftEragonFraktionsModE
 						}
 					}.check(entity));
 					if (entity instanceof LivingEntity)
-						((LivingEntity) entity)
-								.addPotionEffect(new EffectInstance(Effects.SPEED, (int) (Speed), (int) ((speedLevel) + 1), (false), (false)));
+						((LivingEntity) entity).addPotionEffect(
+								new EffectInstance(Effects.SPEED, (int) (Speed), (int) (((speedLevel) + 1) + (speedStrong)), (true), (true)));
 				} else if ((new Object() {
 					boolean check(Entity _entity) {
 						if (_entity instanceof LivingEntity) {
@@ -125,7 +124,7 @@ public class FraktionEmpireSoldierProcedure extends MinecraftEragonFraktionsModE
 							if (_entity instanceof LivingEntity) {
 								Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
 								for (EffectInstance effect : effects) {
-									if (effect.getPotion() == Effects.SPEED)
+									if (effect.getPotion() == Effects.HASTE)
 										return effect.getAmplifier();
 								}
 							}
@@ -164,7 +163,7 @@ public class FraktionEmpireSoldierProcedure extends MinecraftEragonFraktionsModE
 							if (_entity instanceof LivingEntity) {
 								Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
 								for (EffectInstance effect : effects) {
-									if (effect.getPotion() == Effects.SPEED)
+									if (effect.getPotion() == Effects.POISON)
 										return effect.getAmplifier();
 								}
 							}
@@ -204,7 +203,7 @@ public class FraktionEmpireSoldierProcedure extends MinecraftEragonFraktionsModE
 							if (_entity instanceof LivingEntity) {
 								Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
 								for (EffectInstance effect : effects) {
-									if (effect.getPotion() == Effects.SPEED)
+									if (effect.getPotion() == Effects.SLOWNESS)
 										return effect.getAmplifier();
 								}
 							}
@@ -244,7 +243,7 @@ public class FraktionEmpireSoldierProcedure extends MinecraftEragonFraktionsModE
 							if (_entity instanceof LivingEntity) {
 								Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
 								for (EffectInstance effect : effects) {
-									if (effect.getPotion() == Effects.SPEED)
+									if (effect.getPotion() == Effects.REGENERATION)
 										return effect.getAmplifier();
 								}
 							}
@@ -284,7 +283,7 @@ public class FraktionEmpireSoldierProcedure extends MinecraftEragonFraktionsModE
 							if (_entity instanceof LivingEntity) {
 								Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
 								for (EffectInstance effect : effects) {
-									if (effect.getPotion() == Effects.SPEED)
+									if (effect.getPotion() == Effects.ABSORPTION)
 										return effect.getAmplifier();
 								}
 							}

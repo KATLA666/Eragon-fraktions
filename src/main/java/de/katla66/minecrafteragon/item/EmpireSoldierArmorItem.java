@@ -8,6 +8,7 @@ import net.minecraftforge.api.distmarker.Dist;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.item.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item;
 import net.minecraft.item.IArmorMaterial;
@@ -64,7 +65,7 @@ public class EmpireSoldierArmorItem extends MinecraftEragonFraktionsModElements.
 
 			@Override
 			public Ingredient getRepairMaterial() {
-				return Ingredient.EMPTY;
+				return Ingredient.fromStacks(new ItemStack(Items.IRON_INGOT, (int) (1)));
 			}
 
 			@OnlyIn(Dist.CLIENT)
@@ -75,7 +76,7 @@ public class EmpireSoldierArmorItem extends MinecraftEragonFraktionsModElements.
 
 			@Override
 			public float getToughness() {
-				return 0f;
+				return 0.5f;
 			}
 
 			@Override
@@ -88,7 +89,7 @@ public class EmpireSoldierArmorItem extends MinecraftEragonFraktionsModElements.
 			@OnlyIn(Dist.CLIENT)
 			public BipedModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlotType slot, BipedModel defaultModel) {
 				BipedModel armorModel = new BipedModel(1);
-
+				armorModel.bipedHead = new ModelEmpireSoldierArmor().head;
 				armorModel.isSneak = living.isSneaking();
 				armorModel.isSitting = defaultModel.isSitting;
 				armorModel.isChild = living.isChild();
@@ -97,78 +98,154 @@ public class EmpireSoldierArmorItem extends MinecraftEragonFraktionsModElements.
 
 			@Override
 			public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-				return "minecraft_eragon_fraktions:textures/modelempiresoldierarmor.png";
+				return "minecraft_eragon_fraktions:textures/helmet.png";
 			}
 		}.setRegistryName("empire_soldier_armor_helmet"));
+		elements.items.add(() -> new ArmorItem(armormaterial, EquipmentSlotType.CHEST, new Item.Properties().group(EragonItemGroup.tab)) {
+			@Override
+			@OnlyIn(Dist.CLIENT)
+			public BipedModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlotType slot, BipedModel defaultModel) {
+				BipedModel armorModel = new BipedModel(1);
+				armorModel.bipedBody = new ModelEmpireSoldierArmor().chest;
+				armorModel.bipedLeftArm = new ModelEmpireSoldierArmor().leftarm;
+				armorModel.bipedRightArm = new ModelEmpireSoldierArmor().rightarm;
+				armorModel.isSneak = living.isSneaking();
+				armorModel.isSitting = defaultModel.isSitting;
+				armorModel.isChild = living.isChild();
+				return armorModel;
+			}
+
+			@Override
+			public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
+				return "minecraft_eragon_fraktions:textures/helmet.png";
+			}
+		}.setRegistryName("empire_soldier_armor_chestplate"));
+		elements.items.add(() -> new ArmorItem(armormaterial, EquipmentSlotType.LEGS, new Item.Properties().group(EragonItemGroup.tab)) {
+			@Override
+			@OnlyIn(Dist.CLIENT)
+			public BipedModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlotType slot, BipedModel defaultModel) {
+				BipedModel armorModel = new BipedModel(1);
+				armorModel.bipedLeftLeg = new ModelEmpireSoldierArmor().leftleg;
+				armorModel.bipedRightLeg = new ModelEmpireSoldierArmor().rightleg;
+				armorModel.isSneak = living.isSneaking();
+				armorModel.isSitting = defaultModel.isSitting;
+				armorModel.isChild = living.isChild();
+				return armorModel;
+			}
+
+			@Override
+			public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
+				return "minecraft_eragon_fraktions:textures/helmet.png";
+			}
+		}.setRegistryName("empire_soldier_armor_leggings"));
+		elements.items.add(() -> new ArmorItem(armormaterial, EquipmentSlotType.FEET, new Item.Properties().group(EragonItemGroup.tab)) {
+			@Override
+			@OnlyIn(Dist.CLIENT)
+			public BipedModel getArmorModel(LivingEntity living, ItemStack stack, EquipmentSlotType slot, BipedModel defaultModel) {
+				BipedModel armorModel = new BipedModel(1);
+				armorModel.bipedLeftLeg = new ModelEmpireSoldierArmor().leftboot;
+				armorModel.bipedRightLeg = new ModelEmpireSoldierArmor().rightboot;
+				armorModel.isSneak = living.isSneaking();
+				armorModel.isSitting = defaultModel.isSitting;
+				armorModel.isChild = living.isChild();
+				return armorModel;
+			}
+
+			@Override
+			public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
+				return "minecraft_eragon_fraktions:textures/helmet.png";
+			}
+		}.setRegistryName("empire_soldier_armor_boots"));
 	}
-// Made with Blockbench 3.8.4
-// Exported for Minecraft version 1.15 - 1.16
-// Paste this class into your mod and generate all required imports
-
-
-	public class ModelEmpireSoldierArmor extends BipedModel<LivingEntity> {
-		private final ModelRenderer field_178736_x;
-		private final ModelRenderer field_178723_h;
-		private final ModelRenderer field_178721_j;
-		private final ModelRenderer field_78116_c;
-		private final ModelRenderer field_78115_e;
-		private final ModelRenderer field_178724_i;
-		private final ModelRenderer field_178722_k;
+	// Made with Blockbench 3.8.4
+	// Exported for Minecraft version 1.15 - 1.16
+	// Paste this class into your mod and generate all required imports
+	public static class ModelEmpireSoldierArmor extends EntityModel<Entity> {
 		private final ModelRenderer head;
-
-		public ModelEmpireSoldierArmor(float modelSize) {
-			super(modelSize, 0.0F, 32, 16);
-			textureWidth = 32;
-			textureHeight = 16;
-
-			field_178736_x = new ModelRenderer(this);
-			field_178736_x.setRotationPoint(0.0F, 0.0F, 0.0F);
-
-
-			field_178723_h = new ModelRenderer(this);
-			field_178723_h.setRotationPoint(-5.0F, 2.0F, 0.0F);
-
-
-			field_178721_j = new ModelRenderer(this);
-			field_178721_j.setRotationPoint(-1.9F, 12.0F, 0.0F);
-
-
-			field_78116_c = new ModelRenderer(this);
-			field_78116_c.setRotationPoint(0.0F, 0.0F, 0.0F);
-
-
-			field_78115_e = new ModelRenderer(this);
-			field_78115_e.setRotationPoint(0.0F, 0.0F, 0.0F);
-
-
-			field_178724_i = new ModelRenderer(this);
-			field_178724_i.setRotationPoint(5.0F, 2.0F, 0.0F);
-
-
-			field_178722_k = new ModelRenderer(this);
-			field_178722_k.setRotationPoint(1.9F, 12.0F, 0.0F);
-
-
+		private final ModelRenderer cube_r1_r1;
+		private final ModelRenderer head_r1;
+		private final ModelRenderer rightarm;
+		private final ModelRenderer rightleg;
+		private final ModelRenderer chest;
+		private final ModelRenderer cube_r2;
+		private final ModelRenderer leftarm;
+		private final ModelRenderer leftleg;
+		private final ModelRenderer rightboot;
+		private final ModelRenderer leftboot;
+		public ModelEmpireSoldierArmor() {
+			textureWidth = 128;
+			textureHeight = 128;
 			head = new ModelRenderer(this);
-			head.setRotationPoint(0.0F, 24.0F, 0.0F);
+			head.setRotationPoint(0.0F, 0.0F, 0.0F);
 			head.setTextureOffset(0, 0).addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, 0.0F, false);
+			head.setTextureOffset(17, 20).addBox(-4.4F, -7.0F, -3.0F, 1.0F, 6.0F, 6.0F, 0.0F, false);
+			head.setTextureOffset(17, 20).addBox(3.3F, -7.0F, -3.0F, 1.0F, 6.0F, 6.0F, 0.0F, false);
+			head.setTextureOffset(18, 21).addBox(-4.6F, -6.0F, -2.5F, 1.0F, 4.0F, 5.0F, 0.0F, false);
+			head.setTextureOffset(17, 21).addBox(3.5F, -6.0F, -2.5F, 1.0F, 4.0F, 5.0F, 0.0F, false);
+			head.setTextureOffset(18, 22).addBox(-3.0F, -7.0F, 3.3F, 6.0F, 6.0F, 1.0F, 0.0F, false);
+			cube_r1_r1 = new ModelRenderer(this);
+			cube_r1_r1.setRotationPoint(-1.0F, -4.0F, 7.0F);
+			head.addChild(cube_r1_r1);
+			setRotationAngle(cube_r1_r1, 0.0F, 1.5708F, 0.0F);
+			cube_r1_r1.setTextureOffset(17, 22).addBox(2.5F, -2.0F, -1.5F, 1.0F, 4.0F, 5.0F, 0.0F, false);
+			head_r1 = new ModelRenderer(this);
+			head_r1.setRotationPoint(0.0F, -8.5F, -2.4F);
+			head.addChild(head_r1);
+			setRotationAngle(head_r1, 0.0F, 0.0F, 1.5708F);
+			head_r1.setTextureOffset(8, 0).addBox(-0.4F, -2.5F, -1.2F, 2.0F, 1.0F, 6.0F, 0.0F, false);
+			head_r1.setTextureOffset(8, 0).addBox(-0.4F, 1.5F, -1.2F, 2.0F, 1.0F, 6.0F, 0.0F, false);
+			head_r1.setTextureOffset(8, 0).addBox(0.1F, -1.5F, -0.8F, 2.0F, 1.0F, 5.0F, 0.0F, false);
+			head_r1.setTextureOffset(8, 0).addBox(0.1F, 0.5F, -0.8F, 2.0F, 1.0F, 5.0F, 0.0F, false);
+			head_r1.setTextureOffset(8, 0).addBox(-1.0F, -0.5F, -1.5F, 2.0F, 1.0F, 7.0F, 0.0F, false);
+			rightarm = new ModelRenderer(this);
+			rightarm.setRotationPoint(-5.0F, 2.0F, 0.0F);
+			rightarm.setTextureOffset(16, 16).addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, 0.0F, false);
+			rightarm.setTextureOffset(58, 17).addBox(-4.0F, -3.0F, -2.0F, 5.0F, 1.0F, 4.0F, 0.0F, false);
+			rightarm.setTextureOffset(62, 17).addBox(-2.0F, -3.4F, -1.0F, 3.0F, 1.0F, 2.0F, 0.0F, false);
+			rightleg = new ModelRenderer(this);
+			rightleg.setRotationPoint(-1.9F, 12.0F, 0.0F);
+			rightleg.setTextureOffset(17, 16).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, 0.0F, false);
+			chest = new ModelRenderer(this);
+			chest.setRotationPoint(0.0F, 0.0F, 0.0F);
+			chest.setTextureOffset(24, 48).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, 0.0F, false);
+			chest.setTextureOffset(50, 53).addBox(-3.0F, 1.0F, -2.3F, 6.0F, 10.0F, 1.0F, 0.0F, false);
+			cube_r2 = new ModelRenderer(this);
+			cube_r2.setRotationPoint(0.0F, 6.0F, 1.8F);
+			chest.addChild(cube_r2);
+			setRotationAngle(cube_r2, 0.0F, 3.1416F, 0.0F);
+			cube_r2.setTextureOffset(50, 53).addBox(-3.0F, -5.0F, -0.5F, 6.0F, 10.0F, 1.0F, 0.0F, false);
+			leftarm = new ModelRenderer(this);
+			leftarm.setRotationPoint(5.0F, 2.0F, 0.0F);
+			leftarm.setTextureOffset(18, 16).addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, 0.0F, false);
+			leftarm.setTextureOffset(58, 17).addBox(-1.0F, -3.0F, -2.0F, 5.0F, 1.0F, 4.0F, 0.0F, false);
+			leftarm.setTextureOffset(62, 17).addBox(-1.0F, -3.4F, -1.0F, 3.0F, 1.0F, 2.0F, 0.0F, false);
+			leftleg = new ModelRenderer(this);
+			leftleg.setRotationPoint(1.9F, 12.0F, 0.0F);
+			leftleg.setTextureOffset(24, 16).addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, 0.0F, false);
+			rightboot = new ModelRenderer(this);
+			rightboot.setRotationPoint(0.0F, 24.0F, 0.0F);
+			rightboot.setTextureOffset(21, 66).addBox(-2.0F, 8.0F, -2.0F, 4.0F, 4.0F, 4.0F, 0.0F, false);
+			leftboot = new ModelRenderer(this);
+			leftboot.setRotationPoint(0.0F, 24.0F, 0.0F);
+			leftboot.setTextureOffset(0, 65).addBox(-2.0F, 8.0F, -2.0F, 4.0F, 4.0F, 4.0F, 0.0F, false);
 		}
-		//public void setRotationAngles(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
-			//previously the render function, render code was moved to a method below
-		//}
-
-
 
 		@Override
-		public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
-			field_178736_x.render(matrixStack, buffer, packedLight, packedOverlay);
-			field_178723_h.render(matrixStack, buffer, packedLight, packedOverlay);
-			field_178721_j.render(matrixStack, buffer, packedLight, packedOverlay);
-			field_78116_c.render(matrixStack, buffer, packedLight, packedOverlay);
-			field_78115_e.render(matrixStack, buffer, packedLight, packedOverlay);
-			field_178724_i.render(matrixStack, buffer, packedLight, packedOverlay);
-			field_178722_k.render(matrixStack, buffer, packedLight, packedOverlay);
+		public void setRotationAngles(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+			// previously the render function, render code was moved to a method below
+		}
+
+		@Override
+		public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue,
+				float alpha) {
 			head.render(matrixStack, buffer, packedLight, packedOverlay);
+			rightarm.render(matrixStack, buffer, packedLight, packedOverlay);
+			rightleg.render(matrixStack, buffer, packedLight, packedOverlay);
+			chest.render(matrixStack, buffer, packedLight, packedOverlay);
+			leftarm.render(matrixStack, buffer, packedLight, packedOverlay);
+			leftleg.render(matrixStack, buffer, packedLight, packedOverlay);
+			rightboot.render(matrixStack, buffer, packedLight, packedOverlay);
+			leftboot.render(matrixStack, buffer, packedLight, packedOverlay);
 		}
 
 		public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {

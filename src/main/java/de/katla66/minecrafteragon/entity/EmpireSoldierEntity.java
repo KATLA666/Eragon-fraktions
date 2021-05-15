@@ -48,6 +48,7 @@ import java.util.HashMap;
 import de.katla66.minecrafteragon.procedures.EmpireSoldierRightClickedOnEntityProcedure;
 import de.katla66.minecrafteragon.itemgroup.EragonItemGroup;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsModElements;
+import de.katla66.minecrafteragon.item.EmpireSoldierArmorItem;
 
 @MinecraftEragonFraktionsModElements.ModElement.Tag
 public class EmpireSoldierEntity extends MinecraftEragonFraktionsModElements.ModElement {
@@ -79,7 +80,7 @@ public class EmpireSoldierEntity extends MinecraftEragonFraktionsModElements.Mod
 				BipedRenderer customRender = new BipedRenderer(renderManager, new BipedModel(0), 0.5f) {
 					@Override
 					public ResourceLocation getEntityTexture(Entity entity) {
-						return new ResourceLocation("minecraft_eragon_fraktions:textures/steve.png");
+						return new ResourceLocation("minecraft_eragon_fraktions:textures/zombie.png");
 					}
 				};
 				customRender.addLayer(new BipedArmorLayer(customRender, new BipedModel(0.5f), new BipedModel(1)));
@@ -89,7 +90,7 @@ public class EmpireSoldierEntity extends MinecraftEragonFraktionsModElements.Mod
 	}
 	private void setupAttributes() {
 		AttributeModifierMap.MutableAttribute ammma = MobEntity.func_233666_p_();
-		ammma = ammma.createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.125);
+		ammma = ammma.createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3);
 		ammma = ammma.createMutableAttribute(Attributes.MAX_HEALTH, 20);
 		ammma = ammma.createMutableAttribute(Attributes.ARMOR, 0);
 		ammma = ammma.createMutableAttribute(Attributes.ATTACK_DAMAGE, 0);
@@ -110,10 +111,14 @@ public class EmpireSoldierEntity extends MinecraftEragonFraktionsModElements.Mod
 			setCustomNameVisible(true);
 			enablePersistence();
 			this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.IRON_SWORD, (int) (1)));
-			this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(Items.IRON_HELMET, (int) (1)));
-			this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(Items.CHAINMAIL_CHESTPLATE, (int) (1)));
-			this.setItemStackToSlot(EquipmentSlotType.LEGS, new ItemStack(Items.LEATHER_LEGGINGS, (int) (1)));
-			this.setItemStackToSlot(EquipmentSlotType.FEET, new ItemStack(Items.IRON_BOOTS, (int) (1)));
+			this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(EmpireSoldierArmorItem.helmet, (int) (1)));
+			this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(EmpireSoldierArmorItem.body, (int) (1)));
+			this.setItemStackToSlot(EquipmentSlotType.LEGS, new ItemStack(EmpireSoldierArmorItem.legs, (int) (1)));
+			this.setItemStackToSlot(EquipmentSlotType.FEET, new ItemStack(EmpireSoldierArmorItem.boots, (int) (1)));
+			this.setDropChance(EquipmentSlotType.HEAD, 0.3F);
+			this.setDropChance(EquipmentSlotType.CHEST, 0.15F);
+			this.setDropChance(EquipmentSlotType.LEGS, 0.20F);
+			this.setDropChance(EquipmentSlotType.FEET, 0.25F);
 		}
 
 		@Override
@@ -124,18 +129,21 @@ public class EmpireSoldierEntity extends MinecraftEragonFraktionsModElements.Mod
 		@Override
 		protected void registerGoals() {
 			super.registerGoals();
-			this.goalSelector.addGoal(12, new MeleeAttackGoal(this, 1.0D, true));
-			this.targetSelector.addGoal(4, new HurtByTargetGoal(this).setCallsForHelp(this.getClass()));
-			this.goalSelector.addGoal(1, new RandomWalkingGoal(this, 1));
-			this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
+			//this.goalSelector.addGoal(10, new MeleeAttackGoal(this, 1.0D, true));
+			//this.targetSelector.addGoal(4, new HurtByTargetGoal(this).setCallsForHelp(this.getClass()));
+			this.goalSelector.addGoal(1, new RandomWalkingGoal(this, 0.3D));
+			//this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
 			this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, ZombieEntity.class, true, false));
 			this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, MonsterEntity.class, true, false));
-			this.goalSelector.addGoal(10, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
-			this.goalSelector.addGoal(3, new SwimGoal(this));
-			this.goalSelector.addGoal(1, new LookRandomlyGoal(this));
-			this.goalSelector.addGoal(11, new OpenDoorGoal(this, true));
-			this.goalSelector.addGoal(10, new LookAtGoal(this, PlayerEntity.class, 16.0F));
-			this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.5F));
+			//this.goalSelector.addGoal(8, new FollowOwnerGoal(this, 0.3D, 10.0F, 2.0F, false));
+			//this.goalSelector.addGoal(3, new SwimGoal(this));
+			//this.goalSelector.addGoal(1, new LookRandomlyGoal(this));
+			this.goalSelector.addGoal(10, new OpenDoorGoal(this, true));
+			//this.goalSelector.addGoal(10, new LookAtGoal(this, PlayerEntity.class, 16.0F));
+			//this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.5F));
+			//this.goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 0.9D, 32.0F));
+			//this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
+			//this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
 		}
 
 		@Override

@@ -1328,9 +1328,9 @@
       "registry_name": "empire_soldier_armor",
       "metadata": {
         "eh": true,
-        "el": false,
-        "eb": false,
-        "ec": false
+        "el": true,
+        "eb": true,
+        "ec": true
       }
     }
   ],
@@ -1535,7 +1535,7 @@
   "workspaceSettings": {
     "modid": "minecraft_eragon_fraktions",
     "modName": "Minecraft Eragon fraktions",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "author": "KATLA66",
     "websiteURL": "https://mcreator.net",
     "license": "Not specified",
