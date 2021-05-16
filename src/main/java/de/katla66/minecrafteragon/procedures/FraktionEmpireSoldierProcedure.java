@@ -5,6 +5,7 @@ import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.common.MinecraftForge;
 
 import net.minecraft.world.World;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.Effects;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.item.Items;
@@ -40,47 +41,32 @@ public class FraktionEmpireSoldierProcedure extends MinecraftEragonFraktionsModE
 		}
 		Entity entity = (Entity) dependencies.get("entity");
 		ItemStack itemstack = (ItemStack) dependencies.get("itemstack");
-		double Speed = 0;
-		double haste = 0;
-		double poisinus = 0;
-		double slowness = 0;
-		double regenaration = 0;
-		double absorbtion = 0;
+		double Potion = 0;
+		double PotionLevel = 0;
+		double PotionStrong = 0;
 		double speedLevel = 0;
-		double hasteLevel = 0;
-		double poisinusLevel = 0;
-		double slownessLevel = 0;
-		double regenerationLevel = 0;
-		double absoprtionLevel = 0;
+		double Speed = 0;
 		double speedStrong = 0;
+		double TutleMasterLevel = 0;
+		double turtleMasterStrong = 0;
+		double turtleMaster = 0;
 		if ((((itemstack).getItem() == new ItemStack(Items.POTION, (int) (1)).getItem())
 				|| (((itemstack).getItem() == new ItemStack(Items.SPLASH_POTION, (int) (1)).getItem())
 						|| ((itemstack).getItem() == new ItemStack(Items.LINGERING_POTION, (int) (1)).getItem())))) {
 			if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
 					.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).empireSoldier) == 1)) {
-				if ((new Object() {
-					boolean check(Entity _entity) {
-						if (_entity instanceof LivingEntity) {
-							Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
-							for (EffectInstance effect : effects) {
-								if (effect.getPotion() == Effects.SPEED)
-									return true;
-							}
-						}
-						return false;
-					}
-				}.check(entity))) {
-					if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("strong_swiftness"))) {
-						Speed = (double) 3600;
-						speedStrong = (double) 1;
-					} else if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("long_swiftness"))) {
-						Speed = (double) 9600;
-						speedStrong = (double) 0;
+				if ((((itemstack).getOrCreateTag().getString("Potion")).contains("swiftness"))) {
+					if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("minecraft:strong_swiftness"))) {
+						Potion = (double) 3600;
+						PotionStrong = (double) 1;
+					} else if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("minecraft:long_swiftness"))) {
+						Potion = (double) 9600;
+						PotionStrong = (double) 0;
 					} else if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("minecraft:swiftness"))) {
-						Speed = (double) 1800;
-						speedStrong = (double) 0;
+						Potion = (double) 1800;
+						PotionStrong = (double) 0;
 					}
-					speedLevel = (double) (new Object() {
+					PotionLevel = (double) (new Object() {
 						int check(Entity _entity) {
 							if (_entity instanceof LivingEntity) {
 								Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
@@ -92,73 +78,53 @@ public class FraktionEmpireSoldierProcedure extends MinecraftEragonFraktionsModE
 							return 0;
 						}
 					}.check(entity));
+					if (entity instanceof LivingEntity) {
+						((LivingEntity) entity).removePotionEffect(Effects.SPEED);
+					}
 					if (entity instanceof LivingEntity)
 						((LivingEntity) entity).addPotionEffect(
-								new EffectInstance(Effects.SPEED, (int) (Speed), (int) (((speedLevel) + 1) + (speedStrong)), (true), (true)));
-				} else if ((new Object() {
-					boolean check(Entity _entity) {
-						if (_entity instanceof LivingEntity) {
-							Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
-							for (EffectInstance effect : effects) {
-								if (effect.getPotion() == Effects.HASTE)
-									return true;
-							}
-						}
-						return false;
+								new EffectInstance(Effects.SPEED, (int) (Potion), (int) (((PotionLevel) + 1) + (PotionStrong)), (true), (true)));
+				} else if ((((itemstack).getOrCreateTag().getString("Potion")).contains("strength"))) {
+					if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("minecraft:strong_strength"))) {
+						Potion = (double) 400;
+						PotionStrong = (double) 1;
+					} else if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("minecraft:long_strength"))) {
+						Potion = (double) 800;
+						PotionStrong = (double) 1;
+					} else if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("minecraft:strength"))) {
+						Potion = (double) 400;
+						PotionStrong = (double) 1;
 					}
-				}.check(entity))) {
-					haste = (double) (new Object() {
+					PotionLevel = (double) (new Object() {
 						int check(Entity _entity) {
 							if (_entity instanceof LivingEntity) {
 								Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
 								for (EffectInstance effect : effects) {
-									if (effect.getPotion() == Effects.HASTE)
-										return effect.getDuration();
-								}
-							}
-							return 0;
-						}
-					}.check(entity));
-					hasteLevel = (double) (new Object() {
-						int check(Entity _entity) {
-							if (_entity instanceof LivingEntity) {
-								Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
-								for (EffectInstance effect : effects) {
-									if (effect.getPotion() == Effects.HASTE)
+									if (effect.getPotion() == Effects.STRENGTH)
 										return effect.getAmplifier();
 								}
 							}
 							return 0;
 						}
 					}.check(entity));
-					if (entity instanceof LivingEntity)
-						((LivingEntity) entity)
-								.addPotionEffect(new EffectInstance(Effects.HASTE, (int) (haste), (int) ((hasteLevel) + 1), (false), (false)));
-				} else if ((new Object() {
-					boolean check(Entity _entity) {
-						if (_entity instanceof LivingEntity) {
-							Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
-							for (EffectInstance effect : effects) {
-								if (effect.getPotion() == Effects.POISON)
-									return true;
-							}
-						}
-						return false;
+					if (entity instanceof LivingEntity) {
+						((LivingEntity) entity).removePotionEffect(Effects.STRENGTH);
 					}
-				}.check(entity))) {
-					poisinus = (double) (new Object() {
-						int check(Entity _entity) {
-							if (_entity instanceof LivingEntity) {
-								Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
-								for (EffectInstance effect : effects) {
-									if (effect.getPotion() == Effects.POISON)
-										return effect.getDuration();
-								}
-							}
-							return 0;
-						}
-					}.check(entity));
-					poisinusLevel = (double) (new Object() {
+					if (entity instanceof LivingEntity)
+						((LivingEntity) entity).addPotionEffect(
+								new EffectInstance(Effects.STRENGTH, (int) (Potion), (int) (((PotionLevel) + 1) + (PotionStrong)), (true), (true)));
+				} else if ((((itemstack).getOrCreateTag().getString("Potion")).contains("poison"))) {
+					if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("minecraft:strong_poison"))) {
+						Potion = (double) 3600;
+						PotionStrong = (double) 1;
+					} else if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("minecraft:long_poison"))) {
+						Potion = (double) 9600;
+						PotionStrong = (double) 0;
+					} else if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("minecraft:poison"))) {
+						Potion = (double) 1800;
+						PotionStrong = (double) 0;
+					}
+					PotionLevel = (double) (new Object() {
 						int check(Entity _entity) {
 							if (_entity instanceof LivingEntity) {
 								Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
@@ -170,35 +136,24 @@ public class FraktionEmpireSoldierProcedure extends MinecraftEragonFraktionsModE
 							return 0;
 						}
 					}.check(entity));
-					if (entity instanceof LivingEntity)
-						((LivingEntity) entity)
-								.addPotionEffect(new EffectInstance(Effects.POISON, (int) (poisinus), (int) ((poisinusLevel) + 1), (false), (false)));
-					entity.getPersistentData().putBoolean("activepotionpoisinus", (true));
-				} else if ((new Object() {
-					boolean check(Entity _entity) {
-						if (_entity instanceof LivingEntity) {
-							Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
-							for (EffectInstance effect : effects) {
-								if (effect.getPotion() == Effects.SLOWNESS)
-									return true;
-							}
-						}
-						return false;
+					if (entity instanceof LivingEntity) {
+						((LivingEntity) entity).removePotionEffect(Effects.POISON);
 					}
-				}.check(entity))) {
-					slowness = (double) (new Object() {
-						int check(Entity _entity) {
-							if (_entity instanceof LivingEntity) {
-								Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
-								for (EffectInstance effect : effects) {
-									if (effect.getPotion() == Effects.SLOWNESS)
-										return effect.getDuration();
-								}
-							}
-							return 0;
-						}
-					}.check(entity));
-					slownessLevel = (double) (new Object() {
+					if (entity instanceof LivingEntity)
+						((LivingEntity) entity).addPotionEffect(
+								new EffectInstance(Effects.POISON, (int) (Potion), (int) (((PotionLevel) + 1) + (PotionStrong)), (true), (true)));
+				} else if ((((itemstack).getOrCreateTag().getString("Potion")).contains("slowness"))) {
+					if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("minecraft:strong_slowness"))) {
+						Potion = (double) 3600;
+						PotionStrong = (double) 1;
+					} else if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("minecraft:long_slowness"))) {
+						Potion = (double) 9600;
+						PotionStrong = (double) 0;
+					} else if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("minecraft:slowness"))) {
+						Potion = (double) 1800;
+						PotionStrong = (double) 0;
+					}
+					PotionLevel = (double) (new Object() {
 						int check(Entity _entity) {
 							if (_entity instanceof LivingEntity) {
 								Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
@@ -210,35 +165,24 @@ public class FraktionEmpireSoldierProcedure extends MinecraftEragonFraktionsModE
 							return 0;
 						}
 					}.check(entity));
+					if (entity instanceof LivingEntity) {
+						((LivingEntity) entity).removePotionEffect(Effects.SLOWNESS);
+					}
 					if (entity instanceof LivingEntity)
 						((LivingEntity) entity).addPotionEffect(
-								new EffectInstance(Effects.SLOWNESS, (int) (slowness), (int) ((slownessLevel) + 1), (false), (false)));
-					entity.getPersistentData().putBoolean("activepotionslowness", (true));
-				} else if ((new Object() {
-					boolean check(Entity _entity) {
-						if (_entity instanceof LivingEntity) {
-							Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
-							for (EffectInstance effect : effects) {
-								if (effect.getPotion() == Effects.REGENERATION)
-									return true;
-							}
-						}
-						return false;
+								new EffectInstance(Effects.SLOWNESS, (int) (Potion), (int) (((PotionLevel) + 1) + (PotionStrong)), (true), (true)));
+				} else if ((((itemstack).getOrCreateTag().getString("Potion")).contains("regeneration"))) {
+					if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("minecraft:strong_regeneration"))) {
+						Potion = (double) 3600;
+						PotionStrong = (double) 1;
+					} else if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("minecraft:long_regeneration"))) {
+						Potion = (double) 9600;
+						PotionStrong = (double) 0;
+					} else if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("minecraft:regeneration"))) {
+						Potion = (double) 1800;
+						PotionStrong = (double) 0;
 					}
-				}.check(entity))) {
-					regenaration = (double) (new Object() {
-						int check(Entity _entity) {
-							if (_entity instanceof LivingEntity) {
-								Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
-								for (EffectInstance effect : effects) {
-									if (effect.getPotion() == Effects.REGENERATION)
-										return effect.getDuration();
-								}
-							}
-							return 0;
-						}
-					}.check(entity));
-					regenerationLevel = (double) (new Object() {
+					PotionLevel = (double) (new Object() {
 						int check(Entity _entity) {
 							if (_entity instanceof LivingEntity) {
 								Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
@@ -250,50 +194,52 @@ public class FraktionEmpireSoldierProcedure extends MinecraftEragonFraktionsModE
 							return 0;
 						}
 					}.check(entity));
+					if (entity instanceof LivingEntity) {
+						((LivingEntity) entity).removePotionEffect(Effects.REGENERATION);
+					}
 					if (entity instanceof LivingEntity)
-						((LivingEntity) entity).addPotionEffect(
-								new EffectInstance(Effects.REGENERATION, (int) (regenaration), (int) ((regenerationLevel) + 1), (false), (false)));
-					entity.getPersistentData().putBoolean("activepotionregenaration", (true));
+						((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.REGENERATION, (int) (Potion),
+								(int) (((PotionLevel) + 1) + (PotionStrong)), (true), (true)));
 				} else if ((new Object() {
 					boolean check(Entity _entity) {
 						if (_entity instanceof LivingEntity) {
 							Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
 							for (EffectInstance effect : effects) {
-								if (effect.getPotion() == Effects.ABSORPTION)
+								if (effect.getPotion() == Effects.JUMP_BOOST)
 									return true;
 							}
 						}
 						return false;
 					}
 				}.check(entity))) {
-					absorbtion = (double) (new Object() {
+					if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("minecraft:strong_leaping"))) {
+						Potion = (double) 3600;
+						PotionStrong = (double) 1;
+					} else if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("minecraft:long_leaping"))) {
+						Potion = (double) 9600;
+						PotionStrong = (double) 0;
+					} else if (((((itemstack).getOrCreateTag().getString("Potion"))).equals("minecraft:leaping"))) {
+						Potion = (double) 1800;
+						PotionStrong = (double) 0;
+					}
+					PotionLevel = (double) (new Object() {
 						int check(Entity _entity) {
 							if (_entity instanceof LivingEntity) {
 								Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
 								for (EffectInstance effect : effects) {
-									if (effect.getPotion() == Effects.ABSORPTION)
-										return effect.getDuration();
-								}
-							}
-							return 0;
-						}
-					}.check(entity));
-					absoprtionLevel = (double) (new Object() {
-						int check(Entity _entity) {
-							if (_entity instanceof LivingEntity) {
-								Collection<EffectInstance> effects = ((LivingEntity) _entity).getActivePotionEffects();
-								for (EffectInstance effect : effects) {
-									if (effect.getPotion() == Effects.ABSORPTION)
+									if (effect.getPotion() == Effects.JUMP_BOOST)
 										return effect.getAmplifier();
 								}
 							}
 							return 0;
 						}
 					}.check(entity));
+					if (entity instanceof LivingEntity) {
+						((LivingEntity) entity).removePotionEffect(Effects.JUMP_BOOST);
+					}
 					if (entity instanceof LivingEntity)
 						((LivingEntity) entity).addPotionEffect(
-								new EffectInstance(Effects.ABSORPTION, (int) (absorbtion), (int) ((absoprtionLevel) + 1), (false), (false)));
-					entity.getPersistentData().putBoolean("activepotionabsorption", (true));
+								new EffectInstance(Effects.JUMP_BOOST, (int) (Potion), (int) (((PotionLevel) + 1) + (PotionStrong)), (true), (true)));
 				}
 			}
 		}

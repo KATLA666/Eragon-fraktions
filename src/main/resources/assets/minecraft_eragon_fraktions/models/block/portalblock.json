@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "minecraft_eragon_fraktions:blocks/black",
+    "up": "minecraft_eragon_fraktions:blocks/black",
+    "north": "minecraft_eragon_fraktions:blocks/black",
+    "east": "minecraft_eragon_fraktions:blocks/black",
+    "south": "minecraft_eragon_fraktions:blocks/black",
+    "west": "minecraft_eragon_fraktions:blocks/black",
+    "particle": "minecraft_eragon_fraktions:blocks/black"
+  }
+}

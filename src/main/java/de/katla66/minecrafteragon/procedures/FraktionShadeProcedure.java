@@ -1,6 +1,5 @@
 package de.katla66.minecrafteragon.procedures;
 
-import net.minecraft.util.DamageSource;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -9,24 +8,18 @@ import net.minecraft.world.World;
 import net.minecraft.world.IWorld;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.potion.Effects;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.Entity;
 
-import java.util.function.Function;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Comparator;
 
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsModVariables;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsModElements;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsMod;
-
-import javax.annotation.Nullable;
 
 @MinecraftEragonFraktionsModElements.ModElement.Tag
 public class FraktionShadeProcedure extends MinecraftEragonFraktionsModElements.ModElement {
@@ -79,44 +72,6 @@ public class FraktionShadeProcedure extends MinecraftEragonFraktionsModElements.
 					((LivingEntity) entity).removePotionEffect(Effects.NIGHT_VISION);
 				}
 				entity.getPersistentData().putDouble("nightvisionactive", 0);
-			}
-			if (((((entity instanceof LivingEntity) ? ((LivingEntity) entity).getHealth() : -1) <= 4) && (((Entity) world
-					.getEntitiesWithinAABB(ArrowEntity.class,
-							new AxisAlignedBB(x - (3 / 2d), y - (3 / 2d), z - (3 / 2d), x + (3 / 2d), y + (3 / 2d), z + (3 / 2d)), null)
-					.stream().sorted(new Object() {
-						Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
-							return Comparator.comparing((Function<Entity, Double>) (_entcnd -> _entcnd.getDistanceSq(_x, _y, _z)));
-						}
-					}.compareDistOf(x, y, z)).findFirst().orElse(null)) != null))) {
-				{
-					double _setval = (double) x;
-					entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-						capability.posShadeOverworldX = _setval;
-						capability.syncPlayerVariables(entity);
-					});
-				}
-				{
-					double _setval = (double) y;
-					entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-						capability.posShadeOverworldY = _setval;
-						capability.syncPlayerVariables(entity);
-					});
-				}
-				{
-					double _setval = (double) z;
-					entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-						capability.posShadeOverworldZ = _setval;
-						capability.syncPlayerVariables(entity);
-					});
-				}
-				{
-					Entity _ent = entity;
-					if (!_ent.world.isRemote && _ent.world.getServer() != null) {
-						_ent.world.getServer().getCommandManager().handleCommand(
-								_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
-								"execute in minecraft_eragon_fraktions:regenerative_zone_schatten run tp @s ~ 60 ~");
-					}
-				}
 			}
 			if (((world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(new BlockPos((int) x, (int) y, (int) z))) != null
 					&& world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(new BlockPos((int) x, (int) y, (int) z)))
@@ -176,5 +131,3 @@ public class FraktionShadeProcedure extends MinecraftEragonFraktionsModElements.
 		}
 	}
 }
-
-

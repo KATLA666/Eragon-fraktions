@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "axis=z": {
+      "model": "minecraft_eragon_fraktions:block/regenerative_zone_schatten_portal_ew"
+    },
+    "axis=x": {
+      "model": "minecraft_eragon_fraktions:block/regenerative_zone_schatten_portal_ns"
+    }
+  }
+}

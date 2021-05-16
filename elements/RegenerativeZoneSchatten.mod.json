@@ -25,14 +25,17 @@
     "sleepResult": "DENY",
     "hasSkyLight": false,
     "imitateOverworldBehaviour": false,
+    "onPlayerEntersDimension": {
+      "name": "RegenerativeZoneSchattenPlayerEntersDimension"
+    },
     "onPlayerLeavesDimension": {
       "name": "RegenerativeZoneSchattenPlayerLeavesDimension"
     },
     "portalFrame": {
-      "value": ""
+      "value": "CUSTOM:Portalblock"
     },
     "portalParticles": {
-      "value": "EXPLOSION_NORMAL"
+      "value": "CRIT_MAGIC"
     },
     "portalLuminance": 0,
     "portalSound": {
@@ -40,10 +43,13 @@
     },
     "igniterName": "Regenerative Zone Schatten Portal Igniter",
     "igniterTab": {
-      "value": "TOOLS"
+      "value": "CUSTOM:Eragon"
     },
-    "texture": "",
-    "portalTexture": "",
-    "enablePortal": false
+    "texture": "testitem",
+    "portalTexture": "regenerationportalblock",
+    "enablePortal": true,
+    "portalMakeCondition": {
+      "name": "RegenerativeZoneSchattenCanMakePortal"
+    }
   }
 }

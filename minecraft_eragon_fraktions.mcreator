@@ -891,7 +891,7 @@
       "ids": {},
       "registry_name": "regenerative_zone_schatten",
       "metadata": {
-        "ep": false
+        "ep": true
       }
     },
     {
@@ -1332,6 +1332,151 @@
         "eb": true,
         "ec": true
       }
+    },
+    {
+      "name": "FraktionShadePfeilTrigger",
+      "type": "procedure",
+      "sortid": 71,
+      "compiles": true,
+      "locked_code": true,
+      "ids": {},
+      "registry_name": "fraktion_shade_pfeil_trigger",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "imediatesourceentity",
+            "type": "entity"
+          },
+          {
+            "name": "amount",
+            "type": "number"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RegenerativeZoneSchattenCanMakePortal",
+      "type": "procedure",
+      "sortid": 72,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "regenerative_zone_schatten_can_make_portal",
+      "metadata": {
+        "return_type": "LOGIC",
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Portalblock",
+      "type": "block",
+      "sortid": 73,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "portalblock"
+    },
+    {
+      "name": "RemovePortalblock",
+      "type": "procedure",
+      "sortid": 74,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "remove_portalblock",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DyingShade",
+      "type": "mob",
+      "sortid": 75,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "dying_shade"
+    },
+    {
+      "name": "Regtree1",
+      "type": "structure",
+      "sortid": 76,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "regtree_1",
+      "path": "~/structures"
+    },
+    {
+      "name": "Regtree2",
+      "type": "structure",
+      "sortid": 77,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "regtree_2",
+      "path": "~/structures"
+    },
+    {
+      "name": "Regtree3",
+      "type": "structure",
+      "sortid": 78,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "regtree_3",
+      "path": "~/structures"
+    },
+    {
+      "name": "RegenerativeZoneSchattenPlayerEntersDimension",
+      "type": "procedure",
+      "sortid": 79,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "regenerative_zone_schatten_player_enters_dimension",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
     }
   ],
   "variable_elements": [
@@ -1429,97 +1574,103 @@
   "sound_elements": [],
   "language_map": {
     "en_us": {
-      "key.minecraft_eragon_fraktions.specialability_key": "Specialability Key",
-      "item.minecraft.tipped_arrow.effect.lahmender_athem": "Arrow of Lähmender Athem",
-      "key.minecraft_eragon__personallib.specialability_key": "Specialability Key",
-      "item.minecraft_eragon__personallib.dwarfs_throwable_axe": "Dwarfs Throwable Axe",
       "item.minecraft.potion.effect.elfisch_strengh": "Elvish strength",
-      "item.minecraft_eragon_fraktions.empire_soldier_armor_helmet": "Empire Soldier Armor Helmet",
       "key.mcreator.button_fraktion": "Button Fraktion",
-      "biome.minecraft_eragon_fraktions.regeration_zone": "Regeration Zone",
       "item.minecraft.potion.effect.no_fall": "No Fall",
       "effect.elfisch_strengh": "Elvish strength",
       "effect.no_fall": "No Fall",
       "itemGroup.taberagon": "Eragon",
       "item.minecraft.splash_potion.effect.lahmender_athem": "Splash Lähmender Athem",
+      "item.minecraft_eragon_fraktions.empire_soldier_armor_leggings": "Empire Soldier Armor Leggings",
+      "item.minecraft.splash_potion.effect.no_fall": "Splash No Fall",
+      "item.minecraft_eragon__personallib.empire_soldier_spawn_egg": "Empire Soldier Spawn Egg",
+      "item.minecraft.lingering_potion.effect.last_man_standing": "Lingering Last Man Standing",
+      "item.minecraft_eragon_fraktions.regenerative_zone_schatten": "Regenerative Zone Schatten Portal Igniter",
+      "item.minecraft.potion.effect.lahmender_athem": "paralysing breath",
+      "item.minecraft.tipped_arrow.effect.elfisch_strengh": "Arrow of Elvish strength",
+      "item.minecraft.lingering_potion.effect.no_fall": "Lingering No Fall",
+      "item.minecraft.splash_potion.effect.last_man_standing": "Splash Last Man Standing",
+      "item.minecraft.lingering_potion.effect.lahmender_athem": "Lingering paralysing breath",
+      "item.minecraft_eragon__personallib.fireballshot": "Fireballshot",
+      "key.minecraft_eragon__personallib.button_fraktion": "Button Fraktion",
+      "key.mcreator.specialability_key": "Specialability Key",
+      "key.minecraft_eragon_fraktions.specialability_key": "Specialability Key",
+      "item.minecraft.tipped_arrow.effect.lahmender_athem": "Arrow of Lähmender Athem",
+      "item.minecraft_eragon__personallib.dwarfs_throwable_axe": "Dwarfs Throwable Axe",
+      "key.minecraft_eragon__personallib.specialability_key": "Specialability Key",
+      "item.minecraft_eragon_fraktions.empire_soldier_armor_helmet": "Empire Soldier Armor Helmet",
+      "biome.minecraft_eragon_fraktions.regeration_zone": "Regeration Zone",
+      "block.minecraft_eragon_fraktions.portalblock": "Portalblock",
       "key.minecraft_eragon_fraktions.special_abillity_shade_fireball": "Special Abillity Shade Fireball",
       "item.minecraft_eragon_fraktions.empire_soldier_armor_chestplate": "Empire Soldier Armor Body",
-      "item.minecraft_eragon_fraktions.empire_soldier_armor_leggings": "Empire Soldier Armor Leggings",
+      "item.minecraft_eragon_fraktions.dying_shade_spawn_egg": "Dying Shade Spawn Egg",
       "item.minecraft_eragon__personallib.speer": "Speer",
-      "item.minecraft.splash_potion.effect.no_fall": "Splash No Fall",
       "item.minecraft_eragon_fraktions.empire_soldier_armor_boots": "Empire Soldier Armor Boots",
       "item.minecraft_eragon_fraktions.ergaon_logo": "Ergaon Logo",
       "item.minecraft_eragon__personallib.ergaon_logo": "Ergaon Logo",
       "item.minecraft.tipped_arrow.effect.no_fall": "Arrow of No Fall",
-      "item.minecraft_eragon__personallib.empire_soldier_spawn_egg": "Empire Soldier Spawn Egg",
       "entity.minecraft_eragon_fraktions.empire_soldier": "Empire Soldier",
-      "item.minecraft.lingering_potion.effect.last_man_standing": "Lingering Last Man Standing",
-      "item.minecraft_eragon_fraktions.regenerative_zone_schatten": "Regenerative Zone Schatten Portal Igniter",
       "item.minecraft_eragon_fraktions.dwarfs_throwable_axe": "Dwarfs Throwable Axe",
       "item.minecraft_eragon_fraktions.empire_soldier_spawn_egg": "Empire Soldier Spawn Egg",
       "item.minecraft.splash_potion.effect.elfisch_strengh": "Splash Elvish strength",
       "effect.last_man_standing": "Last Man Standing",
       "item.minecraft.tipped_arrow.effect.last_man_standing": "Arrow of Last Man Standing",
-      "item.minecraft.potion.effect.lahmender_athem": "Lähmender Athem",
-      "item.minecraft.tipped_arrow.effect.elfisch_strengh": "Arrow of Elvish strength",
-      "effect.lahmender_athem": "Lahmender Athem",
-      "item.minecraft.lingering_potion.effect.no_fall": "Lingering No Fall",
+      "effect.lahmender_athem": "paralysing breath",
       "item.minecraft.lingering_potion.effect.elfisch_strengh": "Lingering Elvish strength",
-      "item.minecraft.splash_potion.effect.last_man_standing": "Splash Last Man Standing",
       "item.minecraft_eragon_fraktions.speer": "Speer",
-      "item.minecraft.lingering_potion.effect.lahmender_athem": "Lingering Lähmender Athem",
       "entity.minecraft_eragon__personallib.empire_soldier": "Empire Soldier",
-      "item.minecraft_eragon__personallib.fireballshot": "Fireballshot",
       "item.minecraft.potion.effect.last_man_standing": "Last Man Standing",
-      "key.minecraft_eragon__personallib.button_fraktion": "Button Fraktion",
-      "key.mcreator.specialability_key": "Specialability Key",
+      "entity.minecraft_eragon_fraktions.dying_shade": "Dying Shade",
       "key.minecraft_eragon_fraktions.button_fraktion": "Button Fraktion"
     },
     "de_de": {
-      "key.minecraft_eragon_fraktions.specialability_key": "Specialability Key",
-      "item.minecraft.tipped_arrow.effect.lahmender_athem": "Arrow of Lähmender Athem",
-      "key.minecraft_eragon__personallib.specialability_key": "Specialability Key",
-      "item.minecraft_eragon__personallib.dwarfs_throwable_axe": "Dwarfs Throwable Axe",
       "item.minecraft.potion.effect.elfisch_strengh": "Elvish strength",
-      "item.minecraft_eragon_fraktions.empire_soldier_armor_helmet": "Empire Soldier Armor Helmet",
       "key.mcreator.button_fraktion": "Button Fraktion",
-      "biome.minecraft_eragon_fraktions.regeration_zone": "Regeration Zone",
       "item.minecraft.potion.effect.no_fall": "No Fall",
       "effect.elfisch_strengh": "Elvish strength",
       "effect.no_fall": "No Fall",
       "itemGroup.taberagon": "Eragon",
       "item.minecraft.splash_potion.effect.lahmender_athem": "Splash Lähmender Athem",
+      "item.minecraft_eragon_fraktions.empire_soldier_armor_leggings": "Empire Soldier Armor Leggings",
+      "item.minecraft.splash_potion.effect.no_fall": "Splash No Fall",
+      "item.minecraft_eragon__personallib.empire_soldier_spawn_egg": "Empire Soldier Spawn Egg",
+      "item.minecraft.lingering_potion.effect.last_man_standing": "Lingering Last Man Standing",
+      "item.minecraft_eragon_fraktions.regenerative_zone_schatten": "Regenerative Zone Shade Portal Igniter",
+      "item.minecraft.potion.effect.lahmender_athem": "paralysing breath",
+      "item.minecraft.tipped_arrow.effect.elfisch_strengh": "Arrow of Elvish strength",
+      "item.minecraft.lingering_potion.effect.no_fall": "Lingering No Fall",
+      "item.minecraft.splash_potion.effect.last_man_standing": "Splash Last Man Standing",
+      "item.minecraft.lingering_potion.effect.lahmender_athem": "Lingering paralysing breath",
+      "item.minecraft_eragon__personallib.fireballshot": "Fireballshot",
+      "key.minecraft_eragon__personallib.button_fraktion": "Button Fraktion",
+      "key.mcreator.specialability_key": "Specialability Key",
+      "key.minecraft_eragon_fraktions.specialability_key": "Specialability Key",
+      "item.minecraft.tipped_arrow.effect.lahmender_athem": "Arrow of Lähmender Athem",
+      "item.minecraft_eragon__personallib.dwarfs_throwable_axe": "Dwarfs Throwable Axe",
+      "key.minecraft_eragon__personallib.specialability_key": "Specialability Key",
+      "item.minecraft_eragon_fraktions.empire_soldier_armor_helmet": "Empire Soldier Armor Helmet",
+      "biome.minecraft_eragon_fraktions.regeration_zone": "Regeration Zone",
+      "block.minecraft_eragon_fraktions.portalblock": "Portalblock",
       "key.minecraft_eragon_fraktions.special_abillity_shade_fireball": "Special Abillity Shade Fireball",
       "item.minecraft_eragon_fraktions.empire_soldier_armor_chestplate": "Empire Soldier Armor Body",
-      "item.minecraft_eragon_fraktions.empire_soldier_armor_leggings": "Empire Soldier Armor Leggings",
+      "item.minecraft_eragon_fraktions.dying_shade_spawn_egg": "Dying Shade Spawn Egg",
       "item.minecraft_eragon__personallib.speer": "Speer",
-      "item.minecraft.splash_potion.effect.no_fall": "Splash No Fall",
       "item.minecraft_eragon_fraktions.empire_soldier_armor_boots": "Empire Soldier Armor Boots",
       "item.minecraft_eragon_fraktions.ergaon_logo": "Ergaon Logo",
       "item.minecraft_eragon__personallib.ergaon_logo": "Ergaon Logo",
       "item.minecraft.tipped_arrow.effect.no_fall": "Arrow of No Fall",
-      "item.minecraft_eragon__personallib.empire_soldier_spawn_egg": "Empire Soldier Spawn Egg",
       "entity.minecraft_eragon_fraktions.empire_soldier": "Empire Soldier",
-      "item.minecraft.lingering_potion.effect.last_man_standing": "Lingering Last Man Standing",
-      "item.minecraft_eragon_fraktions.regenerative_zone_schatten": "Regenerative Zone Schatten Portal Igniter",
       "item.minecraft_eragon_fraktions.dwarfs_throwable_axe": "Dwarfs Throwable Axe",
       "item.minecraft_eragon_fraktions.empire_soldier_spawn_egg": "Empire Soldier Spawn Egg",
       "item.minecraft.splash_potion.effect.elfisch_strengh": "Splash Elvish strength",
       "effect.last_man_standing": "Last Man Standing",
       "item.minecraft.tipped_arrow.effect.last_man_standing": "Arrow of Last Man Standing",
-      "item.minecraft.potion.effect.lahmender_athem": "Lähmender Athem",
-      "item.minecraft.tipped_arrow.effect.elfisch_strengh": "Arrow of Elvish strength",
-      "effect.lahmender_athem": "Lahmender Athem",
-      "item.minecraft.lingering_potion.effect.no_fall": "Lingering No Fall",
+      "effect.lahmender_athem": "paralysing breath",
       "item.minecraft.lingering_potion.effect.elfisch_strengh": "Lingering Elvish strength",
-      "item.minecraft.splash_potion.effect.last_man_standing": "Splash Last Man Standing",
       "item.minecraft_eragon_fraktions.speer": "Speer",
-      "item.minecraft.lingering_potion.effect.lahmender_athem": "Lingering Lähmender Athem",
       "entity.minecraft_eragon__personallib.empire_soldier": "Empire Soldier",
-      "item.minecraft_eragon__personallib.fireballshot": "Fireballshot",
       "item.minecraft.potion.effect.last_man_standing": "Last Man Standing",
-      "key.minecraft_eragon__personallib.button_fraktion": "Button Fraktion",
-      "key.mcreator.specialability_key": "Specialability Key",
+      "entity.minecraft_eragon_fraktions.dying_shade": "Dying Shade",
       "key.minecraft_eragon_fraktions.button_fraktion": "Button Fraktion"
     }
   },
@@ -1528,6 +1679,10 @@
     "children": [
       {
         "name": "IngameWiki",
+        "children": []
+      },
+      {
+        "name": "structures",
         "children": []
       }
     ]
