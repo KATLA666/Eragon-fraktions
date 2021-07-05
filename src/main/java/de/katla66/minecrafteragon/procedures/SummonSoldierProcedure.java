@@ -20,12 +20,24 @@ public class SummonSoldierProcedure extends MinecraftEragonFraktionsModElements.
 			return;
 		}
 		Entity entity = (Entity) dependencies.get("entity");
-		{
-			Entity _ent = entity;
-			if (!_ent.world.isRemote && _ent.world.getServer() != null) {
-				_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
-						(("summon minecraft_eragon_fraktions:empire_soldier ~ ~ ~ {Tags:[\"") + "" + ((((entity.getDisplayName().getString())) + ""
-								+ ((("\"],Owner:") + "" + ((((entity.getDisplayName().getString())) + "" + ("}")))))))));
+		if ((Math.random() < 0.5)) {
+			{
+				Entity _ent = entity;
+				if (!_ent.world.isRemote && _ent.world.getServer() != null) {
+					_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
+							(("summon minecraft_eragon_fraktions:empire_soldier ~ ~ ~ {Tags:[\"") + "" + ((((entity.getDisplayName().getString()))
+									+ "" + ((("\"],Owner:") + "" + ((((entity.getDisplayName().getString())) + "" + ("}")))))))));
+				}
+			}
+		} else {
+			{
+				Entity _ent = entity;
+				if (!_ent.world.isRemote && _ent.world.getServer() != null) {
+					_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
+							(("summon minecraft_eragon_fraktions:empire_soldier_with_speer ~ ~ ~ {Tags:[\"") + ""
+									+ ((((entity.getDisplayName().getString())) + ""
+											+ ((("\"],Owner:") + "" + ((((entity.getDisplayName().getString())) + "" + ("}")))))))));
+				}
 			}
 		}
 	}

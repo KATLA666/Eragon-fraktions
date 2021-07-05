@@ -848,32 +848,6 @@
       "registry_name": "lahmender_athem"
     },
     {
-      "name": "SpecialAbillityShadeFireballOnKeyPressed",
-      "type": "procedure",
-      "sortid": 49,
-      "compiles": true,
-      "locked_code": false,
-      "ids": {},
-      "registry_name": "special_abillity_shade_fireball_on_key_pressed",
-      "metadata": {
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
-        ]
-      }
-    },
-    {
-      "name": "SpecialAbillityShadeFireball",
-      "type": "keybind",
-      "sortid": 49,
-      "compiles": true,
-      "locked_code": false,
-      "ids": {},
-      "registry_name": "special_abillity_shade_fireball"
-    },
-    {
       "name": "RegerationZone",
       "type": "biome",
       "sortid": 50,
@@ -1477,6 +1451,225 @@
           }
         ]
       }
+    },
+    {
+      "name": "Herobrine",
+      "type": "mob",
+      "sortid": 80,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "herobrine",
+      "path": "~/Herobrine"
+    },
+    {
+      "name": "HerobrineSpawns",
+      "type": "procedure",
+      "sortid": 81,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "herobrine_spawns",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Herobrine"
+    },
+    {
+      "name": "Herobrinedies",
+      "type": "procedure",
+      "sortid": 82,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "herobrinedies",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Herobrine"
+    },
+    {
+      "name": "Resetdiehero",
+      "type": "command",
+      "sortid": 83,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "resetdiehero",
+      "path": "~/Herobrine"
+    },
+    {
+      "name": "Resetdieheroexe",
+      "type": "procedure",
+      "sortid": 84,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "resetdieheroexe",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Herobrine"
+    },
+    {
+      "name": "Config",
+      "type": "procedure",
+      "sortid": 85,
+      "compiles": true,
+      "locked_code": true,
+      "ids": {},
+      "registry_name": "config",
+      "metadata": {
+        "dependencies": []
+      },
+      "path": "~/setup"
+    },
+    {
+      "name": "ShieldEmpireSoldier",
+      "type": "item",
+      "sortid": 86,
+      "compiles": true,
+      "locked_code": true,
+      "ids": {},
+      "registry_name": "shield_empire_soldier"
+    },
+    {
+      "name": "DyingShadeOnInitialEntitySpawn",
+      "type": "procedure",
+      "sortid": 87,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "dying_shade_on_initial_entity_spawn",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EmpireSoldierDies",
+      "type": "procedure",
+      "sortid": 88,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "empire_soldier_dies",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PlayerDiesCEM",
+      "type": "procedure",
+      "sortid": 89,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "player_dies_cem",
+      "metadata": {
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EmpireSoldierWithSpeer",
+      "type": "mob",
+      "sortid": 91,
+      "compiles": true,
+      "locked_code": true,
+      "ids": {},
+      "registry_name": "empire_soldier_with_speer"
+    },
+    {
+      "name": "WarHammer",
+      "type": "tool",
+      "sortid": 92,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "war_hammer"
+    },
+    {
+      "name": "ShadeClothes",
+      "type": "block",
+      "sortid": 93,
+      "compiles": true,
+      "locked_code": false,
+      "ids": {},
+      "registry_name": "shade_clothes"
+    },
+    {
+      "name": "ConfigVersion",
+      "type": "procedure",
+      "sortid": 94,
+      "compiles": false,
+      "locked_code": true,
+      "ids": {},
+      "registry_name": "config_version",
+      "metadata": {
+        "dependencies": []
+      },
+      "path": "~/setup"
     }
   ],
   "variable_elements": [
@@ -1569,9 +1762,36 @@
       "type": "logic",
       "scope": "player_lifetime",
       "value": "true"
+    },
+    {
+      "name": "HerobrineDies",
+      "type": "number",
+      "scope": "world",
+      "value": "0"
+    },
+    {
+      "name": "setupconfig",
+      "type": "logic",
+      "scope": "map",
+      "value": "true"
+    },
+    {
+      "name": "CEM",
+      "type": "logic",
+      "scope": "player_persistent",
+      "value": "false"
     }
   ],
-  "sound_elements": [],
+  "sound_elements": [
+    {
+      "name": "shadedies",
+      "files": [
+        "shade_dies"
+      ],
+      "category": "master",
+      "subtitle": ""
+    }
+  ],
   "language_map": {
     "en_us": {
       "item.minecraft.potion.effect.elfisch_strengh": "Elvish strength",
@@ -1582,17 +1802,20 @@
       "itemGroup.taberagon": "Eragon",
       "item.minecraft.splash_potion.effect.lahmender_athem": "Splash Lähmender Athem",
       "item.minecraft_eragon_fraktions.empire_soldier_armor_leggings": "Empire Soldier Armor Leggings",
+      "item.minecraft_eragon_fraktions.war_hammer": "War Hammer",
       "item.minecraft.splash_potion.effect.no_fall": "Splash No Fall",
+      "item.minecraft_eragon_fraktions.empire_soldier_with_speer_spawn_egg": "Empire Soldier With Speer Spawn Egg",
       "item.minecraft_eragon__personallib.empire_soldier_spawn_egg": "Empire Soldier Spawn Egg",
       "item.minecraft.lingering_potion.effect.last_man_standing": "Lingering Last Man Standing",
       "item.minecraft_eragon_fraktions.regenerative_zone_schatten": "Regenerative Zone Schatten Portal Igniter",
-      "item.minecraft.potion.effect.lahmender_athem": "paralysing breath",
+      "item.minecraft.potion.effect.lahmender_athem": "Lähmender Athem",
       "item.minecraft.tipped_arrow.effect.elfisch_strengh": "Arrow of Elvish strength",
       "item.minecraft.lingering_potion.effect.no_fall": "Lingering No Fall",
       "item.minecraft.splash_potion.effect.last_man_standing": "Splash Last Man Standing",
-      "item.minecraft.lingering_potion.effect.lahmender_athem": "Lingering paralysing breath",
+      "item.minecraft.lingering_potion.effect.lahmender_athem": "Lingering Lähmender Athem",
       "item.minecraft_eragon__personallib.fireballshot": "Fireballshot",
       "key.minecraft_eragon__personallib.button_fraktion": "Button Fraktion",
+      "subtitles.shadedies": "",
       "key.mcreator.specialability_key": "Specialability Key",
       "key.minecraft_eragon_fraktions.specialability_key": "Specialability Key",
       "item.minecraft.tipped_arrow.effect.lahmender_athem": "Arrow of Lähmender Athem",
@@ -1601,7 +1824,7 @@
       "item.minecraft_eragon_fraktions.empire_soldier_armor_helmet": "Empire Soldier Armor Helmet",
       "biome.minecraft_eragon_fraktions.regeration_zone": "Regeration Zone",
       "block.minecraft_eragon_fraktions.portalblock": "Portalblock",
-      "key.minecraft_eragon_fraktions.special_abillity_shade_fireball": "Special Abillity Shade Fireball",
+      "entity.minecraft_eragon_fraktions.empire_soldier_with_speer": "Empire Soldier With Speer",
       "item.minecraft_eragon_fraktions.empire_soldier_armor_chestplate": "Empire Soldier Armor Body",
       "item.minecraft_eragon_fraktions.dying_shade_spawn_egg": "Dying Shade Spawn Egg",
       "item.minecraft_eragon__personallib.speer": "Speer",
@@ -1612,16 +1835,20 @@
       "entity.minecraft_eragon_fraktions.empire_soldier": "Empire Soldier",
       "item.minecraft_eragon_fraktions.dwarfs_throwable_axe": "Dwarfs Throwable Axe",
       "item.minecraft_eragon_fraktions.empire_soldier_spawn_egg": "Empire Soldier Spawn Egg",
+      "block.minecraft_eragon_fraktions.shade_clothes": "Shade Clothes",
       "item.minecraft.splash_potion.effect.elfisch_strengh": "Splash Elvish strength",
       "effect.last_man_standing": "Last Man Standing",
       "item.minecraft.tipped_arrow.effect.last_man_standing": "Arrow of Last Man Standing",
-      "effect.lahmender_athem": "paralysing breath",
+      "entity.minecraft_eragon_fraktions.herobrine": "Herobrine",
+      "effect.lahmender_athem": "Lahmender Athem",
       "item.minecraft.lingering_potion.effect.elfisch_strengh": "Lingering Elvish strength",
       "item.minecraft_eragon_fraktions.speer": "Speer",
       "entity.minecraft_eragon__personallib.empire_soldier": "Empire Soldier",
       "item.minecraft.potion.effect.last_man_standing": "Last Man Standing",
       "entity.minecraft_eragon_fraktions.dying_shade": "Dying Shade",
-      "key.minecraft_eragon_fraktions.button_fraktion": "Button Fraktion"
+      "key.minecraft_eragon_fraktions.button_fraktion": "Button Fraktion",
+      "item.minecraft_eragon_fraktions.herobrine_spawn_egg": "Herobrine Spawn Egg",
+      "item.minecraft_eragon_fraktions.shield_empire_soldier": "Shield Empire Soldier"
     },
     "de_de": {
       "item.minecraft.potion.effect.elfisch_strengh": "Elvish strength",
@@ -1632,7 +1859,9 @@
       "itemGroup.taberagon": "Eragon",
       "item.minecraft.splash_potion.effect.lahmender_athem": "Splash Lähmender Athem",
       "item.minecraft_eragon_fraktions.empire_soldier_armor_leggings": "Empire Soldier Armor Leggings",
+      "item.minecraft_eragon_fraktions.war_hammer": "War Hammer",
       "item.minecraft.splash_potion.effect.no_fall": "Splash No Fall",
+      "item.minecraft_eragon_fraktions.empire_soldier_with_speer_spawn_egg": "Empire Soldier With Speer Spawn Egg",
       "item.minecraft_eragon__personallib.empire_soldier_spawn_egg": "Empire Soldier Spawn Egg",
       "item.minecraft.lingering_potion.effect.last_man_standing": "Lingering Last Man Standing",
       "item.minecraft_eragon_fraktions.regenerative_zone_schatten": "Regenerative Zone Shade Portal Igniter",
@@ -1643,6 +1872,7 @@
       "item.minecraft.lingering_potion.effect.lahmender_athem": "Lingering paralysing breath",
       "item.minecraft_eragon__personallib.fireballshot": "Fireballshot",
       "key.minecraft_eragon__personallib.button_fraktion": "Button Fraktion",
+      "subtitles.shadedies": "",
       "key.mcreator.specialability_key": "Specialability Key",
       "key.minecraft_eragon_fraktions.specialability_key": "Specialability Key",
       "item.minecraft.tipped_arrow.effect.lahmender_athem": "Arrow of Lähmender Athem",
@@ -1651,7 +1881,7 @@
       "item.minecraft_eragon_fraktions.empire_soldier_armor_helmet": "Empire Soldier Armor Helmet",
       "biome.minecraft_eragon_fraktions.regeration_zone": "Regeration Zone",
       "block.minecraft_eragon_fraktions.portalblock": "Portalblock",
-      "key.minecraft_eragon_fraktions.special_abillity_shade_fireball": "Special Abillity Shade Fireball",
+      "entity.minecraft_eragon_fraktions.empire_soldier_with_speer": "Empire Soldier With Speer",
       "item.minecraft_eragon_fraktions.empire_soldier_armor_chestplate": "Empire Soldier Armor Body",
       "item.minecraft_eragon_fraktions.dying_shade_spawn_egg": "Dying Shade Spawn Egg",
       "item.minecraft_eragon__personallib.speer": "Speer",
@@ -1662,16 +1892,20 @@
       "entity.minecraft_eragon_fraktions.empire_soldier": "Empire Soldier",
       "item.minecraft_eragon_fraktions.dwarfs_throwable_axe": "Dwarfs Throwable Axe",
       "item.minecraft_eragon_fraktions.empire_soldier_spawn_egg": "Empire Soldier Spawn Egg",
+      "block.minecraft_eragon_fraktions.shade_clothes": "Shade Clothes",
       "item.minecraft.splash_potion.effect.elfisch_strengh": "Splash Elvish strength",
       "effect.last_man_standing": "Last Man Standing",
       "item.minecraft.tipped_arrow.effect.last_man_standing": "Arrow of Last Man Standing",
+      "entity.minecraft_eragon_fraktions.herobrine": "Herobrine",
       "effect.lahmender_athem": "paralysing breath",
       "item.minecraft.lingering_potion.effect.elfisch_strengh": "Lingering Elvish strength",
       "item.minecraft_eragon_fraktions.speer": "Speer",
       "entity.minecraft_eragon__personallib.empire_soldier": "Empire Soldier",
       "item.minecraft.potion.effect.last_man_standing": "Last Man Standing",
       "entity.minecraft_eragon_fraktions.dying_shade": "Dying Shade",
-      "key.minecraft_eragon_fraktions.button_fraktion": "Button Fraktion"
+      "key.minecraft_eragon_fraktions.button_fraktion": "Button Fraktion",
+      "item.minecraft_eragon_fraktions.herobrine_spawn_egg": "Herobrine Spawn Egg",
+      "item.minecraft_eragon_fraktions.shield_empire_soldier": "Shield Empire Soldier"
     }
   },
   "foldersRoot": {
@@ -1684,15 +1918,23 @@
       {
         "name": "structures",
         "children": []
+      },
+      {
+        "name": "Herobrine",
+        "children": []
+      },
+      {
+        "name": "setup",
+        "children": []
       }
     ]
   },
   "workspaceSettings": {
     "modid": "minecraft_eragon_fraktions",
     "modName": "Minecraft Eragon fraktions",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "author": "KATLA66",
-    "websiteURL": "https://mcreator.net",
+    "websiteURL": "https://www.jetbrains.com/de-de/idea/",
     "license": "Not specified",
     "disableForgeVersionCheck": true,
     "serverSideOnly": false,
@@ -1701,9 +1943,9 @@
     "dependants": [],
     "mcreatorDependencies": [],
     "currentGenerator": "forge-1.16.5",
-    "credits": "Created using mod maker MCreator - https://mcreator.net/about and Eclipse  https://www.eclipse.org/ ",
+    "credits": "Created using mod maker MCreator - https://mcreator.net/about and Intellij https://www.jetbrains.com/de-de/idea/",
     "modElementsPackage": "de.katla66.minecrafteragon",
     "lockBaseModFiles": false
   },
-  "mcreatorVersion": 202100112313
+  "mcreatorVersion": 202100118117
 }

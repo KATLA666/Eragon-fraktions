@@ -1,8 +1,6 @@
 
 package de.katla66.minecrafteragon.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.api.distmarker.Dist;
 
@@ -18,6 +16,7 @@ import net.minecraft.client.Minecraft;
 
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsMod;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 @OnlyIn(Dist.CLIENT)
@@ -44,8 +43,10 @@ public class FraktionRegistryImperiumGuiWindow extends ContainerScreen<FraktionR
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(MatrixStack ms, float par1, int par2, int par3) {
-		GL11.glColor4f(1, 1, 1, 1);
+	protected void drawGuiContainerBackgroundLayer(MatrixStack ms, float partialTicks, int gx, int gy) {
+		RenderSystem.color4f(1, 1, 1, 1);
+		RenderSystem.enableBlend();
+		RenderSystem.defaultBlendFunc();
 		Minecraft.getInstance().getTextureManager().bindTexture(texture);
 		int k = (this.width - this.xSize) / 2;
 		int l = (this.height - this.ySize) / 2;
@@ -53,6 +54,7 @@ public class FraktionRegistryImperiumGuiWindow extends ContainerScreen<FraktionR
 		Minecraft.getInstance().getTextureManager()
 				.bindTexture(new ResourceLocation("minecraft_eragon_fraktions:textures/treebrenchempireminions.png"));
 		this.blit(ms, this.guiLeft + -2, this.guiTop + -5, 0, 0, 215, 166, 215, 166);
+		RenderSystem.disableBlend();
 	}
 
 	@Override
@@ -86,28 +88,40 @@ public class FraktionRegistryImperiumGuiWindow extends ContainerScreen<FraktionR
 		super.init(minecraft, width, height);
 		minecraft.keyboardListener.enableRepeatEvents(true);
 		this.addButton(new Button(this.guiLeft + 5, this.guiTop + 27, 105, 20, new StringTextComponent("Empire Soldier"), e -> {
-			MinecraftEragonFraktionsMod.PACKET_HANDLER.sendToServer(new FraktionRegistryImperiumGui.ButtonPressedMessage(0, x, y, z));
-			FraktionRegistryImperiumGui.handleButtonAction(entity, 0, x, y, z);
+			if (true) {
+				MinecraftEragonFraktionsMod.PACKET_HANDLER.sendToServer(new FraktionRegistryImperiumGui.ButtonPressedMessage(0, x, y, z));
+				FraktionRegistryImperiumGui.handleButtonAction(entity, 0, x, y, z);
+			}
 		}));
 		this.addButton(new Button(this.guiLeft + 138, this.guiTop + 27, 50, 20, new StringTextComponent("Shade"), e -> {
-			MinecraftEragonFraktionsMod.PACKET_HANDLER.sendToServer(new FraktionRegistryImperiumGui.ButtonPressedMessage(1, x, y, z));
-			FraktionRegistryImperiumGui.handleButtonAction(entity, 1, x, y, z);
+			if (true) {
+				MinecraftEragonFraktionsMod.PACKET_HANDLER.sendToServer(new FraktionRegistryImperiumGui.ButtonPressedMessage(1, x, y, z));
+				FraktionRegistryImperiumGui.handleButtonAction(entity, 1, x, y, z);
+			}
 		}));
 		this.addButton(new Button(this.guiLeft + 137, this.guiTop + 97, 50, 20, new StringTextComponent("Urgal"), e -> {
-			MinecraftEragonFraktionsMod.PACKET_HANDLER.sendToServer(new FraktionRegistryImperiumGui.ButtonPressedMessage(2, x, y, z));
-			FraktionRegistryImperiumGui.handleButtonAction(entity, 2, x, y, z);
+			if (true) {
+				MinecraftEragonFraktionsMod.PACKET_HANDLER.sendToServer(new FraktionRegistryImperiumGui.ButtonPressedMessage(2, x, y, z));
+				FraktionRegistryImperiumGui.handleButtonAction(entity, 2, x, y, z);
+			}
 		}));
 		this.addButton(new Button(this.guiLeft + 5, this.guiTop + 142, 40, 20, new StringTextComponent("<<<"), e -> {
-			MinecraftEragonFraktionsMod.PACKET_HANDLER.sendToServer(new FraktionRegistryImperiumGui.ButtonPressedMessage(3, x, y, z));
-			FraktionRegistryImperiumGui.handleButtonAction(entity, 3, x, y, z);
+			if (true) {
+				MinecraftEragonFraktionsMod.PACKET_HANDLER.sendToServer(new FraktionRegistryImperiumGui.ButtonPressedMessage(3, x, y, z));
+				FraktionRegistryImperiumGui.handleButtonAction(entity, 3, x, y, z);
+			}
 		}));
 		this.addButton(new Button(this.guiLeft + 6, this.guiTop + 97, 55, 20, new StringTextComponent("Ra'zac"), e -> {
-			MinecraftEragonFraktionsMod.PACKET_HANDLER.sendToServer(new FraktionRegistryImperiumGui.ButtonPressedMessage(4, x, y, z));
-			FraktionRegistryImperiumGui.handleButtonAction(entity, 4, x, y, z);
+			if (true) {
+				MinecraftEragonFraktionsMod.PACKET_HANDLER.sendToServer(new FraktionRegistryImperiumGui.ButtonPressedMessage(4, x, y, z));
+				FraktionRegistryImperiumGui.handleButtonAction(entity, 4, x, y, z);
+			}
 		}));
 		this.addButton(new Button(this.guiLeft + 290, this.guiTop + -36, 30, 20, new StringTextComponent("?"), e -> {
-			MinecraftEragonFraktionsMod.PACKET_HANDLER.sendToServer(new FraktionRegistryImperiumGui.ButtonPressedMessage(5, x, y, z));
-			FraktionRegistryImperiumGui.handleButtonAction(entity, 5, x, y, z);
+			if (true) {
+				MinecraftEragonFraktionsMod.PACKET_HANDLER.sendToServer(new FraktionRegistryImperiumGui.ButtonPressedMessage(5, x, y, z));
+				FraktionRegistryImperiumGui.handleButtonAction(entity, 5, x, y, z);
+			}
 		}));
 	}
 }

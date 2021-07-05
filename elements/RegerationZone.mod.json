@@ -1,5 +1,5 @@
 {
-  "_fv": 17,
+  "_fv": 18,
   "_type": "biome",
   "definition": {
     "name": "Regeration Zone",
@@ -96,7 +96,9 @@
     "spawnOceanMonument": false,
     "spawnShipwreck": false,
     "oceanRuinType": "NONE",
-    "defaultFeatures": [],
+    "defaultFeatures": [
+      "FrozenTopLayer"
+    ],
     "spawnEntries": []
   }
 }

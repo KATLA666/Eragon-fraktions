@@ -2,6 +2,10 @@ package de.katla66.minecrafteragon.procedures;
 
 import net.minecraft.world.IWorld;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.scoreboard.Scoreboard;
+import net.minecraft.scoreboard.ScoreObjective;
+import net.minecraft.scoreboard.ScoreCriteria;
+import net.minecraft.scoreboard.Score;
 import net.minecraft.potion.Effects;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.entity.projectile.ArrowEntity;
@@ -13,12 +17,20 @@ import java.util.Random;
 import java.util.Map;
 import java.util.HashMap;
 
+import java.io.IOException;
+import java.io.FileReader;
+import java.io.File;
+import java.io.BufferedReader;
+
 import de.katla66.minecrafteragon.potion.LastManStandingPotion;
 import de.katla66.minecrafteragon.item.SpeerItem;
 import de.katla66.minecrafteragon.item.DwarfsThrowableAxeItem;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsModVariables;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsModElements;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsMod;
+
+import com.google.gson.JsonObject;
+import com.google.gson.Gson;
 
 @MinecraftEragonFraktionsModElements.ModElement.Tag
 public class SpecialAbilityProcedure extends MinecraftEragonFraktionsModElements.ModElement {
@@ -57,6 +69,27 @@ public class SpecialAbilityProcedure extends MinecraftEragonFraktionsModElements
 		double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
 		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
 		IWorld world = (IWorld) dependencies.get("world");
+		double MaxEmpireSoldier = 0;
+		double DecayTimeLong = 0;
+		double DecyTimeshort = 0;
+		File eragonConfig = new File("config", File.separator + "eragon factions config.json");
+		{
+			try {
+				BufferedReader eragonConfigReader = new BufferedReader(new FileReader(eragonConfig));
+				StringBuilder jsonstringbuilder = new StringBuilder();
+				String line;
+				while ((line = eragonConfigReader.readLine()) != null) {
+					jsonstringbuilder.append(line);
+				}
+				eragonConfigReader.close();
+				JsonObject gson = new Gson().fromJson(jsonstringbuilder.toString(), JsonObject.class);
+				MaxEmpireSoldier = (double) gson.get("Max Empire Soldier (standard: 4)").getAsDouble();
+				DecayTimeLong = (double) gson.get("Decay time long in ticks (standard: 6000)").getAsDouble();
+				DecyTimeshort = (double) gson.get("Decay time short in ticks (standard: 3000)").getAsDouble();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
 				.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).varden) == 1)) {
 			if (((entity.getPersistentData().getDouble("clockready")) == 1)) {
@@ -73,7 +106,7 @@ public class SpecialAbilityProcedure extends MinecraftEragonFraktionsModElements
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
-							(((("\u00A7cThe decay time is still ") + "" + ((3000 - (entity.getPersistentData().getDouble("clock")))))) + ""
+							(((("\u00A7cThe decay time is still ") + "" + (((DecyTimeshort) - (entity.getPersistentData().getDouble("clock")))))) + ""
 									+ ("Ticks!"))),
 							(true));
 				}
@@ -96,7 +129,7 @@ public class SpecialAbilityProcedure extends MinecraftEragonFraktionsModElements
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
-							(((("\u00A7cThe decay time is still ") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
+							(((("\u00A7cThe decay time is still ") + "" + (((DecayTimeLong) - (entity.getPersistentData().getDouble("clock")))))) + ""
 									+ (" Ticks!"))),
 							(true));
 				}
@@ -115,7 +148,7 @@ public class SpecialAbilityProcedure extends MinecraftEragonFraktionsModElements
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
-							(((("\u00A7cThe decay time is still ") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
+							(((("\u00A7cThe decay time is still ") + "" + (((DecayTimeLong) - (entity.getPersistentData().getDouble("clock")))))) + ""
 									+ ("Ticks!"))),
 							(true));
 				}
@@ -134,7 +167,7 @@ public class SpecialAbilityProcedure extends MinecraftEragonFraktionsModElements
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
-							(((("\u00A7cThe decay time is still ") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
+							(((("\u00A7cThe decay time is still ") + "" + (((DecayTimeLong) - (entity.getPersistentData().getDouble("clock")))))) + ""
 									+ ("Ticks!"))),
 							(true));
 				}
@@ -142,18 +175,75 @@ public class SpecialAbilityProcedure extends MinecraftEragonFraktionsModElements
 		} else if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
 				.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).empireSoldier) == 1)) {
 			if (((entity.getPersistentData().getDouble("clockreadystrong")) == 1)) {
-				{
-					Map<String, Object> $_dependencies = new HashMap<>();
-					$_dependencies.put("entity", entity);
-					SummonSoldierProcedure.executeProcedure($_dependencies);
+				if (((new Object() {
+					public int getScore(String score) {
+						if (entity instanceof PlayerEntity) {
+							Scoreboard _sc = ((PlayerEntity) entity).getWorldScoreboard();
+							ScoreObjective _so = _sc.getObjective(score);
+							if (_so != null) {
+								Score _scr = _sc.getOrCreateScore(((PlayerEntity) entity).getScoreboardName(), _so);
+								return _scr.getScorePoints();
+							}
+						}
+						return 0;
+					}
+				}.getScore("CEM")) < (MaxEmpireSoldier))) {
+					{
+						Map<String, Object> $_dependencies = new HashMap<>();
+						$_dependencies.put("entity", entity);
+						SummonSoldierProcedure.executeProcedure($_dependencies);
+					}
+					{
+						Entity _ent = entity;
+						if (_ent instanceof PlayerEntity) {
+							Scoreboard _sc = ((PlayerEntity) _ent).getWorldScoreboard();
+							ScoreObjective _so = _sc.getObjective("CEM");
+							if (_so == null) {
+								_so = _sc.addObjective("CEM", ScoreCriteria.DUMMY, new StringTextComponent("CEM"), ScoreCriteria.RenderType.INTEGER);
+							}
+							Score _scr = _sc.getOrCreateScore(((PlayerEntity) _ent).getScoreboardName(), _so);
+							_scr.setScorePoints((int) ((new Object() {
+								public int getScore(String score) {
+									if (entity instanceof PlayerEntity) {
+										Scoreboard _sc = ((PlayerEntity) entity).getWorldScoreboard();
+										ScoreObjective _so = _sc.getObjective(score);
+										if (_so != null) {
+											Score _scr = _sc.getOrCreateScore(((PlayerEntity) entity).getScoreboardName(), _so);
+											return _scr.getScorePoints();
+										}
+									}
+									return 0;
+								}
+							}.getScore("CEM")) + 1));
+						}
+					}
+					entity.getPersistentData().putDouble("clock", 0);
+					entity.getPersistentData().putDouble("clockreadystrong", 0);
+					if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
+						((PlayerEntity) entity).sendStatusMessage(new StringTextComponent((((("\u00A7a") + "" + ((new Object() {
+							public int getScore(String score) {
+								if (entity instanceof PlayerEntity) {
+									Scoreboard _sc = ((PlayerEntity) entity).getWorldScoreboard();
+									ScoreObjective _so = _sc.getObjective(score);
+									if (_so != null) {
+										Score _scr = _sc.getOrCreateScore(((PlayerEntity) entity).getScoreboardName(), _so);
+										return _scr.getScorePoints();
+									}
+								}
+								return 0;
+							}
+						}.getScore("CEM"))))) + "" + (((" \u00A7aSoldier(s) of ") + "" + ((MaxEmpireSoldier)))))), (true));
+					}
+				} else {
+					if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
+						((PlayerEntity) entity).sendStatusMessage(new StringTextComponent("\u00A7cMaximum soldier limit reached"), (true));
+					}
 				}
-				entity.getPersistentData().putDouble("clock", 0);
-				entity.getPersistentData().putDouble("clockreadystrong", 0);
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
-							(((("\u00A7cThe decay time is still ") + "" + ((6000 - (entity.getPersistentData().getDouble("clock")))))) + ""
-									+ ("\u00A7cTicks!"))),
+							(((("\u00A7cThe decay time is still ") + "" + (((DecayTimeLong) - (entity.getPersistentData().getDouble("clock")))))) + ""
+									+ (" Ticks!"))),
 							(true));
 				}
 			}
@@ -173,7 +263,7 @@ public class SpecialAbilityProcedure extends MinecraftEragonFraktionsModElements
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
-							(((("\u00A7cThe decay time is still ") + "" + ((3000 - (entity.getPersistentData().getDouble("clock")))))) + ""
+							(((("\u00A7cThe decay time is still ") + "" + (((DecyTimeshort) - (entity.getPersistentData().getDouble("clock")))))) + ""
 									+ (" \u00A7cTicks"))),
 							(true));
 				}
@@ -194,7 +284,7 @@ public class SpecialAbilityProcedure extends MinecraftEragonFraktionsModElements
 			} else {
 				if (entity instanceof PlayerEntity && !entity.world.isRemote()) {
 					((PlayerEntity) entity).sendStatusMessage(new StringTextComponent(
-							(((("\u00A7cThe decay time is still ") + "" + ((3000 - (entity.getPersistentData().getDouble("clock")))))) + ""
+							(((("\u00A7cThe decay time is still ") + "" + (((DecyTimeshort) - (entity.getPersistentData().getDouble("clock")))))) + ""
 									+ ("Ticks!"))),
 							(true));
 				}

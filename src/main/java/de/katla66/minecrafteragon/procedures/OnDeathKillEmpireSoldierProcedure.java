@@ -37,6 +37,14 @@ public class OnDeathKillEmpireSoldierProcedure extends MinecraftEragonFraktionsM
 									+ ((((entity.getDisplayName().getString())) + "" + ("\"]}]")))));
 				}
 			}
+			{
+				Entity _ent = entity;
+				if (!_ent.world.isRemote && _ent.world.getServer() != null) {
+					_ent.world.getServer().getCommandManager().handleCommand(_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
+							(("kill @e[type=minecraft_eragon_fraktions:empire_soldier_with_speer,nbt={Tags:[\"") + ""
+									+ ((((entity.getDisplayName().getString())) + "" + ("\"]}]")))));
+				}
+			}
 		}
 	}
 

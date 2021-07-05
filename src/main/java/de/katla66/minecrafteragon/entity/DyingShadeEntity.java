@@ -6,82 +6,68 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.fml.network.FMLPlayMessages;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 
 import net.minecraft.world.World;
+import net.minecraft.world.IServerWorld;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.DamageSource;
 import net.minecraft.network.IPacket;
-import net.minecraft.item.SpawnEggItem;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.Item;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.CreatureAttribute;
-import net.minecraft.client.renderer.entity.model.BipedModel;
-import net.minecraft.client.renderer.entity.layers.BipedArmorLayer;
-import net.minecraft.client.renderer.entity.BipedRenderer;
 
+import javax.annotation.Nullable;
+
+import java.util.Map;
+import java.util.HashMap;
+
+import de.katla66.minecrafteragon.procedures.DyingShadeOnInitialEntitySpawnProcedure;
+import de.katla66.minecrafteragon.entity.renderer.DyingShadeRenderer;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsModElements;
 
 @MinecraftEragonFraktionsModElements.ModElement.Tag
 public class DyingShadeEntity extends MinecraftEragonFraktionsModElements.ModElement {
-	public static EntityType entity = null;
+	public static EntityType entity = (EntityType.Builder.<CustomEntity>create(CustomEntity::new, EntityClassification.CREATURE)
+			.setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(CustomEntity::new)
+			.size(0.4f, 0.3f)).build("dying_shade").setRegistryName("dying_shade");
 	public DyingShadeEntity(MinecraftEragonFraktionsModElements instance) {
 		super(instance, 75);
-		FMLJavaModLoadingContext.get().getModEventBus().register(new ModelRegisterHandler());
+		FMLJavaModLoadingContext.get().getModEventBus().register(new DyingShadeRenderer.ModelRegisterHandler());
+		FMLJavaModLoadingContext.get().getModEventBus().register(new EntityAttributesRegisterHandler());
 	}
 
 	@Override
 	public void initElements() {
-		entity = (EntityType.Builder.<CustomEntity>create(CustomEntity::new, EntityClassification.CREATURE).setShouldReceiveVelocityUpdates(true)
-				.setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(CustomEntity::new).size(0.6f, 1.8f)).build("dying_shade")
-						.setRegistryName("dying_shade");
 		elements.entities.add(() -> entity);
-		elements.items
-				.add(() -> new SpawnEggItem(entity, -1, -1, new Item.Properties().group(ItemGroup.MISC)).setRegistryName("dying_shade_spawn_egg"));
 	}
 
 	@Override
 	public void init(FMLCommonSetupEvent event) {
-		DeferredWorkQueue.runLater(this::setupAttributes);
 	}
-	private static class ModelRegisterHandler {
+	private static class EntityAttributesRegisterHandler {
 		@SubscribeEvent
-		@OnlyIn(Dist.CLIENT)
-		public void registerModels(ModelRegistryEvent event) {
-			RenderingRegistry.registerEntityRenderingHandler(entity, renderManager -> {
-				BipedRenderer customRender = new BipedRenderer(renderManager, new BipedModel(0), 0.5f) {
-					@Override
-					public ResourceLocation getEntityTexture(Entity entity) {
-						return new ResourceLocation("minecraft_eragon_fraktions:textures/firetexture.png");
-					}
-				};
-				customRender.addLayer(new BipedArmorLayer(customRender, new BipedModel(0.5f), new BipedModel(1)));
-				return customRender;
-			});
+		public void onEntityAttributeCreation(EntityAttributeCreationEvent event) {
+			AttributeModifierMap.MutableAttribute ammma = MobEntity.func_233666_p_();
+			ammma = ammma.createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3);
+			ammma = ammma.createMutableAttribute(Attributes.MAX_HEALTH, 10);
+			ammma = ammma.createMutableAttribute(Attributes.ARMOR, 0);
+			ammma = ammma.createMutableAttribute(Attributes.ATTACK_DAMAGE, 3);
+			event.put(entity, ammma.create());
 		}
 	}
-	private void setupAttributes() {
-		AttributeModifierMap.MutableAttribute ammma = MobEntity.func_233666_p_();
-		ammma = ammma.createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3);
-		ammma = ammma.createMutableAttribute(Attributes.MAX_HEALTH, 10);
-		ammma = ammma.createMutableAttribute(Attributes.ARMOR, 0);
-		ammma = ammma.createMutableAttribute(Attributes.ATTACK_DAMAGE, 3);
-		GlobalEntityTypeAttributes.put(entity, ammma.create());
-	}
-	public static class CustomEntity extends MonsterEntity {
+
+	public static class CustomEntity extends CreatureEntity {
 		public CustomEntity(FMLPlayMessages.SpawnEntity packet, World world) {
 			this(entity, world);
 		}
@@ -110,6 +96,26 @@ public class DyingShadeEntity extends MinecraftEragonFraktionsModElements.ModEle
 		@Override
 		public net.minecraft.util.SoundEvent getDeathSound() {
 			return (net.minecraft.util.SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.death"));
+		}
+
+		@Override
+		public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason,
+				@Nullable ILivingEntityData livingdata, @Nullable CompoundNBT tag) {
+			ILivingEntityData retval = super.onInitialSpawn(world, difficulty, reason, livingdata, tag);
+			double x = this.getPosX();
+			double y = this.getPosY();
+			double z = this.getPosZ();
+			Entity entity = this;
+			{
+				Map<String, Object> $_dependencies = new HashMap<>();
+				$_dependencies.put("entity", entity);
+				$_dependencies.put("x", x);
+				$_dependencies.put("y", y);
+				$_dependencies.put("z", z);
+				$_dependencies.put("world", world);
+				DyingShadeOnInitialEntitySpawnProcedure.executeProcedure($_dependencies);
+			}
+			return retval;
 		}
 
 		@Override

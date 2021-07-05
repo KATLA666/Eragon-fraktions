@@ -1,10 +1,10 @@
 {
-  "_fv": 17,
+  "_fv": 18,
   "_type": "gun",
   "definition": {
-    "renderType": 0,
+    "renderType": 2,
     "texture": "speer",
-    "customModelName": "Normal",
+    "customModelName": "speer1.16:default",
     "name": "Speer",
     "specialInfo": [],
     "creativeTab": {

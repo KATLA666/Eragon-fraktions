@@ -75,7 +75,7 @@ public class FraktionElfenProcedure extends MinecraftEragonFraktionsModElements.
 					if (!_ent.world.isRemote && _ent.world.getServer() != null) {
 						_ent.world.getServer().getCommandManager().handleCommand(
 								_ent.getCommandSource().withFeedbackDisabled().withPermissionLevel(4),
-								"attribute @s minecraft:generic.attack_speed base set 5");
+								"attribute @s minecraft:generic.attack_speed base set 4.5");
 					}
 				}
 				entity.getPersistentData().putDouble("activ", 1);

@@ -1,1 +1,11 @@
-{}
+{
+  "shadedies": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "minecraft_eragon_fraktions:shade_dies",
+        "stream": false
+      }
+    ]
+  }
+}

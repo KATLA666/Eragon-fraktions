@@ -46,6 +46,8 @@ public class MinecraftEragonFraktionsModElements {
 	public final List<Supplier<Enchantment>> enchantments = new ArrayList<>();
 	public static Map<ResourceLocation, net.minecraft.util.SoundEvent> sounds = new HashMap<>();
 	public MinecraftEragonFraktionsModElements() {
+		sounds.put(new ResourceLocation("minecraft_eragon_fraktions", "shadedies"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("minecraft_eragon_fraktions", "shadedies")));
 		try {
 			ModFileScanData modFileInfo = ModList.get().getModFileById("minecraft_eragon_fraktions").getFile().getScanResult();
 			Set<ModFileScanData.AnnotationData> annotations = modFileInfo.getAnnotations();

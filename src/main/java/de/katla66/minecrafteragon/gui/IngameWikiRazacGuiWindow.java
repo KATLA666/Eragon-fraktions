@@ -1,8 +1,6 @@
 
 package de.katla66.minecrafteragon.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.api.distmarker.Dist;
 
@@ -18,6 +16,7 @@ import net.minecraft.client.Minecraft;
 
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsMod;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 @OnlyIn(Dist.CLIENT)
@@ -44,8 +43,10 @@ public class IngameWikiRazacGuiWindow extends ContainerScreen<IngameWikiRazacGui
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(MatrixStack ms, float par1, int par2, int par3) {
-		GL11.glColor4f(1, 1, 1, 1);
+	protected void drawGuiContainerBackgroundLayer(MatrixStack ms, float partialTicks, int gx, int gy) {
+		RenderSystem.color4f(1, 1, 1, 1);
+		RenderSystem.enableBlend();
+		RenderSystem.defaultBlendFunc();
 		Minecraft.getInstance().getTextureManager().bindTexture(texture);
 		int k = (this.width - this.xSize) / 2;
 		int l = (this.height - this.ySize) / 2;
@@ -53,6 +54,7 @@ public class IngameWikiRazacGuiWindow extends ContainerScreen<IngameWikiRazacGui
 		Minecraft.getInstance().getTextureManager()
 				.bindTexture(new ResourceLocation("minecraft_eragon_fraktions:textures/ingamewikibiggerbook300brighter.png"));
 		this.blit(ms, this.guiLeft + -83, this.guiTop + -65, 0, 0, 300, 300, 300, 300);
+		RenderSystem.disableBlend();
 	}
 
 	@Override
@@ -97,12 +99,16 @@ public class IngameWikiRazacGuiWindow extends ContainerScreen<IngameWikiRazacGui
 		super.init(minecraft, width, height);
 		minecraft.keyboardListener.enableRepeatEvents(true);
 		this.addButton(new Button(this.guiLeft + -119, this.guiTop + 178, 40, 20, new StringTextComponent("<--"), e -> {
-			MinecraftEragonFraktionsMod.PACKET_HANDLER.sendToServer(new IngameWikiRazacGui.ButtonPressedMessage(0, x, y, z));
-			IngameWikiRazacGui.handleButtonAction(entity, 0, x, y, z);
+			if (true) {
+				MinecraftEragonFraktionsMod.PACKET_HANDLER.sendToServer(new IngameWikiRazacGui.ButtonPressedMessage(0, x, y, z));
+				IngameWikiRazacGui.handleButtonAction(entity, 0, x, y, z);
+			}
 		}));
 		this.addButton(new Button(this.guiLeft + 258, this.guiTop + 178, 40, 20, new StringTextComponent("-->"), e -> {
-			MinecraftEragonFraktionsMod.PACKET_HANDLER.sendToServer(new IngameWikiRazacGui.ButtonPressedMessage(1, x, y, z));
-			IngameWikiRazacGui.handleButtonAction(entity, 1, x, y, z);
+			if (true) {
+				MinecraftEragonFraktionsMod.PACKET_HANDLER.sendToServer(new IngameWikiRazacGui.ButtonPressedMessage(1, x, y, z));
+				IngameWikiRazacGui.handleButtonAction(entity, 1, x, y, z);
+			}
 		}));
 	}
 }

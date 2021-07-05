@@ -45,10 +45,12 @@ import net.minecraft.client.renderer.entity.BipedRenderer;
 import java.util.Map;
 import java.util.HashMap;
 
-import de.katla66.minecrafteragon.procedures.EmpireSoldierRightClickedOnEntityProcedure;
-import de.katla66.minecrafteragon.itemgroup.EragonItemGroup;
+import de.katla66.minecrafteragon.procedures.*;
+import de.katla66.minecrafteragon.itemgroup.*;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsModElements;
-import de.katla66.minecrafteragon.item.EmpireSoldierArmorItem;
+import de.katla66.minecrafteragon.item.*;
+
+
 
 @MinecraftEragonFraktionsModElements.ModElement.Tag
 public class EmpireSoldierEntity extends MinecraftEragonFraktionsModElements.ModElement {
@@ -93,7 +95,7 @@ public class EmpireSoldierEntity extends MinecraftEragonFraktionsModElements.Mod
 		ammma = ammma.createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3);
 		ammma = ammma.createMutableAttribute(Attributes.MAX_HEALTH, 20);
 		ammma = ammma.createMutableAttribute(Attributes.ARMOR, 0);
-		ammma = ammma.createMutableAttribute(Attributes.ATTACK_DAMAGE, 0);
+		ammma = ammma.createMutableAttribute(Attributes.ATTACK_DAMAGE, -4);
 		ammma = ammma.createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 0.1);
 		ammma = ammma.createMutableAttribute(Attributes.ATTACK_SPEED, 4);
 		GlobalEntityTypeAttributes.put(entity, ammma.create());
@@ -111,6 +113,7 @@ public class EmpireSoldierEntity extends MinecraftEragonFraktionsModElements.Mod
 			setCustomNameVisible(true);
 			enablePersistence();
 			this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.IRON_SWORD, (int) (1)));
+			this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(ShieldEmpireSoldierItem.block, (int) (1)));
 			this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(EmpireSoldierArmorItem.helmet, (int) (1)));
 			this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(EmpireSoldierArmorItem.body, (int) (1)));
 			this.setItemStackToSlot(EquipmentSlotType.LEGS, new ItemStack(EmpireSoldierArmorItem.legs, (int) (1)));
@@ -119,6 +122,7 @@ public class EmpireSoldierEntity extends MinecraftEragonFraktionsModElements.Mod
 			this.setDropChance(EquipmentSlotType.CHEST, 0.15F);
 			this.setDropChance(EquipmentSlotType.LEGS, 0.20F);
 			this.setDropChance(EquipmentSlotType.FEET, 0.25F);
+			this.setDropChance(EquipmentSlotType.OFFHAND, 0.1F);
 		}
 
 		@Override
@@ -131,10 +135,10 @@ public class EmpireSoldierEntity extends MinecraftEragonFraktionsModElements.Mod
 			super.registerGoals();
 			//this.goalSelector.addGoal(10, new MeleeAttackGoal(this, 1.0D, true));
 			//this.targetSelector.addGoal(4, new HurtByTargetGoal(this).setCallsForHelp(this.getClass()));
-			this.goalSelector.addGoal(1, new RandomWalkingGoal(this, 0.3D));
+			//this.goalSelector.addGoal(1, new RandomWalkingGoal(this, 0.3D));
 			//this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
-			//this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, ZombieEntity.class, true, false));
-			//this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, MonsterEntity.class, true, false));
+			this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, ZombieEntity.class, true, false));
+			this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, MonsterEntity.class, true, false));
 			this.goalSelector.addGoal(8, new FollowOwnerGoal(this, 0.3D, 10.0F, 2.0F, false));
 			//this.goalSelector.addGoal(3, new SwimGoal(this));
 			//this.goalSelector.addGoal(1, new LookRandomlyGoal(this));

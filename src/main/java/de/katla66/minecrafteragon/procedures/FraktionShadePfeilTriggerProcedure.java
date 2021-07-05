@@ -1,25 +1,37 @@
 package de.katla66.minecrafteragon.procedures;
 
-import de.katla66.minecrafteragon.world.dimension.RegenerativeZoneSchattenDimension;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.common.MinecraftForge;
 
+import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.IWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.Entity;
 import net.minecraft.block.Blocks;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
 
+import de.katla66.minecrafteragon.entity.*;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsModVariables;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsModElements;
 import de.katla66.minecrafteragon.MinecraftEragonFraktionsMod;
+import de.katla66.minecrafteragon.world.dimension.*;
 
 @MinecraftEragonFraktionsModElements.ModElement.Tag
 public class FraktionShadePfeilTriggerProcedure extends MinecraftEragonFraktionsModElements.ModElement {
@@ -70,12 +82,30 @@ public class FraktionShadePfeilTriggerProcedure extends MinecraftEragonFraktions
 		double x = dependencies.get("x") instanceof Integer ? (int) dependencies.get("x") : (double) dependencies.get("x");
 		double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
 		double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
+		double MinHealthShade = 4;
 		IWorld world = (IWorld) dependencies.get("world");
+		File eragonConfig = new File("config", File.separator + "eragon factions config.json");
+		{
+			try {
+				BufferedReader eragonConfigReader = new BufferedReader(new FileReader(eragonConfig));
+				StringBuilder jsonstringbuilder = new StringBuilder();
+				String line;
+				while ((line = eragonConfigReader.readLine()) != null) {
+					jsonstringbuilder.append(line);
+				}
+				eragonConfigReader.close();
+				JsonObject gson = new Gson().fromJson(jsonstringbuilder.toString(), JsonObject.class);
+				MinHealthShade = (double) gson.get("Min health for a Shade to TP in the Reg Dimension when hit by an arrow (standard: 4)").getAsDouble();
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		if ((entity instanceof PlayerEntity)) {
 			if ((((entity.getCapability(MinecraftEragonFraktionsModVariables.PLAYER_VARIABLES_CAPABILITY, null)
 					.orElse(new MinecraftEragonFraktionsModVariables.PlayerVariables())).shade) == 1)) {
 				if ((imediatesourceentity instanceof ArrowEntity)) {
-					if ((((entity instanceof LivingEntity) ? ((LivingEntity) entity).getHealth() : -1) <= 4)) {
+					if ((((entity instanceof LivingEntity) ? ((LivingEntity) entity).getHealth() : -1) <= MinHealthShade)) {
 						if (entity instanceof LivingEntity)
 							((LivingEntity) entity)
 									.setHealth((float) ((amount) + ((entity instanceof LivingEntity) ? ((LivingEntity) entity).getHealth() : -1)));
@@ -101,24 +131,34 @@ public class FraktionShadePfeilTriggerProcedure extends MinecraftEragonFraktions
 							});
 						}
 						world.setBlockState(new BlockPos((int) x, (int) y, (int) z), RegenerativeZoneSchattenDimension.portal.getDefaultState(), 3);
+							//Places a portal block by the player's position because I'm to stupid to do it any other way ;)
 						{
 							Map<String, Object> $_dependencies = new HashMap<>();
 							$_dependencies.put("entity", entity);
 							$_dependencies.put("world", world);
 							RemovePortalblockProcedure.executeProcedure($_dependencies);
 						}
-						MinecraftEragonFraktionsMod.LOGGER.info("succesfully executed Class \"FraktionShadepfeiltrigger\"");
+						MinecraftEragonFraktionsMod.LOGGER.debug("succesfully executed Class \"FraktionShadepfeiltrigger\"");
+						if (world instanceof ServerWorld) {
+							Entity entityToSpawn = new DyingShadeEntity.CustomEntity(DyingShadeEntity.entity, (World) world);
+							entityToSpawn.setLocationAndAngles((x + 2), y, z, world.getRandom().nextFloat() * 360F, 0);
+							if (entityToSpawn instanceof MobEntity)
+								((MobEntity) entityToSpawn).onInitialSpawn((ServerWorld) world,
+										world.getDifficultyForLocation(entityToSpawn.getPosition()), SpawnReason.MOB_SUMMONED,
+										(ILivingEntityData) null, (CompoundNBT) null);
+							world.addEntity(entityToSpawn);
+						}
 					} else {
-						MinecraftEragonFraktionsMod.LOGGER.error(" Not beneath 4 Hp");
+						MinecraftEragonFraktionsMod.LOGGER.debug("Shade Health Trigger (sry for spamming your Log ;))");
 					}
 				} else {
-					MinecraftEragonFraktionsMod.LOGGER.error("Not an Arrow");
+					MinecraftEragonFraktionsMod.LOGGER.debug("Not an Arrow");
 				}
 			} else {
-				MinecraftEragonFraktionsMod.LOGGER.error("Not a Shade");
+				MinecraftEragonFraktionsMod.LOGGER.debug("Not a Shade");
 			}
 		} else {
-			MinecraftEragonFraktionsMod.LOGGER.error("No Player");
+			MinecraftEragonFraktionsMod.LOGGER.debug("No Player");
 		}
 	}
 
@@ -147,4 +187,3 @@ public class FraktionShadePfeilTriggerProcedure extends MinecraftEragonFraktions
 		}
 	}
 }
-//locked Code Z. 103. Block.NETHER_PORTAL --> RegenerativeZoneSchattenDimension.portal
